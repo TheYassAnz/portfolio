@@ -53,28 +53,59 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="p-5 accordion" id="accordionExperiences">
-                    <div class="">
-                        <?php
-                        $res = $conn->prepare("SELECT * FROM experience ORDER BY exp_id DESC"); // Préparation de la requête
-                        try {
-                            $res->execute();
-                        } catch (PDOException $e) {
-                            echo "Execution Error";
-                        }
-                        // Exécution de la requête
-                        $tab = $res->fetchAll(); // Enregistrement du résultat sous forme de tableau
-                        if ($tab) {
-                            foreach ($tab as $key => $row) {
-                                // something
+                <!-- ACCORDION SECTION -->
+                <div class="accordion p-5" id="accordionExperience">
+                    <?php
+                    $res = $conn->prepare("SELECT * FROM experience ORDER BY exp_id DESC"); // Préparation de la requête
+                    try {
+                        $res->execute();
+                    } catch (PDOException $e) {
+                        echo "Execution Error";
+                    }
+                    // Exécution de la requête
+                    $tab = $res->fetchAll(); // Enregistrement du résultat sous forme de tableau
+                    if ($tab) {
+                        foreach ($tab as $key => $row) {
+                            if ($row['exp_missions']) {
+                                echo '
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading' . $row["exp_id"] . '">
+                                <button class="accordion-button collapsed p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $row["exp_id"] . '" aria-expanded="true" aria-controls="collapse' . $row["exp_id"] . '">
+                                    <div>
+                                        <h4 class="mt-0 mb-1">' . $row["exp_libelle"] . ', ' . $row["exp_societe"] . ', ' . $row["exp_lieu"] . '</h4>
+                                        <p class="lead">
+                                            <span class="small">' . $row["exp_debut_mois"] . '. ' . $row["exp_debut_annee"] . ' - ' . $row["exp_fin_mois"] . '. ' . $row["exp_fin_annee"] . ' (' . $row["exp_duree"] . ')' . '</span>
+                                        </p>
+                                        <p>' . $row["exp_description"] . '</p>
+                                    </div>
+                                </button>
+                            </h2>
+                        <div id="collapse' . $row["exp_id"] . '" class="accordion-collapse collapse" aria-labelledby="heading' . $row["exp_id"] . '" data-bs-parent="#accordionExperience">
+                            <div class="accordion-body">
+                                <strong>Missions réalisées</strong>
+                                <p>' . $row["exp_missions"] . '</p>
+                            </div>
+                        </div>
+                        </div>';
+                            } else {
+                                echo '
+                        <div class="card">
+                            <div class="card-body p-1">
+                                <h4 class="mt-0 mb-1">' . $row["exp_libelle"] . ', ' . $row["exp_societe"] . ', ' . $row["exp_lieu"] . '</h4>
+                                <p class="lead">
+                                    <span class="small">' . $row["exp_debut_mois"] . '. ' . $row["exp_debut_annee"] . ' - ' . $row["exp_fin_mois"] . '. ' . $row["exp_fin_annee"] . ' (' . $row["exp_duree"] . ')' . '</span>
+                                </p>
+                                <p class="card-text">' . $row["exp_description"] .  '</p>
+                            </div>
+                        </div>
+                                ';
                             }
+                            echo '<hr class="my-3 m-auto w-50"/>';
                         }
-                        ?>
-                    </div>
+                    }
+                    ?>
                 </div>
             </div>
-        </div>
-        </div>
         </div>
         <!-- FORMATIONS -->
         <div id="formations">
@@ -84,25 +115,29 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <p class="lead">Mon parcours</p>
                 </div>
             </div>
-            <div class="container-fluid bg-light">
+            <div class="container-fluid">
                 <div class="p-5">
                     <?php
-                    $res = $conn->prepare("SELECT * FROM education ORDER BY edu_annee DESC; "); // Préparation de la requête
-                    $res->execute(); // Exécution de la requête
-                    $tab = $res->fetchAll(); // Initialisation du résultat sous forme de tableau
+                    $res = $conn->prepare("SELECT * FROM education ORDER BY edu_id DESC"); // Préparation de la requête
+                    try {
+                        $res->execute();
+                    } catch (PDOException $e) {
+                        echo "Execution Error";
+                    }
+                    // Exécution de la requête
+                    $tab = $res->fetchAll(); // Enregistrement du résultat sous forme de tableau
                     if ($tab) {
-                        foreach ($tab as $row) {
-                            echo "
-                        <div class=\"d-flex m-2\">
-                            <div class=\"flex-grow-1\">
-                                <h4 class=\"mt-0 mb-1\">" . $row["edu_libelle"] . ", " . $row["edu_etablissement"] . ", " . $row["edu_lieu"] . "</h4>
-                                <p class=\"lead\">
-                                    <span class=\"small\">" . $row["edu_annee"] . "<br>" . $row["edu_mention"] . "</span>
+                        foreach ($tab as $key => $row) {
+                            echo '
+                        <div class="d-flex m-2">
+                            <div class="flex-grow-1">
+                                <h4 class="mt-0 mb-1">' . $row["edu_libelle"] . ', ' . $row["edu_etablissement"] . ', ' . $row["edu_lieu"] . '</h4>
+                                <p class="lead">
+                                    <span class="small">' . $row["edu_annee"] . '<br>' . $row["edu_mention"] . '</span>
                                 </p>
-                                <hr>
                             </div>
-                        </div>
-                        ";
+                        </div>';
+                        echo '<hr class="my-3 m-auto w-50"/>';
                         }
                     }
                     ?>
