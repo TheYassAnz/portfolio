@@ -137,7 +137,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                 </p>
                             </div>
                         </div>';
-                        echo '<hr class="my-3 m-auto w-50"/>';
+                            echo '<hr class="my-3 m-auto w-50"/>';
                         }
                     }
                     ?>

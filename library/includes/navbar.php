@@ -25,6 +25,9 @@ require_once('global_variables.php');
                     <a class="nav-link" href="#competences">Compétences</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#stage">Stage</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact</a>
                 </li>
             </ul>

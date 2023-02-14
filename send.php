@@ -9,7 +9,8 @@ if ($_POST) {
             '_LastName' => $_POST['_LastName'],
             '_Email' => $_POST['_Email'],
             '_Object' => $_POST['_Object'],
-            '_Text' => $_POST['_Text']);
+            '_Text' => $_POST['_Text']
+        );
         # CAPTCHA AREA
         $captcha = $_POST['g-recaptcha-response'];
         $secretKey = "6LfbkVwiAAAAAJcLuFfJ4XIFHohPXHjckHaj03zU";
@@ -30,14 +31,14 @@ if ($_POST) {
                 // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
                 $headers[] = 'MIME-Version: 1.0';
                 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-                $headers[] = 'From: <'.$_POST['_Email'].'>';
+                $headers[] = 'From: <' . $_POST['_Email'] . '>';
                 $message =
-                "
+                    "
                 <html>
                     <body>
-                        <p>Nouveau message de". $_POST['_LastName']." ".$_POST['_FirstName']."</p>
-                        <p>Société : " . $_POST['_Society']."</p>
-                        <p>".$_POST['_Text']."</p>
+                        <p>Nouveau message de" . $_POST['_LastName'] . " " . $_POST['_FirstName'] . "</p>
+                        <p>Société : " . $_POST['_Society'] . "</p>
+                        <p>" . $_POST['_Text'] . "</p>
                     </body>
                 </html>
                 ";
