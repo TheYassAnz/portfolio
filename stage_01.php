@@ -136,9 +136,10 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
         </div>
 
         <div id="c-1" class="container-fluid p-5">
-            <div class="container-fluid rounded-3 text-center">
-                <h3>Masterisation</h3>
+            <div class="container-fluid rounded-3 ">
+                <h3>1. Masterisation</h3>
                 <h4 class="text-muted">Compétence : Gérer le patrimoine informatique</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, repellendus voluptates numquam quae impedit amet dolore sed assumenda quidem! Laboriosam reiciendis veniam nemo odit fugit consectetur laborum a et rerum?</p>
             </div>
             <div class="container-fluid p-5">
                 <div id="carousel-1" class="carousel carousel-dark slide" data-bs-ride="carousel-1">
@@ -179,9 +180,9 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 </div>
             </div>
         </div>
-        <div id="c-2" class="container-fluid">
-            <div class="container-fluid rounded-3 text-center">
-                <h3>Gestion d'incident</h3>
+        <div id="c-2" class="container-fluid p-5">
+            <div class="container-fluid rounded-3">
+                <h3>2. Gestion d'incident</h3>
                 <h4 class="text-muted">Compétence : Répondre aux incidents et aux demandes d’assistance et d’évolution</h4>
                 <p>
                     DHL utilise la plateforme de gestion des incidents de ServiceNow. Elle apporte une gestion centralisé et rapide des incidents.

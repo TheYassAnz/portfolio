@@ -186,7 +186,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
         <div id="c-2" class="container-fluid p-5">
             <div class="container-fluid rounded-3">
                 <h3>2. Développement des composants ReactJS</h3>
-                <h4 class="text-muted">Compétence : Travailler en mode projet</h4>
+                <h4 class="text-muted">Compétence : Développer la présence en ligne de l’organisation</h4>
                 <p>
                     Une fois la formation terminée, nous avons commencé à développer les composants.
                 </p>
@@ -239,7 +239,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 </p>
             </div>
             <div class="container-fluid p-5">
-                <div id="carousel-2" class="carousel carousel-dark slide" data-bs-ride="carousel-2">
+                <div id="carousel-3" class="carousel carousel-dark slide" data-bs-ride="carousel-3">
                     <div class="carousel-inner">
                         <?php
                         $dir = "./img/stage/02/firebase"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
@@ -266,11 +266,11 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
 
                         ?>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-2" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-3" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-2" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-3" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
