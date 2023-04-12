@@ -111,9 +111,8 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     // var_dump($tab);
     ?>
     <main class="">
-        <div class="container-fluid bg-light rounded rounded-3">
-
-            <div class="p-5">
+        <div class="container-fluid bg-light rounded rounded-3 row">
+            <div class="p-5 col-sm-6">
                 <h3><?= $tab['sta_libelle'] ?></h3>
                 <h4><?= $tab['sta_lieu'] ?></h4>
                 <h5 class="fw-light">Date : <?= convert_date_to_string($tab['sta_date_debut']) . ' au ' . convert_date_to_string($tab['sta_date_fin']) ?></5>
@@ -123,28 +122,33 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <p>
                     <ul>
                         <a href="#c-1">
-                            <li>Gérer le patrimoine informatique</li>
+                            <li>Organiser son développement professionnel</li>
                         </a>
                         <a href="#c-2">
-                            <li>Répondre aux incidents et aux demandes d’assistance et d’évolution</li><a>
+                            <li>Développer la présence en ligne de l’organisation</li>
+                        </a>
+                        <a href="#c-3">
+                            <li>Mettre à disposition des utilisateurs un service informatique</li>
+                        </a>
                     </ul>
                     </p>
             </div>
-            <div class="container-fluid rounded rounded-3 text-center">
-                <img src="./img/dhl-logo.png" class="w-25 m-5" />
+            <div class="col-sm-6 text-center">
+                <img src="./img/ceos-tech-logo.png" class="w-50 m-5" />
             </div>
         </div>
 
         <div id="c-1" class="container-fluid p-5">
-            <div class="container-fluid rounded-3 text-center">
-                <h3>Masterisation</h3>
-                <h4 class="text-muted">Compétence : Gérer le patrimoine informatique</h4>
+            <div class="container-fluid rounded-3">
+                <h3>1. Formations à ReactJS</h3>
+                <h4 class="text-muted">Compétence : Organiser son développement professionnel</h4>
+                <p>Le stage a commencé par une grosse semaine de formation sur le languages JavaScript et le framework ReactJS.</p>
             </div>
             <div class="container-fluid p-5">
                 <div id="carousel-1" class="carousel carousel-dark slide" data-bs-ride="carousel-1">
                     <div class="carousel-inner">
                         <?php
-                        $dir = "./img/stage/01/masterisation"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
+                        $dir = "./img/stage/02/formation"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
                         $files = scandir($dir); // Scan du dossier pour récupérer les fichiers.
                         $i = 0;
                         foreach ($files as $key => $file) {
@@ -179,19 +183,66 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 </div>
             </div>
         </div>
-        <div id="c-2" class="container-fluid">
-            <div class="container-fluid rounded-3 text-center">
-                <h3>Gestion d'incident</h3>
-                <h4 class="text-muted">Compétence : Répondre aux incidents et aux demandes d’assistance et d’évolution</h4>
+        <div id="c-2" class="container-fluid p-5">
+            <div class="container-fluid rounded-3">
+                <h3>2. Développement des composants ReactJS</h3>
+                <h4 class="text-muted">Compétence : Travailler en mode projet</h4>
                 <p>
-                    DHL utilise la plateforme de gestion des incidents de ServiceNow. Elle apporte une gestion centralisé et rapide des incidents.
+                    Une fois la formation terminée, nous avons commencé à développer les composants.
                 </p>
             </div>
             <div class="container-fluid p-5">
                 <div id="carousel-2" class="carousel carousel-dark slide" data-bs-ride="carousel-2">
                     <div class="carousel-inner">
                         <?php
-                        $dir = "./img/stage/01/servicenow"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
+                        $dir = "./img/stage/02/developpement"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
+                        $files = scandir($dir); // Scan du dossier pour récupérer les fichiers.
+                        $i = 0;
+                        foreach ($files as $key => $file) {
+                            if ($key == 2) {
+                                $active = 'active';
+                            } else {
+                                $active = '';
+                            }
+                            $file_info = pathinfo($file); // Récupère les informations du fichier.
+
+                            // Si le fichier est une image, on l'affiche.
+                            if (in_array($file_info['extension'], array('jpg', 'jpeg', 'png', 'gif'))) {
+                                // echo '<a href="' . $dir . '/' . $file . '"><img class="p-2" width="600px" src="' . $dir . '/' . $file . '"/></a>';
+                                echo '
+                                <div class="carousel-item ' . $active . '">
+                                    <img src="' . $dir . '/' . $file . '" class="d-block w-100" alt="...">
+                                </div>';
+                            }
+                        }
+
+
+                        ?>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-2" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-2" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="c-3" class="container-fluid p-5">
+            <div class="container-fluid rounded-3">
+                <h3>3. Déploiement sur Firebase</h3>
+                <h4 class="text-muted">Compétence : Mettre à disposition des utilisateurs un service informatique</h4>
+                <p>
+                    Une fois le développement terminé, nous avons deployer le site via firebase.
+                </p>
+            </div>
+            <div class="container-fluid p-5">
+                <div id="carousel-2" class="carousel carousel-dark slide" data-bs-ride="carousel-2">
+                    <div class="carousel-inner">
+                        <?php
+                        $dir = "./img/stage/02/firebase"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
                         $files = scandir($dir); // Scan du dossier pour récupérer les fichiers.
                         $i = 0;
                         foreach ($files as $key => $file) {

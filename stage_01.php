@@ -62,7 +62,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             <a class="nav-link" href="./index.php#competences">Compétences</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./index.php#stages">Stage</a>
+                            <a class="nav-link" href="./index.php#stages">Stages</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./veille-technologique">Veille technologique</a>
@@ -110,10 +110,9 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     $tab = $res->fetch(PDO::FETCH_ASSOC); // Enregistrement du résultat sous forme de tableau associatif
     // var_dump($tab);
     ?>
-    <main class="">
-        <div class="container-fluid bg-light rounded rounded-3">
-
-            <div class="p-5">
+    <main>
+        <div class="container-fluid bg-light rounded rounded-3 row">
+            <div class="p-5 col-sm-6">
                 <h3><?= $tab['sta_libelle'] ?></h3>
                 <h4><?= $tab['sta_lieu'] ?></h4>
                 <h5 class="fw-light">Date : <?= convert_date_to_string($tab['sta_date_debut']) . ' au ' . convert_date_to_string($tab['sta_date_fin']) ?></5>
@@ -126,12 +125,13 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             <li>Gérer le patrimoine informatique</li>
                         </a>
                         <a href="#c-2">
-                            <li>Répondre aux incidents et aux demandes d’assistance et d’évolution</li><a>
+                            <li>Répondre aux incidents et aux demandes d’assistance et d’évolution</li>
+                        </a>
                     </ul>
                     </p>
             </div>
-            <div class="container-fluid rounded rounded-3 text-center">
-                <img src="./img/dhl-logo.png" class="w-25 m-5" />
+            <div class="col-sm-6 text-center">
+                <img src="./img/dhl-logo.png" class="w-50 m-5" />
             </div>
         </div>
 
