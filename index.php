@@ -4,8 +4,8 @@ require_once('library/includes/global_variables.php'); // Inclut les variables g
 require_once('library/includes/connexionPDO.php'); // Inclut le script de connexion à la BDD
 require_once('library/function/required_function.php'); // Inclut les fonctions utiles
 ?>
-<!-- ®2022 YassAnz Corporation. Tout droit réservé/All rights reserved -->
-<!-- Using Bootstrap 5.1 -->
+<!-- ®2023 YassAnz Corporation. Tout droit réservé/All rights reserved -->
+<!-- Using Bootstrap 5.2.2 -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,24 +14,92 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $_SESSION['WEBSITE_TITLE'] ?></title>
-    <?php
-    include_once('library/includes/template.php');
-    ?>
+    <!-- Local Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- Local Personalized Bootstrap CSS -->
+    <link href="css/add_style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icon.svg">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style type="text/css">
+        .accordion-item,
+        .card {
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <!-- TOP TITLE -->
-        <div class="container-fluid text-center">
+        <div id="website-title" class="container-fluid text-center">
             <div class="p-5">
                 <a class="text-dark text-decoration-none display-4" href="#"><?= $_SESSION['WEBSITE_TITLE'] ?></a>
             </div>
         </div>
-        <?php
-        include_once('library/includes/navbar.php');
-        ?>
+        <!-- NAV -->
+        <nav id="navbar_top" aria-label="Menu principal" class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a id="navbar-brand" class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#qui-suis-je">Qui suis-je ?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#experiences">Expériences</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#formations">Formations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#competences">Compétences</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#stages">Stages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./veille-technologique">Veille technologique</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex my-2 my-lg-0">
+                        <a class="navbar-brand" target="blank" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
+                            <span class="bi bi-linkedin" style="font-size: 1.5rem; color: black;"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                window.addEventListener('scroll', function() {
+                    let height = document.getElementById('website-title').offsetHeight;
+                    if (window.scrollY > height) {
+                        document.getElementById('navbar_top').classList.add('fixed-top');
+                        // add padding top to show content behind navbar
+                        navbar_height = document.querySelector('.navbar').offsetHeight;
+                        document.body.style.paddingTop = navbar_height + 'px';
+                        document.getElementById('navbar-brand').innerText = '';
+                    } else {
+                        document.getElementById('navbar_top').classList.remove('fixed-top');
+                        // remove padding top from body
+                        document.body.style.paddingTop = '0';
+                        document.getElementById('navbar-brand').innerText = '';
+                    }
+                });
+            });
+        </script>
     </header>
-    <!-- MENU -->
+    <!-- MAIN -->
     <main class="text-justify">
         <!-- QUI SUIS-JE -->
         <div id="qui-suis-je">
@@ -49,7 +117,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <div class="container-fluid bg-light">
                 <div class="text-center p-5">
                     <span class="display-4">Expériences professionnelles</span>
-                    <p class="lead">Mon parcours</p>
+                    <!-- <p class="lead">Mon parcours</p> -->
                 </div>
             </div>
             <div class="container-fluid">
@@ -112,13 +180,12 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <div class="container-fluid bg-light">
                 <div class="text-center p-5">
                     <span class="display-4">Formations académiques</span>
-                    <p class="lead">Mon parcours</p>
                 </div>
             </div>
             <div class="container-fluid">
                 <div class="p-5">
                     <?php
-                    $res = $conn->prepare("SELECT * FROM education ORDER BY edu_id DESC"); // Préparation de la requête
+                    $res = $conn->prepare("SELECT * FROM formations ORDER BY for_annee DESC"); // Préparation de la requête
                     try {
                         $res->execute();
                     } catch (PDOException $e) {
@@ -131,9 +198,9 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             echo '
                         <div class="d-flex m-2">
                             <div class="flex-grow-1">
-                                <h4 class="mt-0 mb-1">' . $row["edu_libelle"] . ', ' . $row["edu_etablissement"] . ', ' . $row["edu_lieu"] . '</h4>
+                                <h4 class="mt-0 mb-1">' . $row["for_libelle"] . ', ' . $row["for_etablissement"] . ', ' . $row["for_lieu"] . '</h4>
                                 <p class="lead">
-                                    <span class="small">' . $row["edu_annee"] . '<br>' . $row["edu_mention"] . '</span>
+                                    <span class="small">' . $row["for_annee"] . '<br>' . $row["for_mention"] . '</span>
                                 </p>
                             </div>
                         </div>';
@@ -141,6 +208,74 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                         }
                     }
                     ?>
+                </div>
+            </div>
+        </div>
+        <!-- COMPÉTENCES -->
+        <div id="competences">
+            <div class="container-fluid bg-light">
+                <div class="text-center p-5">
+                    <span class="display-4">Mes compétences</span>
+                    <p class="lead">Mes acquis</p>
+                </div>
+            </div>
+            <div class="container-fluid p-5">
+                <div class="row">
+                    <?php
+                    $res = $conn->prepare("SELECT * FROM competences ORDER BY com_id DESC"); // Préparation de la requête
+                    try {
+                        $res->execute();
+                    } catch (PDOException $e) {
+                        echo "Execution Error";
+                    }
+                    // Exécution de la requête
+                    $tab = $res->fetchAll(); // Enregistrement du résultat sous forme de tableau
+                    // var_dump($tab);
+                    foreach ($tab as $key => $row) {
+                        echo '<div class="col-sm-3">
+                        <div class="card mb-3 bg-light border">
+                            <div class="card-body">
+                                <h5 class="card-title">' . $row["com_libelle"] . '</h5>
+                                <p class="card-text">' . $row["com_des"] . '</p>
+                            </div>
+                        </div>
+                    </div>';
+                    }
+                    ?>
+
+                </div>
+            </div>
+        </div>
+        <!-- STAGES -->
+        <div id="stages">
+            <div class="container-fluid bg-light">
+                <div class="text-center p-5">
+                    <span class="display-4">Mes stages</span>
+                </div>
+            </div>
+            <div class="container-fluid p-5">
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <div class="card text-center border p-3 bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Développeur Full-Stack</h5>
+                                <p class="card-text">CEOS Tech</p>
+                                <p class="card-text">Notions : ReactJS, Django</p>
+
+                                <a href="stage_02.php" class="btn btn-primary">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="card text-center border p-3 bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Technicien support informatique</h5>
+                                <p class="card-text">DHL Aviation France</p>
+                                <p class="card-text">Notions : Support, Masterisation</p>
+                                <a href="stage_01.php" class="btn btn-primary">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -236,7 +371,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 </script>
             </div>
         </div>
-        <!-- Modal -->
+        <!-- MODAL -->
         <?php
         if ($_GET) {
             if ($_GET['err'] == 'sent') {
@@ -324,12 +459,13 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             }
         }
         ?>
+
     </main>
     <!-- FOOTER -->
     <footer>
         <nav class="nav flex-column p-5">
             <h5>Sommaire</h5>
-            <a href="#accueil" class="nav-link text-muted">Accueil</a>
+            <a href="#" class="nav-link text-muted">Accueil</a>
             <a href="#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
             <a href="#experiences" class="nav-link text-muted">Expériences</a>
             <a href="#formations" class="nav-link text-muted">Formations</a>
@@ -342,7 +478,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <ul class="list-unstyled d-flex">
                 <li class="ms-3">
                     <a class="link-dark" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
-                        <span class="bi bi-linkedin"></span>
+                        <span class="bi bi-linkedin" style="font-size: 1.5rem; color: black;"></span>
                     </a>
                 </li>
             </ul>
@@ -350,14 +486,14 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     </footer>
 </body>
 <!-- JS -->
-
-</html>
 <script>
     var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
         keyboard: false
     });
     myModal.show(myModal)
 </script>
+
+</html>
 <?php
 $conn = null;
 session_destroy();
