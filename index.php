@@ -124,7 +124,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 <!-- ACCORDION SECTION -->
                 <div class="accordion p-5" id="accordionExperience">
                     <?php
-                    $res = $conn->prepare("SELECT * FROM experience ORDER BY exp_id DESC"); // Préparation de la requête
+                    $res = $conn->prepare("SELECT * FROM experiences ORDER BY exp_id DESC"); // Préparation de la requête
                     try {
                         $res->execute();
                     } catch (PDOException $e) {
