@@ -250,7 +250,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             </div>
             <div class="container-fluid p-5 text-center">
                 <a href="./files/tableau_de_synthese.pdf" target="_blank">
-                    <img class="img-responsive" src="./files/tableau_de_synthese.png" /></a>
+                    <img class="img-responsive w-100" src="./files/tableau_de_synthese.png" /></a>
             </div>
         </div>
         <!-- STAGES -->
