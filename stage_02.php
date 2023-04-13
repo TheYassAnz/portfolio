@@ -62,7 +62,10 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             <a class="nav-link" href="./index.php#competences">Compétences</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./index.php#stages">Stage</a>
+                            <a class="nav-link" href="./index.php#stages">Stages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php#projets">Projets</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./veille-technologique">Veille technologique</a>
@@ -282,11 +285,12 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     <footer>
         <nav class=" nav flex-column p-5">
             <h5>Sommaire</h5>
-            <a href="#accueil" class="nav-link text-muted">Accueil</a>
-            <a href="#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
-            <a href="#experiences" class="nav-link text-muted">Expériences</a>
-            <a href="#formations" class="nav-link text-muted">Formations</a>
-            <a href="<?= $_SESSION['LINKEDIN_SRC'] ?>" class=" nav-link text-muted" target="_blank">LinkedIn</a>
+            <a href="./index.php#contact#" class="nav-link text-muted">Accueil</a>
+            <a href="./index.php#contact#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
+            <a href="./index.php#contact#experiences" class="nav-link text-muted">Expériences</a>
+            <a href="./index.php#contact#formations" class="nav-link text-muted">Formations</a>
+            <a href="<?= $_SESSION['LINKEDIN_SRC'] ?>" class=" nav-link text-muted" target="_blank">LinkedIn</a></li>
+            <a href="./index.php#contact#contact" class="nav-link text-muted">Contact</a></li>
             </li>
             <a href="#contact" class="nav-link text-muted">Contact</a></li>
         </nav>

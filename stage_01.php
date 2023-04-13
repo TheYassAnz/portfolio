@@ -65,6 +65,9 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             <a class="nav-link" href="./index.php#stages">Stages</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="./index.php#projets">Projets</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="./veille-technologique">Veille technologique</a>
                         </li>
                         <li class="nav-item">
@@ -139,7 +142,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <div class="container-fluid rounded-3 ">
                 <h3>1. Masterisation</h3>
                 <h4 class="text-muted">Compétence : Gérer le patrimoine informatique</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, repellendus voluptates numquam quae impedit amet dolore sed assumenda quidem! Laboriosam reiciendis veniam nemo odit fugit consectetur laborum a et rerum?</p>
+                <p>La masterisation des postes de travail permet d’installer automatiquement des postes de travail contenant le système d’exploitation et les logiciels nécessaires via le réseau. Et gérez ainsi plus facilement le parc informatique.</p>
             </div>
             <div class="container-fluid p-5">
                 <div id="carousel-1" class="carousel carousel-dark slide" data-bs-ride="carousel-1">
@@ -232,11 +235,12 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     <footer>
         <nav class=" nav flex-column p-5">
             <h5>Sommaire</h5>
-            <a href="#accueil" class="nav-link text-muted">Accueil</a>
-            <a href="#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
-            <a href="#experiences" class="nav-link text-muted">Expériences</a>
-            <a href="#formations" class="nav-link text-muted">Formations</a>
-            <a href="<?= $_SESSION['LINKEDIN_SRC'] ?>" class=" nav-link text-muted" target="_blank">LinkedIn</a>
+            <a href="./index.php#contact#" class="nav-link text-muted">Accueil</a>
+            <a href="./index.php#contact#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
+            <a href="./index.php#contact#experiences" class="nav-link text-muted">Expériences</a>
+            <a href="./index.php#contact#formations" class="nav-link text-muted">Formations</a>
+            <a href="<?= $_SESSION['LINKEDIN_SRC'] ?>" class=" nav-link text-muted" target="_blank">LinkedIn</a></li>
+            <a href="./index.php#contact#contact" class="nav-link text-muted">Contact</a></li>
             </li>
             <a href="#contact" class="nav-link text-muted">Contact</a></li>
         </nav>

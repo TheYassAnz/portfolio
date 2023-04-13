@@ -65,6 +65,9 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             <a class="nav-link" href="./index.php#stages">Stages</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="./index.php#projets">Projets</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="./veille-technologique">Veille technologique</a>
                         </li>
                         <li class="nav-item">
@@ -132,7 +135,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 </p>
             </div>
             <div class="container-fluid p-5">
-                <img class="img-responsive" src="./img/projet/gilla/analyse-de-l-existant.png" />
+                <img class="img-responsive w-50" src="./img/projet/portfolio/formation.png" />
             </div>
         </div>
         <div id="c-2" class="container-fluid p-5">
@@ -143,14 +146,84 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <h5>A. Création de la base de données</h5>
                     <p>Le site utilise une base de données MySQL accessible avec phpmyadmin</p>
                     <div class="container-fluid p-5">
-                        <img class="img-responsive" src="./img/projet/gilla/cycle-en-v.png" />
+                        <div id="carousel-1" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-1">
+                            <div class="carousel-inner">
+                                <?php
+                                $dir = "./img/projet/portfolio/creation-bdd"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
+                                $files = scandir($dir); // Scan du dossier pour récupérer les fichiers.
+                                $i = 0;
+                                foreach ($files as $key => $file) {
+                                    if ($key == 2) {
+                                        $active = 'active';
+                                    } else {
+                                        $active = '';
+                                    }
+                                    $file_info = pathinfo($file); // Récupère les informations du fichier.
+
+                                    // Si le fichier est une image, on l'affiche.
+                                    if (in_array($file_info['extension'], array('jpg', 'jpeg', 'png', 'gif'))) {
+                                        // echo '<a href="' . $dir . '/' . $file . '"><img class="p-2" width="600px" src="' . $dir . '/' . $file . '"/></a>';
+                                        echo '
+                                <div class="carousel-item ' . $active . '">
+                                    <img src="' . $dir . '/' . $file . '" class="d-block w-100" alt="...">
+                                </div>';
+                                    }
+                                }
+
+
+                                ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-1" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-1" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="container-fluid px-3">
                     <h5>B. Développement du site</h5>
                     <p>Le site utilise le langage HTML, JavaScript, et PHP pour envoyer les requêtes à la base de données</p>
                     <div class="container-fluid p-5">
-                        <img class="img-responsive" src="./img/projet/gilla/cycle-en-v.png" />
+                        <div id="carousel-2" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-2">
+                            <div class="carousel-inner">
+                                <?php
+                                $dir = "./img/projet/portfolio/developpement"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
+                                $files = scandir($dir); // Scan du dossier pour récupérer les fichiers.
+                                $i = 0;
+                                foreach ($files as $key => $file) {
+                                    if ($key == 2) {
+                                        $active = 'active';
+                                    } else {
+                                        $active = '';
+                                    }
+                                    $file_info = pathinfo($file); // Récupère les informations du fichier.
+
+                                    // Si le fichier est une image, on l'affiche.
+                                    if (in_array($file_info['extension'], array('jpg', 'jpeg', 'png', 'gif'))) {
+                                        // echo '<a href="' . $dir . '/' . $file . '"><img class="p-2" width="600px" src="' . $dir . '/' . $file . '"/></a>';
+                                        echo '
+                                <div class="carousel-item ' . $active . '">
+                                    <img src="' . $dir . '/' . $file . '" class="d-block w-100" alt="...">
+                                </div>';
+                                    }
+                                }
+
+
+                                ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-2" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-2" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,23 +234,136 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 <h4 class="text-muted">Compétence : Mettre à disposition des utilisateurs un service informatique</h4>
                 <div class="container-fluid px-3">
                     <h5>A. Configuration d'un serveur Apache</h5>
-                    <p>J'ai décidé d'héberger mon portfolio sur un serveur virtuel privé OVH</p>
+                    <p>J'ai décidé d'héberger mon portfolio sur un serveur virtuel privé OVH. Vous pouvez suivre le mettre tutoriel que moi <strong><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-22-04" target="_blank">ici</a></strong></p>
                     <div class="container-fluid p-5">
-                        <img class="img-responsive" src="./img/projet/gilla/cycle-en-v.png" />
+                        <div id="carousel-3" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-3">
+                            <div class="carousel-inner">
+                                <?php
+                                $dir = "./img/projet/portfolio/apache"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
+                                $files = scandir($dir); // Scan du dossier pour récupérer les fichiers.
+                                $i = 0;
+                                foreach ($files as $key => $file) {
+                                    if ($key == 2) {
+                                        $active = 'active';
+                                    } else {
+                                        $active = '';
+                                    }
+                                    $file_info = pathinfo($file); // Récupère les informations du fichier.
+
+                                    // Si le fichier est une image, on l'affiche.
+                                    if (in_array($file_info['extension'], array('jpg', 'jpeg', 'png', 'gif'))) {
+                                        // echo '<a href="' . $dir . '/' . $file . '"><img class="p-2" width="600px" src="' . $dir . '/' . $file . '"/></a>';
+                                        echo '
+                                <div class="carousel-item ' . $active . '">
+                                    <img src="' . $dir . '/' . $file . '" class="d-block w-100" alt="...">
+                                </div>';
+                                    }
+                                }
+
+
+                                ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-3" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-3" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="container-fluid px-3">
                     <h5>B. Importation du site sur GitHub</h5>
                     <p>Afin de mieux gérer les versions du site, j'utilise git et github</p>
                     <div class="container-fluid p-5">
-                        <img class="img-responsive" src="./img/projet/gilla/cycle-en-v.png" />
+                        <div id="carousel-4" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-4">
+                            <div class="carousel-inner">
+                                <?php
+                                $dir = "./img/projet/portfolio/github"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
+                                $files = scandir($dir); // Scan du dossier pour récupérer les fichiers.
+                                $i = 0;
+                                foreach ($files as $key => $file) {
+                                    if ($key == 2) {
+                                        $active = 'active';
+                                    } else {
+                                        $active = '';
+                                    }
+                                    $file_info = pathinfo($file); // Récupère les informations du fichier.
+
+                                    // Si le fichier est une image, on l'affiche.
+                                    if (in_array($file_info['extension'], array('jpg', 'jpeg', 'png', 'gif'))) {
+                                        // echo '<a href="' . $dir . '/' . $file . '"><img class="p-2" width="600px" src="' . $dir . '/' . $file . '"/></a>';
+                                        echo '
+                                <div class="carousel-item ' . $active . '">
+                                    <img src="' . $dir . '/' . $file . '" class="d-block w-100" alt="...">
+                                </div>';
+                                    }
+                                }
+
+
+                                ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-4" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-4" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="container-fluid px-3">
                     <h5>B. Importation du repository sur le serveur Apache</h5>
                     <p>Grace a git, nous pouvons facilement importer les fichiers du site sur le serveur Apache</p>
                     <div class="container-fluid p-5">
-                        <img class="img-responsive" src="./img/projet/gilla/cycle-en-v.png" />
+                        <div id="carousel-5" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-5">
+                            <div class="carousel-inner">
+                                <?php
+                                $dir = "./img/projet/portfolio/deploiement"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
+                                $files = scandir($dir); // Scan du dossier pour récupérer les fichiers.
+                                $i = 0;
+                                foreach ($files as $key => $file) {
+                                    if ($key == 2) {
+                                        $active = 'active';
+                                    } else {
+                                        $active = '';
+                                    }
+                                    $file_info = pathinfo($file); // Récupère les informations du fichier.
+
+                                    // Si le fichier est une image, on l'affiche.
+                                    if (in_array($file_info['extension'], array('jpg', 'jpeg', 'png', 'gif'))) {
+                                        // echo '<a href="' . $dir . '/' . $file . '"><img class="p-2" width="600px" src="' . $dir . '/' . $file . '"/></a>';
+                                        echo '
+                                <div class="carousel-item ' . $active . '">
+                                    <img src="' . $dir . '/' . $file . '" class="d-block w-100" alt="...">
+                                </div>';
+                                    }
+                                }
+
+
+                                ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-5" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-5" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid px-3">
+                    <h5>C. Résultat</h5>
+                    <p>Le site est maintenant en ligne</p>
+                    <div class="container-fluid p-5">
+                        <img class="img-responsive w-50" src="./img/projet/portfolio/result.png" />
+
                     </div>
                 </div>
             </div>
@@ -188,11 +374,12 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     <footer>
         <nav class=" nav flex-column p-5">
             <h5>Sommaire</h5>
-            <a href="#accueil" class="nav-link text-muted">Accueil</a>
-            <a href="#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
-            <a href="#experiences" class="nav-link text-muted">Expériences</a>
-            <a href="#formations" class="nav-link text-muted">Formations</a>
-            <a href="<?= $_SESSION['LINKEDIN_SRC'] ?>" class=" nav-link text-muted" target="_blank">LinkedIn</a>
+            <a href="./index.php#contact#" class="nav-link text-muted">Accueil</a>
+            <a href="./index.php#contact#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
+            <a href="./index.php#contact#experiences" class="nav-link text-muted">Expériences</a>
+            <a href="./index.php#contact#formations" class="nav-link text-muted">Formations</a>
+            <a href="<?= $_SESSION['LINKEDIN_SRC'] ?>" class=" nav-link text-muted" target="_blank">LinkedIn</a></li>
+            <a href="./index.php#contact#contact" class="nav-link text-muted">Contact</a></li>
             </li>
             <a href="#contact" class="nav-link text-muted">Contact</a></li>
         </nav>

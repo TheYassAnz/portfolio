@@ -4,8 +4,8 @@ require_once('library/includes/global_variables.php'); // Inclut les variables g
 require_once('library/includes/connexionPDO.php'); // Inclut le script de connexion à la BDD
 require_once('library/function/required_function.php'); // Inclut les fonctions utiles
 ?>
-<!-- ®2022 YassAnz Corporation. Tout droit réservé/All rights reserved -->
-<!-- Using Bootstrap 5.1 -->
+<!-- ®2023 YassAnz Corporation. Tout droit réservé/All rights reserved -->
+<!-- Using Bootstrap 5.2.2 -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,26 +14,96 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $_SESSION['WEBSITE_TITLE'] ?></title>
-    <?php
-    include_once('library/includes/template.php');
-    ?>
+    <!-- Local Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- Local Personalized Bootstrap CSS -->
+    <link href="css/add_style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icon.svg">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style type="text/css">
+        .accordion-item,
+        .card {
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <!-- TOP TITLE -->
-        <div class="container-fluid text-center">
+        <div id="website-title" class="container-fluid text-center">
             <div class="p-5">
                 <a class="text-dark text-decoration-none display-4" href="#"><?= $_SESSION['WEBSITE_TITLE'] ?></a>
             </div>
         </div>
-        <?php
-        include_once('library/includes/navbar.php');
-        ?>
+        <!-- NAV -->
+        <nav id="navbar_top" aria-label="Menu principal" class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a id="navbar-brand" class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php#qui-suis-je">Qui suis-je ?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php#experiences">Expériences</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php#formations">Formations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php#competences">Compétences</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php#stages">Stages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php#projets">Projets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./veille-technologique">Veille technologique</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex my-2 my-lg-0">
+                        <a class="navbar-brand" target="blank" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
+                            <span class="bi bi-linkedin" style="font-size: 1.5rem; color: black;"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                window.addEventListener('scroll', function() {
+                    let height = document.getElementById('website-title').offsetHeight;
+                    if (window.scrollY > height) {
+                        document.getElementById('navbar_top').classList.add('fixed-top');
+                        // add padding top to show content behind navbar
+                        navbar_height = document.querySelector('.navbar').offsetHeight;
+                        document.body.style.paddingTop = navbar_height + 'px';
+                        document.getElementById('navbar-brand').innerText = '';
+                    } else {
+                        document.getElementById('navbar_top').classList.remove('fixed-top');
+                        // remove padding top from body
+                        document.body.style.paddingTop = '0';
+                        document.getElementById('navbar-brand').innerText = '';
+                    }
+                });
+            });
+        </script>
     </header>
-    <!-- MENU -->
-    <main class="text-justify">
-        <div id="qui-suis-je">
+    <main>
+        <main class="text-justify">
             <div class="container-fluid bg-light rounded rounded-3">
                 <div class="p-5">
                     <p class="display-4">Les NFTs</p>
@@ -58,31 +128,30 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     En résumé, les NFTs sont en train de changer la façon dont les actifs numériques sont achetés, vendus et échangés. Les utilisations des NFTs continuent de croître dans de nombreux domaines, et de nouvelles applications sont développées chaque jour.</p>
                 </div>
             </div>
-        </div>
-    </main>
-    <!-- FOOTER -->
-    <footer>
-        <nav class="nav flex-column p-5">
-            <h5>Sommaire</h5>
-            <a href="#accueil" class="nav-link text-muted">Accueil</a>
-            <a href="#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
-            <a href="#experiences" class="nav-link text-muted">Expériences</a>
-            <a href="#formations" class="nav-link text-muted">Formations</a>
-            <a href="<?= $_SESSION['LINKEDIN_SRC'] ?>" class=" nav-link text-muted" target="_blank">LinkedIn</a></li>
-            <a href="#contact" class="nav-link text-muted">Contact</a></li>
-        </nav>
-        </div>
-        <div class="d-flex justify-content-between p-5 border-top">
-            <p>&copy;<?= date('Y') . ' YassAnz Corporation. Tout droit réservé.' ?></p>
-            <ul class="list-unstyled d-flex">
-                <li class="ms-3">
-                    <a class="link-dark" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
-                        <span class="bi bi-linkedin"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </footer>
+        </main>
+        <!-- FOOTER -->
+        <footer>
+            <nav class="nav flex-column p-5">
+                <h5>Sommaire</h5>
+                <a href="./index.php#contact#" class="nav-link text-muted">Accueil</a>
+                <a href="./index.php#contact#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
+                <a href="./index.php#contact#experiences" class="nav-link text-muted">Expériences</a>
+                <a href="./index.php#contact#formations" class="nav-link text-muted">Formations</a>
+                <a href="<?= $_SESSION['LINKEDIN_SRC'] ?>" class=" nav-link text-muted" target="_blank">LinkedIn</a></li>
+                <a href="./index.php#contact#contact" class="nav-link text-muted">Contact</a></li>
+            </nav>
+            </div>
+            <div class="d-flex justify-content-between p-5 border-top">
+                <p>&copy;<?= date('Y') . ' YassAnz Corporation. Tout droit réservé.' ?></p>
+                <ul class="list-unstyled d-flex">
+                    <li class="ms-3">
+                        <a class="link-dark" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
+                            <span class="bi bi-linkedin"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
 </body>
 <!-- JS -->
 
