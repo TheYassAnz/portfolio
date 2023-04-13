@@ -134,8 +134,8 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 <p>Pour développer mon site web, j'ai décidé d'utiliser la librairie Bootstrap. Je me suis donc familiariser à l'utilisation de la librairie avant de commencer le développement.</p>
                 </p>
             </div>
-            <div class="container-fluid p-5">
-                <img class="img-responsive w-50" src="./img/projet/portfolio/formation.png" />
+            <div class="container-fluid  p-5">
+                <img class="img-responsive w-100" src="./img/projet/portfolio/formation.png" />
             </div>
         </div>
         <div id="c-2" class="container-fluid p-5">
@@ -146,7 +146,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <h5>A. Création de la base de données</h5>
                     <p>Le site utilise une base de données MySQL accessible avec phpmyadmin</p>
                     <div class="container-fluid p-5">
-                        <div id="carousel-1" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-1">
+                        <div id="carousel-1" class="carousel carousel-dark slide" data-bs-ride="carousel-1">
                             <div class="carousel-inner">
                                 <?php
                                 $dir = "./img/projet/portfolio/creation-bdd"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
@@ -188,7 +188,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <h5>B. Développement du site</h5>
                     <p>Le site utilise le langage HTML, JavaScript, et PHP pour envoyer les requêtes à la base de données</p>
                     <div class="container-fluid p-5">
-                        <div id="carousel-2" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-2">
+                        <div id="carousel-2" class="carousel carousel-dark slide" data-bs-ride="carousel-2">
                             <div class="carousel-inner">
                                 <?php
                                 $dir = "./img/projet/portfolio/developpement"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
@@ -236,7 +236,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <h5>A. Configuration d'un serveur Apache</h5>
                     <p>J'ai décidé d'héberger mon portfolio sur un serveur virtuel privé OVH. Vous pouvez suivre le mettre tutoriel que moi <strong><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-22-04" target="_blank">ici</a></strong></p>
                     <div class="container-fluid p-5">
-                        <div id="carousel-3" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-3">
+                        <div id="carousel-3" class="carousel carousel-dark slide " data-bs-ride="carousel-3">
                             <div class="carousel-inner">
                                 <?php
                                 $dir = "./img/projet/portfolio/apache"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
@@ -278,7 +278,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <h5>B. Importation du site sur GitHub</h5>
                     <p>Afin de mieux gérer les versions du site, j'utilise git et github</p>
                     <div class="container-fluid p-5">
-                        <div id="carousel-4" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-4">
+                        <div id="carousel-4" class="carousel carousel-dark slide" data-bs-ride="carousel-4">
                             <div class="carousel-inner">
                                 <?php
                                 $dir = "./img/projet/portfolio/github"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
@@ -320,7 +320,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <h5>B. Importation du repository sur le serveur Apache</h5>
                     <p>Grace a git, nous pouvons facilement importer les fichiers du site sur le serveur Apache</p>
                     <div class="container-fluid p-5">
-                        <div id="carousel-5" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-5">
+                        <div id="carousel-5" class="carousel carousel-dark slide " data-bs-ride="carousel-5">
                             <div class="carousel-inner">
                                 <?php
                                 $dir = "./img/projet/portfolio/deploiement"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
@@ -362,7 +362,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <h5>C. Résultat</h5>
                     <p>Le site est maintenant en ligne</p>
                     <div class="container-fluid p-5">
-                        <img class="img-responsive w-50" src="./img/projet/portfolio/result.png" />
+                        <img class="img-responsive w-100" src="./img/projet/portfolio/result.png" />
 
                     </div>
                 </div>

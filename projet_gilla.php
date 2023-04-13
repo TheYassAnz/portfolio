@@ -185,7 +185,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 </p>
             </div>
             <div class="container-fluid p-5">
-                <div id="carousel-1" class="carousel carousel-dark slide w-50" data-bs-ride="carousel-1">
+                <div id="carousel-1" class="carousel carousel-dark slide " data-bs-ride="carousel-1">
                     <div class="carousel-inner">
                         <?php
                         $dir = "./img/projet/gilla/developpement"; // Remplacez "chemin/vers/le/dossier" par le chemin absolu de votre dossier contenant les images.
@@ -231,33 +231,49 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     Ci-dessous, quelques captures des fiches de tests</br>
                 </p>
             </div>
-            <div class="container-fluid p-5 d-flex row">
-                <div class="col-sm-3 px-2 text-center ">
-                    <iframe src="./files/fiche_de_test_incidents-a-gerer_consulter.pdf" width="400" height="600"></iframe>
-                    <a href="./files/fiche_de_test_incidents-a-gerer_consulter.pdf" target="_blank" class="mt-2">
-                        <button type="button" class="btn btn-secondary">Ouvrir le fichier PDF</button>
-                    </a>
-                </div>
-                <div class="col-sm-3 px-2 text-center">
+            <div class="container-fluid p-5">
+                <div class="row">
+                    <div class="col-sm-6 px-2 text-center">
+                        <iframe src="./files/fiche_de_test_incidents-a-gerer_consulter.pdf" width="400" height="600"></iframe>
+                    </div>
+                    <div class="col-sm-6 px-2 text-center">
+                        <iframe src="./files/fiche_de_test_01.pdf" width="400" height="600"></iframe>
+                    </div>
+                    <div class="col-sm-6 px-2 text-center">
+                        <a href="./files/fiche_de_test_01.pdf" target="_blank"><button type="button" class="btn btn-secondary">Ouvrir le fichier PDF</button></a>
+                    </div>
+                    <div class="col-sm-6 px-2 text-center">
+                        <a href="./files/fiche_de_test_01.pdf" target="_blank" class="mt-2">
+                            <button type="button" class="btn btn-secondary">Ouvrir le fichier PDF</button>
+                        </a>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-sm-6 px-2 text-center">
 
-                    <iframe src="./files/fiche_de_test_01.pdf" width="400" height="600"></iframe><a href="./files/fiche_de_test_01.pdf" target="_blank" class="mt-2">
-                        <button type="button" class="btn btn-secondary">Ouvrir le fichier PDF</button>
-                    </a>
-                </div>
-                <div class="col-sm-3 px-2 text-center">
+                            <iframe src="./files/fiche_de_test_02.pdf" width="400" height="600"></iframe>
+                        </div>
+                        <div class="col-sm-6 px-2 text-center">
 
-                    <iframe src="./files/fiche_de_test_02.pdf" width="400" height="600"></iframe><a href="./files/fiche_de_test_02.pdf" target="_blank" class="mt-2">
-                        <button type="button" class="btn btn-secondary">Ouvrir le fichier PDF</button>
-                    </a>
-                </div>
-                <div class="col-sm-3 px-2 text-center">
-
-                    <iframe src="./files/fiche_de_test_03.pdf" width="400" height="600"></iframe> <a href="./files/fiche_de_test_03.pdf" target="_blank" class="mt-2">
-                        <button type="button" class="btn btn-secondary">Ouvrir le fichier PDF</button>
-                    </a>
+                            <iframe src="./files/fiche_de_test_03.pdf" width="400" height="600"></iframe>
+                        </div>
+                        <div class="col-sm-6 px-2 text-center">
+                            <a href="./files/fiche_de_test_02.pdf" target="_blank" class="mt-2">
+                                <button type="button" class="btn btn-secondary">Ouvrir le fichier PDF</button>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 px-2 text-center">
+                            <a href="./files/fiche_de_test_03.pdf" target="_blank" class="mt-2">
+                                <button type="button" class="btn btn-secondary">Ouvrir le fichier PDF</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <script>
+                function handleClick() {
+                    console.log("click");
+                }
+            </script>
     </main>
     <!-- FOOTER -->
     <footer>
