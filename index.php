@@ -68,7 +68,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             <a class="nav-link" href="#projets">Projets</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./veille-technologique">Veille technologique</a>
+                            <a class="nav-link" href="./veille-technologique.php">Veille technologique</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#contact">Contact</a>
