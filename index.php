@@ -65,12 +65,6 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             <a class="nav-link" href="#stages">Stages</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#projets">Projets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./veille-technologique.php">Veille technologique</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                     </ul>
@@ -248,10 +242,6 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
 
                 </div>
             </div>
-            <div class="container-fluid p-5 text-center">
-                <a href="./files/tableau_de_synthese.pdf" target="_blank">
-                    <img class="img-responsive w-100" src="./files/tableau_de_synthese.png" /></a>
-            </div>
         </div>
         <!-- STAGES -->
         <div id="stages">
@@ -268,8 +258,6 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                 <h5 class="card-title text-center">Développeur Full-Stack</h5>
                                 <p class="card-text">CEOS Tech</p>
                                 <p class="card-text">Notions : ReactJS, Django</p>
-
-                                <a href="stage_02.php" class="btn btn-primary">En savoir plus</a>
                             </div>
                         </div>
                     </div>
@@ -279,39 +267,6 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                 <h5 class="card-title text-center">Technicien support informatique</h5>
                                 <p class="card-text">DHL Aviation France</p>
                                 <p class="card-text">Notions : Support, Masterisation</p>
-                                <a href="stage_01.php" class="btn btn-primary">En savoir plus</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="projets">
-            <div class="container-fluid bg-light">
-                <div class="text-center p-5">
-                    <span class="display-4">Mes projets</span>
-                </div>
-            </div>
-            <div class="container-fluid p-5 bg-light">
-                <div class="row">
-                    <div class="col-sm-6 ">
-                        <div class="card text-center border p-3 bg-light">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Projet GILLA</h5>
-                                <p class="card-text">5 septembre 2022 au 17 décembre 2022</p>
-                                <p class="card-text">Notions : Joomla, PHP</p>
-
-                                <a href="projet_gilla.php" class="btn btn-primary">En savoir plus</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 ">
-                        <div class="card text-center border p-3 bg-light">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Portfolio</h5>
-                                <p class="card-text">Actuellement en développement</p>
-                                <p class="card-text">Notions : PHP, JS, SQL, Bootstrap</p>
-                                <a href="projet_portfolio.php" class="btn btn-primary">En savoir plus</a>
                             </div>
                         </div>
                     </div>
