@@ -14,14 +14,15 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $_SESSION['WEBSITE_TITLE'] ?></title>
-    <!-- Local Bootstrap CSS -->
+    <!-- Online Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <!-- Local Personalized Bootstrap CSS -->
+    <!-- Local and Personalized Bootstrap CSS -->
     <link href="css/add_style.css" rel="stylesheet">
+    <!-- Icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./img/icon.svg">
-    <!-- Bootstrap Icons -->
+    <!-- Online Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <!-- Bootstrap JS -->
+    <!-- Online Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style type="text/css">
@@ -35,10 +36,8 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
 <body>
     <header>
         <!-- TOP TITLE -->
-        <div id="website-title" class="container-fluid text-center">
-            <div class="p-5">
-                <a class="text-dark text-decoration-none display-4" href="#"><?= $_SESSION['WEBSITE_TITLE'] ?></a>
-            </div>
+        <div id="website-title" class="container-fluid p-5 text-center">
+            <a class="text-dark text-decoration-none display-4" href="#"><?= $_SESSION['WEBSITE_TITLE'] ?></a>
         </div>
         <!-- NAV -->
         <nav id="navbar_top" aria-label="Menu principal" class="navbar navbar-expand-lg navbar-light bg-light">
@@ -438,7 +437,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <p>&copy;<?= date('Y') . ' YassAnz Corporation. Tout droit réservé.' ?></p>
             <ul class="list-unstyled d-flex">
                 <li class="ms-3">
-                    <a class="link-dark" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
+                    <a class="link-dark" target="_blank" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
                         <span class="bi bi-linkedin" style="font-size: 1.5rem; color: black;"></span>
                     </a>
                 </li>
