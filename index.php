@@ -62,15 +62,6 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             <a class="nav-link" href="#competences">Compétences</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#stages">Stages</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#projets">Projets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./veille-technologique.php">Veille technologique</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                     </ul>
@@ -111,7 +102,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <span class="display-3">A propos</span>
                     <p class="lead">Mon profil</p>
                     <hr class="my-4">
-                    <p style="text-align:justify;">Tout au long de mon parcours, j'ai essayé de donner le meilleur de moi-même. Je ne suis pas toujours parvenu mais ça n'a en aucun cas éteint ma motivation car je fais preuve d'une détermination sans faille. Si vous souhaitez en savoir plus sur mon parcours, poursuivez votre lecture, ou <a class="text-decoration-none text-dark fw-bold" href="#contact">contactez-moi</a> directement.</p>
+                    <p style="text-align:justify;">Passionné par les nouvelles technologies, je suis actuellement en troisième année de Bachelor - Concepteur Développeur d'Applications à l'ETNA Paris. Mon parcours, marqué par l'obtention d'un BTS SIO (Services Informatiques aux Organisations), a consolidé mes compétences en développement web (HTML, CSS, JS, PHP, SQL) et en programmation orientée objet (C#, Java). En tant que Développeur Full-Stack chez CEOS Tech, j'ai contribué au développement Front-End avec React.js et Back-End avec Django REST Framework. Mon enthousiasme pour les défis techniques et mon engagement envers l'innovation font de moi un candidat passionné, prêt à contribuer activement à votre équipe.</p>
                 </div>
             </div>
         </div>
@@ -246,75 +237,6 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     }
                     ?>
 
-                </div>
-            </div>
-            <div class="container-fluid p-5 text-center">
-                <a href="./files/tableau_de_synthese.pdf" target="_blank">
-                    <img class="img-responsive w-100" src="./files/tableau_de_synthese.png" /></a>
-            </div>
-        </div>
-        <!-- STAGES -->
-        <div id="stages">
-            <div class="container-fluid bg-light">
-                <div class="text-center p-5">
-                    <span class="display-4">Mes stages</span>
-                </div>
-            </div>
-            <div class="container-fluid p-5 bg-light">
-                <div class="row">
-                    <div class="col-sm-6 ">
-                        <div class="card text-center border p-3 bg-light">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Développeur Full-Stack</h5>
-                                <p class="card-text">CEOS Tech</p>
-                                <p class="card-text">Notions : ReactJS, Django</p>
-
-                                <a href="stage_02.php" class="btn btn-primary">En savoir plus</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 ">
-                        <div class="card text-center border p-3 bg-light">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Technicien support informatique</h5>
-                                <p class="card-text">DHL Aviation France</p>
-                                <p class="card-text">Notions : Support, Masterisation</p>
-                                <a href="stage_01.php" class="btn btn-primary">En savoir plus</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="projets">
-            <div class="container-fluid bg-light">
-                <div class="text-center p-5">
-                    <span class="display-4">Mes projets</span>
-                </div>
-            </div>
-            <div class="container-fluid p-5 bg-light">
-                <div class="row">
-                    <div class="col-sm-6 ">
-                        <div class="card text-center border p-3 bg-light">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Projet GILLA</h5>
-                                <p class="card-text">5 septembre 2022 au 17 décembre 2022</p>
-                                <p class="card-text">Notions : Joomla, PHP</p>
-
-                                <a href="projet_gilla.php" class="btn btn-primary">En savoir plus</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 ">
-                        <div class="card text-center border p-3 bg-light">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Portfolio</h5>
-                                <p class="card-text">Actuellement en développement</p>
-                                <p class="card-text">Notions : PHP, JS, SQL, Bootstrap</p>
-                                <a href="projet_portfolio.php" class="btn btn-primary">En savoir plus</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -537,4 +459,4 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
 $conn = null;
 session_destroy();
 ?>
-<!-- ®2022 YassAnz Corporation. Tout droit réservé/All rights reserved -->
+<!-- ®2024 Yassine ANZAR BASHA. Tout droit réservé/All rights reserved -->
