@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "public_user";
-$password = "Wokpef93@";
-$basedd = "yassanz_2304";
+$username = "";
+$password = "";
+$basedd = "";
 $charset = "utf8";
 // Create connection
 try {
