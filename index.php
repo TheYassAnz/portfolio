@@ -35,62 +35,56 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
 
 <body>
     <header>
-        <!-- TOP TITLE -->
-        <div id="website-title" class="container-fluid p-5 text-center">
-            <a class="text-dark text-decoration-none display-4" href="#"><?= $_SESSION['WEBSITE_TITLE'] ?></a>
-        </div>
-        <!-- NAV -->
-        <nav id="navbar_top" aria-label="Menu principal" class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a id="navbar-brand" class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#qui-suis-je">Qui suis-je ?</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#experiences">Expériences</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#formations">Formations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#competences">Compétences</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                    <div class="d-flex my-2 my-lg-0">
-                        <a class="navbar-brand" target="blank" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
-                            <span class="bi bi-linkedin" style="font-size: 1.5rem; color: black;"></span>
-                        </a>
-                    </div>
-                </div>
+        <nav class="navbar navbar-expand-lg mx-5">
+            <a class="navbar-brand" href="#">Yassine ANZAR BASHA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#a-propos">A propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experiences">Expériences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#formations">Formations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#competences">Compétences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" href="#contact">Contact</a>
+                    </li>
+                </ul>
             </div>
         </nav>
-        <script type="text/javascript">
-            document.addEventListener("DOMContentLoaded", function() {
-                window.addEventListener('scroll', function() {
-                    let height = document.getElementById('website-title').offsetHeight;
-                    if (window.scrollY > height) {
-                        document.getElementById('navbar_top').classList.add('fixed-top');
-                        // add padding top to show content behind navbar
-                        navbar_height = document.querySelector('.navbar').offsetHeight;
-                        document.body.style.paddingTop = navbar_height + 'px';
-                        document.getElementById('navbar-brand').innerText = '';
-                    } else {
-                        document.getElementById('navbar_top').classList.remove('fixed-top');
-                        // remove padding top from body
-                        document.body.style.paddingTop = '0';
-                        document.getElementById('navbar-brand').innerText = '';
-                    }
+
+        <body>
+            <nav>
+
+            </nav>
+
+            <!-- <script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+                    window.addEventListener('scroll', function() {
+                        let height = document.getElementById('website-title').offsetHeight;
+                        if (window.scrollY > height) {
+                            document.getElementById('navbar_top').classList.add('fixed-top');
+                            // add padding top to show content behind navbar
+                            navbar_height = document.querySelector('.navbar').offsetHeight;
+                            document.body.style.paddingTop = navbar_height + 'px';
+                            document.getElementById('navbar-brand').innerText = '';
+                        } else {
+                            document.getElementById('navbar_top').classList.remove('fixed-top');
+                            // remove padding top from body
+                            document.body.style.paddingTop = '0';
+                            document.getElementById('navbar-brand').innerText = '';
+                        }
+                    });
                 });
-            });
-        </script>
+            </script> -->
     </header>
     <!-- MAIN -->
     <main class="text-justify">
