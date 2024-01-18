@@ -82,10 +82,10 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                                 <div class="d-flex my-5">
-                                    <a class="me-3 text-dark" target="blank" href="https://linkedin.com/in/yanzarbasha">
+                                    <a class="me-3 text-dark" target="blank" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
                                         <span class="bi bi-linkedin fs-1"></span>
                                     </a>
-                                    <a class="me-3 text-dark" target="blank" href="https://github.com/TheYassAnz">
+                                    <a class="me-3 text-dark" target="blank" href="<?= $_SESSION['GITHUB_SRC'] ?>">
                                         <span class="bi bi-github fs-1"></span>
                                     </a>
                                 </div>
@@ -446,7 +446,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
         </main>
         <!-- FOOTER -->
         <footer>
-            <nav class="nav flex-column p-5">
+            <nav class="nav flex-column m-5">
                 <h5>Sommaire</h5>
                 <a href="#a-propos" class="nav-link text-muted">À propos</a>
                 <a href="#experiences" class="nav-link text-muted">Expériences</a>
@@ -455,12 +455,15 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 <a href="#contact" class="nav-link text-muted">Contact</a></li>
             </nav>
             </div>
-            <div class="d-flex justify-content-between p-5 border-top">
-                <p>&copy;<?= date('Y') . ' YassAnz Corporation. Tout droit réservé.' ?></p>
+            <div class="d-flex justify-content-between m-5">
+                <p>&copy;<?= date('Y') . ' Yassine ANZAR BASHA. Tout droit réservé.' ?></p>
                 <ul class="list-unstyled d-flex">
                     <li class="ms-3">
                         <a class="link-dark" target="_blank" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
-                            <span class="bi bi-linkedin" style="font-size: 1.5rem; color: black;"></span>
+                            <span class="text-dark fs-3 bi bi-linkedin"></span>
+                        </a>
+                        <a class="link-dark" target="_blank" href="<?= $_SESSION['GITHUB_SRC'] ?>">
+                            <span class="text-dark fs-3 bi bi-github"></span>
                         </a>
                     </li>
                 </ul>
