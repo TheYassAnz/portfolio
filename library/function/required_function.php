@@ -48,3 +48,23 @@ function convert_date_to_string($date)
     // Retourne la date en phrase
     return $day . ' ' . $month . ' ' . $year;
 }
+
+function convertirEnListeHTML($liste)
+{
+    // Vérifie si la liste n'est pas vide
+    if (!empty($liste)) {
+        // Commence la liste non ordonnée (<ul>)
+        echo '<ul>';
+
+        // Parcourt chaque élément de la liste et crée un élément de liste (<li>) pour chaque
+        foreach ($liste as $element) {
+            echo '<li>' . $element . '</li>';
+        }
+
+        // Termine la liste non ordonnée (</ul>)
+        echo '</ul>';
+    } else {
+        // Affiche un message si la liste est vide
+        echo 'La liste est vide.';
+    }
+}
