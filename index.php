@@ -118,23 +118,27 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                     echo '
                         <div class="accordion-item mb-4">
                             <h2 class="accordion-header" id="heading' . $row["exp_id"] . '">
-                                <button class="accordion-button collapsed p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $row["exp_id"] . '" aria-expanded="true" aria-controls="collapse' . $row["exp_id"] . '">
-                                    <div>
-                                        <h4 class="mt-0 mb-1">' . $row["exp_libelle"] . ', ' . $row["exp_societe"] . ', ' . $row["exp_lieu"] . '</h4>
-                                        <p class="lead">
-                                            <span class="small">' . $row["exp_debut_mois"] . '. ' . $row["exp_debut_annee"] . ' - ' . $row["exp_fin_mois"] . '. ' . $row["exp_fin_annee"] . ' (' . $row["exp_duree"] . ')' . '</span>
-                                        </p>
-                                        <p>' . $row["exp_description"] . '</p>
-                                    </div>
-                                </button>
+                            <button class="accordion-button collapsed p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $row["exp_id"] . '" aria-expanded="true" aria-controls="collapse' . $row["exp_id"] . '">
+                                <div>
+                                    <h4 class="mt-0 mb-1">' . $row["exp_libelle"] . ', ' . $row["exp_societe"] . ', ' . $row["exp_lieu"] . '</h4>
+                                    <p class="lead">
+                                        <span class="small">' . $row["exp_debut_mois"] . '. ' . $row["exp_debut_annee"] . ' - ' . $row["exp_fin_mois"] . '. ' . $row["exp_fin_annee"] . ' (' . $row["exp_duree"] . ')' . '</span>
+                                    </p>
+                                    <p>' . $row["exp_description"] . '</p>
+                           
+
+                                </div>
+                            </button>
                             </h2>
-                        <div id="collapse' . $row["exp_id"] . '" class="accordion-collapse collapse" aria-labelledby="heading' . $row["exp_id"] . '" data-bs-parent="#accordionExperience">
-                            <div class="accordion-body">
-                                <strong>Missions réalisées</strong>
-                                <p>' . $row["exp_missions"] . '</p>
+                            <div id="collapse' . $row["exp_id"] . '" class="accordion-collapse collapse" aria-labelledby="heading' . $row["exp_id"] . '" data-bs-parent="#accordionExperience">
+                                <div class="accordion-body">
+                                    <strong>Missions réalisées</strong>
+                                    <p>' . $row["exp_missions"] . '</p>
+                                </div>
+                                
                             </div>
                         </div>
-                        </div>';
+                        ';
                                 } else {
                                     echo '
                         <div class="card mb-4">
@@ -455,18 +459,16 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 <a href="#contact" class="nav-link text-muted">Contact</a></li>
             </nav>
             </div>
-            <div class="d-flex justify-content-between m-5">
+            <div class="d-flex justify-content-between mx-5">
                 <p>&copy;<?= date('Y') . ' Yassine ANZAR BASHA. Tout droit réservé.' ?></p>
-                <ul class="list-unstyled d-flex">
-                    <li class="ms-3">
-                        <a class="link-dark" target="_blank" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
-                            <span class="text-dark fs-3 bi bi-linkedin"></span>
-                        </a>
-                        <a class="link-dark" target="_blank" href="<?= $_SESSION['GITHUB_SRC'] ?>">
-                            <span class="text-dark fs-3 bi bi-github"></span>
-                        </a>
-                    </li>
-                </ul>
+                <div class="row g-2">
+                    <a class="col-6 link-dark" target="_blank" href="<?= $_SESSION['LINKEDIN_SRC'] ?>">
+                        <span class="text-dark fs-3 bi bi-linkedin"></span>
+                    </a>
+                    <a class="col-6 link-dark" target="_blank" href="<?= $_SESSION['GITHUB_SRC'] ?>">
+                        <span class="text-dark fs-3 bi bi-github"></span>
+                    </a>
+                </div>
             </div>
         </footer>
     </body>
