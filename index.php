@@ -77,8 +77,8 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                 <h1 class="display-4 mb-5">Développer le monde de demain, <strong>ensemble</strong>.</h1>
                                 <h2 class="display-6 mb-5">Passionné par les <strong>nouvelles technologies</strong>, je vous aide à propulser l'activité de votre entreprise grâce à des sites web dynamiques, sobres et accessibles.
                                 </h2>
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>Information :</strong> Vous cherchez un alternant dans le domaine de l'IT ?
+                                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                                    <strong>Information :</strong> Vous cherchez un alternant dans le domaine de l'IT ? Si oui, <a class="text-decoration-none" href="mailto:yassanz.contact@gmail.com"><strong>contactez-moi</strong></a> !
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                                 <div class="d-flex my-5 ">
@@ -96,11 +96,11 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             </div>
             </div>
             <!-- EXPÉRIENCES PROFESSIONNELLES -->
-            <div id=" experiences">
+            <div id="experiences">
                 <div class="container-fluid bg-light">
                     <div class="text-center p-5">
                         <span class="display-4">Expériences professionnelles</span>
-                        <!-- <p class="lead">Mon parcours</p> -->
+                        <p class="lead">Mon parcours</p>
                     </div>
                 </div>
                 <div class="container-fluid">
