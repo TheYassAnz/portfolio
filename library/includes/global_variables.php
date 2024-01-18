@@ -4,7 +4,8 @@ $_SESSION = array(
     'FORM_METHOD' => "POST",
     'FORM_ACTION' => "send.php",
     'CONTACT_MAIL' => "yassanz.contact@gmail.com",
-    'LINKEDIN_SRC' => "https://linkedin.com/in/yanzarbasha"
+    'LINKEDIN_SRC' => "https://linkedin.com/in/yanzarbasha",
+    'GITHUB_SRC' => "https://github.com/TheYassAnz"
 );
 
 // Définit le bon fuseau horaire
