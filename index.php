@@ -70,10 +70,10 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 <div class="m-5">
                     <div class="mb-3">
                         <div class="row g-5">
-                            <div class="col-md-4">
+                            <div class="col-lg-4">
                                 <img src="./img/home-picture.jpg" class="img-fluid rounded-start float-start" alt="...">
                             </div>
-                            <div class="col-md-8 pt-3">
+                            <div class="col-lg-8 pt-3">
                                 <h1 class="display-4 mb-5">Développer le monde de demain, <strong>ensemble</strong>.</h1>
                                 <h2 class="display-6 mb-5">Passionné par les <strong>nouvelles technologies</strong>, je vous aide à propulser l'activité de votre entreprise grâce à des sites web dynamiques, sobres et accessibles.
                                 </h2>
@@ -97,11 +97,11 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <!-- EXPÉRIENCES PROFESSIONNELLES -->
             <div id="experiences">
                 <div class="row g-0 m-5">
-                    <div class="col-md-4 mb-5">
+                    <div class="col-lg-4 mb-5">
                         <span class=" display-4">Expériences professionnelles</span>
                     </div>
                     <!-- ACCORDION SECTION -->
-                    <div class="col-md-8 accordion" id="accordionExperience">
+                    <div class="col-lg-8 accordion" id="accordionExperience">
                         <?php
                         $res = $conn->prepare("SELECT * FROM experiences ORDER BY exp_id DESC"); // Préparation de la requête
                         try {
@@ -161,10 +161,10 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <!-- FORMATIONS -->
             <div id="formations">
                 <div class="row g-0 m-5">
-                    <div class="col-md-4 mb-5">
+                    <div class="col-lg-4 mb-5">
                         <span class=" display-4">Formations</span>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-lg-8">
                         <?php
                         $res = $conn->prepare("SELECT * FROM formations ORDER BY for_annee DESC"); // Préparation de la requête
                         try {
@@ -198,12 +198,12 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <!-- COMPÉTENCES -->
             <div id="competences">
                 <div class="row g-0 m-5">
-                    <div class="col-md-4 mb-5">
+                    <div class="col-lg-4 mb-5">
                         <span class=" display-4">Compétences</span>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-lg-8">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <h5 class="card-title">Langages</h5>
@@ -220,7 +220,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <h5 class="card-title">Frameworks</h5>
@@ -233,7 +233,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <h5 class="card-title">Outils</h5>
@@ -246,7 +246,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <h5 class="card-title">Design</h5>
@@ -265,9 +265,9 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 <!-- CONTACT -->
                 <div id="contact">
                     <div class="container-fluid">
-                        <div class="p-5 row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 bg-light d-flex">
+                        <div class="p-5 row bg-light d-flex">
                             <!-- COORDONNÉES -->
-                            <div class="col">
+                            <div class="col-md-4">
                                 <h1 class="display-4">Me contacter</h1>
                                 <p class="lead">Je serais ravi d'échanger avec vous.</p>
                                 <hr class="my-4">
@@ -281,7 +281,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                 </div>
                             </div>
                             <!-- FORMULAIRE -->
-                            <div class="col">
+                            <div class="col-md-8">
                                 <form class="needs-validation" method="<?= $_SESSION["FORM_METHOD"] ?>" action="<?= $_SESSION["FORM_ACTION"] ?>" novalidate>
                                     <div class="row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 g-2 py-2">
                                         <div class="col">
