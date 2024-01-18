@@ -77,6 +77,10 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                 <h1 class="display-4 mb-5">Développer le monde de demain, <strong>ensemble</strong>.</h1>
                                 <h2 class="display-6 mb-5">Passionné par les <strong>nouvelles technologies</strong>, je vous aide à propulser l'activité de votre entreprise grâce à des sites web dynamiques, sobres et accessibles.
                                 </h2>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Information :</strong> Vous cherchez un alternant dans le domaine de l'IT ?
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
                                 <div class="d-flex my-5 ">
                                     <a class="me-3 text-dark" target="blank" href="https://linkedin.com/in/yanzarbasha">
                                         <span class="bi bi-linkedin fs-1"></span>
