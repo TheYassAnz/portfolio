@@ -73,7 +73,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                             <div class="col-md-4">
                                 <img src="./img/home-picture.jpg" class="img-fluid rounded-start float-start" alt="...">
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 pt-3">
                                 <h1 class="display-4 mb-5">Développer le monde de demain, <strong>ensemble</strong>.</h1>
                                 <h2 class="display-6 mb-5">Passionné par les <strong>nouvelles technologies</strong>, je vous aide à propulser l'activité de votre entreprise grâce à des sites web dynamiques, sobres et accessibles.
                                 </h2>
@@ -81,7 +81,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                     <strong>Information :</strong> Vous cherchez un alternant dans le domaine de l'IT ? Si oui, <a class="text-decoration-none" href="mailto:yassanz.contact@gmail.com"><strong>contactez-moi</strong></a> !
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                                <div class="d-flex my-5 ">
+                                <div class="d-flex my-5">
                                     <a class="me-3 text-dark" target="blank" href="https://linkedin.com/in/yanzarbasha">
                                         <span class="bi bi-linkedin fs-1"></span>
                                     </a>
@@ -94,18 +94,14 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     </div>
                 </div>
             </div>
-            </div>
             <!-- EXPÉRIENCES PROFESSIONNELLES -->
             <div id="experiences">
-                <div class="container-fluid bg-light">
-                    <div class="text-center p-5">
-                        <span class="display-4">Expériences professionnelles</span>
-                        <p class="lead">Mon parcours</p>
+                <div class="row g-0 m-5">
+                    <div class="col-md-4 mb-5">
+                        <span class=" display-4">Expériences professionnelles</span>
                     </div>
-                </div>
-                <div class="container-fluid">
                     <!-- ACCORDION SECTION -->
-                    <div class="accordion p-5" id="accordionExperience">
+                    <div class="col-md-8 accordion" id="accordionExperience">
                         <?php
                         $res = $conn->prepare("SELECT * FROM experiences ORDER BY exp_id DESC"); // Préparation de la requête
                         try {
@@ -117,9 +113,10 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                         $tab = $res->fetchAll(); // Enregistrement du résultat sous forme de tableau
                         if ($tab) {
                             foreach ($tab as $key => $row) {
+
                                 if ($row['exp_missions']) {
                                     echo '
-                        <div class="accordion-item">
+                        <div class="accordion-item mb-4">
                             <h2 class="accordion-header" id="heading' . $row["exp_id"] . '">
                                 <button class="accordion-button collapsed p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $row["exp_id"] . '" aria-expanded="true" aria-controls="collapse' . $row["exp_id"] . '">
                                     <div>
@@ -140,7 +137,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                         </div>';
                                 } else {
                                     echo '
-                        <div class="card">
+                        <div class="card mb-4">
                             <div class="card-body p-1">
                                 <h4 class="mt-0 mb-1">' . $row["exp_libelle"] . ', ' . $row["exp_societe"] . ', ' . $row["exp_lieu"] . '</h4>
                                 <p class="lead">
@@ -151,22 +148,23 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                         </div>
                                 ';
                                 }
-                                echo '<hr class="my-3 m-auto w-50"/>';
+                                if (isset($tab[$key + 1])) {
+                                    echo '<hr class="mb-3 m-auto w-50"/>';;
+                                }
                             }
                         }
                         ?>
                     </div>
                 </div>
             </div>
+            <hr class="m-auto w-75" />
             <!-- FORMATIONS -->
             <div id="formations">
-                <div class="container-fluid bg-light">
-                    <div class="text-center p-5">
-                        <span class="display-4">Formations académiques</span>
+                <div class="row g-0 m-5">
+                    <div class="col-md-4 mb-5">
+                        <span class=" display-4">Formations</span>
                     </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="p-5">
+                    <div class="col-md-8">
                         <?php
                         $res = $conn->prepare("SELECT * FROM formations ORDER BY for_annee DESC"); // Préparation de la requête
                         try {
@@ -187,145 +185,180 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                 </p>
                             </div>
                         </div>';
-                                echo '<hr class="my-3 m-auto w-50"/>';
+                                if (isset($tab[$key + 1])) {
+                                    echo '<hr class="mb-3 m-auto w-50"/>';
+                                }
                             }
                         }
                         ?>
                     </div>
                 </div>
             </div>
+            <hr class="m-auto w-75" />
             <!-- COMPÉTENCES -->
             <div id="competences">
-                <div class="container-fluid bg-light">
-                    <div class="text-center p-5">
-                        <span class="display-4">Mes compétences</span>
-                        <p class="lead">Mes acquis</p>
+                <div class="row g-0 m-5">
+                    <div class="col-md-4 mb-5">
+                        <span class=" display-4">Compétences</span>
                     </div>
-                </div>
-                <div class="container-fluid p-5">
-                    <div class="row">
-                        <?php
-                        $res = $conn->prepare("SELECT * FROM competences ORDER BY com_id DESC"); // Préparation de la requête
-                        try {
-                            $res->execute();
-                        } catch (PDOException $e) {
-                            echo "Execution Error";
-                        }
-                        // Exécution de la requête
-                        $tab = $res->fetchAll(); // Enregistrement du résultat sous forme de tableau
-                        // var_dump($tab);
-                        foreach ($tab as $key => $row) {
-                            echo '<div class="col-sm-3">
-                        <div class="card mb-3 bg-light border">
-                            <div class="card-body">
-                                <h5 class="card-title">' . $row["com_libelle"] . '</h5>
-                                <p class="card-text">' . $row["com_des"] . '</p>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Langages</h5>
+                                        <ul>
+                                            <li>HTML</li>
+                                            <li>CSS</li>
+                                            <li>JS</li>
+                                            <li>PHP</li>
+                                            <li>SQL</li>
+                                            <li>Java</li>
+                                            <li>C#</li>
+                                            <li>Python</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Frameworks</h5>
+                                        <ul>
+                                            <li>Django</li>
+                                            <li>React.js</li>
+                                            <li>Joomla</li>
+                                            <li>React Native</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Outils</h5>
+                                        <ul>
+                                            <li>Bash</li>
+                                            <li>Git</li>
+                                            <li>GitHub</li>
+                                            <li>Postman</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Design</h5>
+                                        <ul>
+                                            <li>Bootstrap</li>
+                                            <li>Figma</li>
+                                            <li>Wireframe</li>
+                                            <li>Canva</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>';
-                        }
-                        ?>
-
                     </div>
                 </div>
-            </div>
-            <!-- CONTACT -->
-            <div id="contact">
-                <div class="container-fluid">
-                    <div class="p-5 row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 bg-light d-flex">
-                        <!-- COORDONNÉES -->
-                        <div class="col">
-                            <h1 class="display-4">Me contacter</h1>
-                            <p class="lead">Je serais ravi d'échanger avec vous.</p>
-                            <hr class="my-4">
-                            <div class="row g-5">
-                                <a class="col-1" data-toggle="tooltip" data-placement="right" title="yassanz.contact@gmail.com" href="mailto:yassanz.contact@gmail.com">
-                                    <span class="bi bi-envelope m-2" style="font-size: 1.5rem; color: black;"></span>
-                                </a>
-                                <a class="col-1" data-toggle="tooltip" data-placement="right" title="07 52 70 17 42" href="tel:+33752701742">
-                                    <span class="bi bi-telephone-fill m-2" style="font-size: 1.5rem; color: black;"></span>
-                                </a>
+                <!-- CONTACT -->
+                <div id="contact">
+                    <div class="container-fluid">
+                        <div class="p-5 row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 bg-light d-flex">
+                            <!-- COORDONNÉES -->
+                            <div class="col">
+                                <h1 class="display-4">Me contacter</h1>
+                                <p class="lead">Je serais ravi d'échanger avec vous.</p>
+                                <hr class="my-4">
+                                <div class="row g-5">
+                                    <a class="col-1" data-toggle="tooltip" data-placement="right" title="yassanz.contact@gmail.com" href="mailto:yassanz.contact@gmail.com">
+                                        <span class="bi bi-envelope m-2" style="font-size: 1.5rem; color: black;"></span>
+                                    </a>
+                                    <a class="col-1" data-toggle="tooltip" data-placement="right" title="07 52 70 17 42" href="tel:+33752701742">
+                                        <span class="bi bi-telephone-fill m-2" style="font-size: 1.5rem; color: black;"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- FORMULAIRE -->
+                            <div class="col">
+                                <form class="needs-validation" method="<?= $_SESSION["FORM_METHOD"] ?>" action="<?= $_SESSION["FORM_ACTION"] ?>" novalidate>
+                                    <div class="row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 g-2 py-2">
+                                        <div class="col">
+                                            <label class="form-label" for="_LastName">Nom : </label>
+                                            <input type="text" value="<?php show_if_defined($_SESSION['_LastName']); ?>" class="text-uppercase form-control" name="_LastName" id="_LastName" required>
+                                            <div class="invalid-feedback">
+                                                Merci de renseigner votre nom.
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <label class="form-label" for="_FirstName">Prénom : </label>
+                                            <input type="text" value="<?php show_if_defined($_SESSION['_FirstName']); ?>" class="form-control" name="_FirstName" id="_FirstName" required>
+                                            <div class="invalid-feedback">
+                                                Merci de renseigner votre prénom.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col py-2">
+                                        <label class="form-label" for="_Society">Société : <small class="text-muted">(facultatif)</small></label>
+                                        <input type="text" class="form-control" name="_Society" id="_Society" novalidate />
+                                    </div>
+                                    <div class="col py-2">
+                                        <label class="form-label" for="_Email">E-mail : </label>
+                                        <input type="email" value="<?php show_if_defined($_SESSION['_Email']); ?>" class="text-lowercase form-control" name="_Email" id="_Email" required>
+                                        <small id="emailHelp" class="form-text text-muted">Favoriser votre adresse mail professionnelle.</small>
+                                        <div class="invalid-feedback">
+                                            Merci de renseigner une adresse mail valide.
+                                        </div>
+                                    </div>
+                                    <div class="col py-2">
+                                        <label class="form-label" for="_Object">Objet : </label>
+                                        <input type="text" value="<?php show_if_defined($_SESSION['_Object']); ?>" class="form-control" name="_Object" id="_Object" required>
+                                        <div class="invalid-feedback">
+                                            Merci de renseigner l'objet de votre mail.
+                                        </div>
+                                    </div>
+                                    <div class="col py-2">
+                                        <label class="form-label" for="_Text">Votre message : </label>
+                                        <textarea class="form-control" value="<?php show_if_defined($_SESSION['_Text']); ?>" name="_Text" id="_Text" rows="3" required></textarea>
+                                        <div class="invalid-feedback">
+                                            Votre mail doit contenir un message.
+                                        </div>
+                                    </div>
+                                    <div class="col py-2">
+                                        <div style="width:10px;" class="g-recaptcha" data-sitekey="6LfbkVwiAAAAAPtNwsE5A2awWv2jvaNEhsSM7EmA"></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                                </form>
                             </div>
                         </div>
-                        <!-- FORMULAIRE -->
-                        <div class="col">
-                            <form class="needs-validation" method="<?= $_SESSION["FORM_METHOD"] ?>" action="<?= $_SESSION["FORM_ACTION"] ?>" novalidate>
-                                <div class="row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 g-2 py-2">
-                                    <div class="col">
-                                        <label class="form-label" for="_LastName">Nom : </label>
-                                        <input type="text" value="<?php show_if_defined($_SESSION['_LastName']); ?>" class="text-uppercase form-control" name="_LastName" id="_LastName" required>
-                                        <div class="invalid-feedback">
-                                            Merci de renseigner votre nom.
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label" for="_FirstName">Prénom : </label>
-                                        <input type="text" value="<?php show_if_defined($_SESSION['_FirstName']); ?>" class="form-control" name="_FirstName" id="_FirstName" required>
-                                        <div class="invalid-feedback">
-                                            Merci de renseigner votre prénom.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col py-2">
-                                    <label class="form-label" for="_Society">Société : <small class="text-muted">(facultatif)</small></label>
-                                    <input type="text" class="form-control" name="_Society" id="_Society" novalidate />
-                                </div>
-                                <div class="col py-2">
-                                    <label class="form-label" for="_Email">E-mail : </label>
-                                    <input type="email" value="<?php show_if_defined($_SESSION['_Email']); ?>" class="text-lowercase form-control" name="_Email" id="_Email" required>
-                                    <small id="emailHelp" class="form-text text-muted">Favoriser votre adresse mail professionnelle.</small>
-                                    <div class="invalid-feedback">
-                                        Merci de renseigner une adresse mail valide.
-                                    </div>
-                                </div>
-                                <div class="col py-2">
-                                    <label class="form-label" for="_Object">Objet : </label>
-                                    <input type="text" value="<?php show_if_defined($_SESSION['_Object']); ?>" class="form-control" name="_Object" id="_Object" required>
-                                    <div class="invalid-feedback">
-                                        Merci de renseigner l'objet de votre mail.
-                                    </div>
-                                </div>
-                                <div class="col py-2">
-                                    <label class="form-label" for="_Text">Votre message : </label>
-                                    <textarea class="form-control" value="<?php show_if_defined($_SESSION['_Text']); ?>" name="_Text" id="_Text" rows="3" required></textarea>
-                                    <div class="invalid-feedback">
-                                        Votre mail doit contenir un message.
-                                    </div>
-                                </div>
-                                <div class="col py-2">
-                                    <div style="width:10px;" class="g-recaptcha" data-sitekey="6LfbkVwiAAAAAPtNwsE5A2awWv2jvaNEhsSM7EmA"></div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Envoyer</button>
-                            </form>
-                        </div>
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function() {
+                                'use strict';
+                                window.addEventListener('load', function() {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function(form) {
+                                        form.addEventListener('submit', function(event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+                        </script>
                     </div>
-                    <script>
-                        // Example starter JavaScript for disabling form submissions if there are invalid fields
-                        (function() {
-                            'use strict';
-                            window.addEventListener('load', function() {
-                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                                var forms = document.getElementsByClassName('needs-validation');
-                                // Loop over them and prevent submission
-                                var validation = Array.prototype.filter.call(forms, function(form) {
-                                    form.addEventListener('submit', function(event) {
-                                        if (form.checkValidity() === false) {
-                                            event.preventDefault();
-                                            event.stopPropagation();
-                                        }
-                                        form.classList.add('was-validated');
-                                    }, false);
-                                });
-                            }, false);
-                        })();
-                    </script>
                 </div>
-            </div>
-            <!-- MODAL -->
-            <?php
-            if ($_GET) {
-                if ($_GET['err'] == 'sent') {
-                    echo '
+                <!-- MODAL -->
+                <?php
+                if ($_GET) {
+                    if ($_GET['err'] == 'sent') {
+                        echo '
             <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -344,8 +377,8 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 </div>
             </div>
     ';
-                } elseif ($_GET['err'] == 1) {
-                    echo '
+                    } elseif ($_GET['err'] == 1) {
+                        echo '
             <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -366,8 +399,8 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             </div>
         </div>
     ';
-                } elseif ($_GET['err'] == 2) {
-                    echo '
+                    } elseif ($_GET['err'] == 2) {
+                        echo '
             <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -386,8 +419,8 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             </div>
         </div>
     ';
-                } elseif ($_GET['err'] == 3) {
-                    echo '
+                    } elseif ($_GET['err'] == 3) {
+                        echo '
             <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -406,20 +439,19 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             </div>
         </div>
     ';
+                    }
                 }
-            }
-            ?>
+                ?>
 
         </main>
         <!-- FOOTER -->
         <footer>
             <nav class="nav flex-column p-5">
                 <h5>Sommaire</h5>
-                <a href="#" class="nav-link text-muted">Accueil</a>
-                <a href="#qui-suis-je" class="nav-link text-muted">Qui-suis-je ?</a>
+                <a href="#a-propos" class="nav-link text-muted">À propos</a>
                 <a href="#experiences" class="nav-link text-muted">Expériences</a>
                 <a href="#formations" class="nav-link text-muted">Formations</a>
-                <a href="<?= $_SESSION['LINKEDIN_SRC'] ?>" class=" nav-link text-muted" target="_blank">LinkedIn</a></li>
+                <a href="#competences" class="nav-link text-muted">Compétences</a>
                 <a href="#contact" class="nav-link text-muted">Contact</a></li>
             </nav>
             </div>
