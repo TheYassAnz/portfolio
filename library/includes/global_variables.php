@@ -1,6 +1,6 @@
 <?php
 $_SESSION = array(
-    'WEBSITE_TITLE' => "Yassine ANZAR BASHA",
+    'WEBSITE_TITLE' => "Portfolio de Yassine ANZAR BASHA",
     'FORM_METHOD' => "POST",
     'FORM_ACTION' => "send.php",
     'CONTACT_MAIL' => "yassanz.contact@gmail.com",
