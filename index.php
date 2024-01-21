@@ -33,7 +33,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#a-propos">A propos</a>
+                        <a class="nav-link" aria-current="page" href="#a-propos">A propos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#experiences">Expériences</a>
@@ -193,7 +193,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
             <div id="competences">
                 <div class="row g-0 m-5">
                     <div class="col-lg-4 mb-5">
-                        <span class=" display-4">Compétences</span>
+                        <span class="display-4">Compétences</span>
                     </div>
                     <div class="col-lg-8">
                         <div class="row">
@@ -251,8 +251,8 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 </div>
                 <!-- CONTACT -->
                 <div id="contact">
-                    <div class="container-fluid">
-                        <div class="p-5 row bg-light d-flex">
+                    <div class="container-fluid bg-light border">
+                        <div class="p-5 row">
                             <!-- COORDONNÉES -->
                             <div class="col-md-4">
                                 <h1 class="display-4">Me contacter</h1>
@@ -260,10 +260,10 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                 <hr class="my-4">
                                 <div class="row g-5">
                                     <a class="col-1" data-toggle="tooltip" data-placement="right" title="yassanz.contact@gmail.com" href="mailto:yassanz.contact@gmail.com">
-                                        <span class="bi bi-envelope m-2" style="font-size: 1.5rem; color: black;"></span>
+                                        <i class="bi bi-envelope-open fs-4 text-dark"></i>
                                     </a>
                                     <a class="col-1" data-toggle="tooltip" data-placement="right" title="07 52 70 17 42" href="tel:+33752701742">
-                                        <span class="bi bi-telephone-fill m-2" style="font-size: 1.5rem; color: black;"></span>
+                                        <span class="bi bi-telephone-fill fs-4 text-dark"></span>
                                     </a>
                                 </div>
                             </div>
@@ -287,7 +287,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                         </div>
                                     </div>
                                     <div class="col py-2">
-                                        <label class="form-label" for="_Society">Société : <small class="text-muted">(facultatif)</small></label>
+                                        <label class="form-label" for="_Society">Société :</label>
                                         <input type="text" class="form-control" name="_Society" id="_Society" novalidate />
                                     </div>
                                     <div class="col py-2">
@@ -315,7 +315,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                     <div class="col py-2">
                                         <div style="width:10px;" class="g-recaptcha" data-sitekey="6LfbkVwiAAAAAPtNwsE5A2awWv2jvaNEhsSM7EmA"></div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                                    <button type="submit" class="btn btn-primary fs-5">Envoyer</button>
                                 </form>
                             </div>
                         </div>
