@@ -131,13 +131,13 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                         ';
                                 } else {
                                     echo '
-                        <div class="card mb-4 border border-0">
-                            <div class="card-body p-1">
+                        <div class="mb-4">
+                            <div class="p-1">
                                 <h4 class="mt-0 mb-1">' . $row["exp_libelle"] . ', ' . $row["exp_societe"] . ', ' . $row["exp_lieu"] . '</h4>
                                 <p class="lead">
                                     <span class="small">' . $row["exp_debut_mois"] . '. ' . $row["exp_debut_annee"] . ' - ' . $row["exp_fin_mois"] . '. ' . $row["exp_fin_annee"] . ' (' . $row["exp_duree"] . ')' . '</span>
                                 </p>
-                                <p class="card-text">' . $row["exp_description"] .  '</p>
+                                <p>' . $row["exp_description"] .  '</p>
                             </div>
                         </div>
                                 ';
@@ -198,59 +198,52 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                     <div class="col-lg-8">
                         <div class="row">
                             <div class="col-lg-3 col-md-6">
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Langages</h5>
-                                        <ul>
-                                            <li>HTML</li>
-                                            <li>CSS</li>
-                                            <li>JS</li>
-                                            <li>PHP</li>
-                                            <li>SQL</li>
-                                            <li>Java</li>
-                                            <li>C#</li>
-                                            <li>Python</li>
-                                        </ul>
-                                    </div>
+                                <div class="mb-3">
+                                    <h5 class="mb-3">Langages</h5>
+                                    <ul>
+                                        <li>HTML</li>
+                                        <li>CSS</li>
+                                        <li>JS</li>
+                                        <li>PHP</li>
+                                        <li>SQL</li>
+                                        <li>Java</li>
+                                        <li>C#</li>
+                                        <li>Python</li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6">
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Frameworks</h5>
-                                        <ul>
-                                            <li>Django</li>
-                                            <li>React.js</li>
-                                            <li>Joomla</li>
-                                            <li>React Native</li>
-                                        </ul>
-                                    </div>
+                                <div class="mb-3">
+                                    <h5 class="mb-3">Framworks</h5>
+                                    <ul>
+                                        <li>Django</li>
+                                        <li>React.js</li>
+                                        <li>Joomla</li>
+                                        <li>React Native</li>
+                                    </ul>
+
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6">
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Outils</h5>
-                                        <ul>
-                                            <li>Bash</li>
-                                            <li>Git</li>
-                                            <li>GitHub</li>
-                                            <li>Postman</li>
-                                        </ul>
-                                    </div>
+                                <div class="mb-3">
+                                    <h5 class="mb-3">Outils</h5>
+                                    <ul>
+                                        <li>Bash</li>
+                                        <li>Git</li>
+                                        <li>GitHub</li>
+                                        <li>Postman</li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6">
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Design</h5>
-                                        <ul>
-                                            <li>Bootstrap</li>
-                                            <li>Figma</li>
-                                            <li>Wireframe</li>
-                                            <li>Canva</li>
-                                        </ul>
-                                    </div>
+                                <div class="mb-3">
+                                    <h5 class="mb-3">Design</h5>
+                                    <ul>
+                                        <li>Bootstrap</li>
+                                        <li>Figma</li>
+                                        <li>Wireframe</li>
+                                        <li>Canva</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
