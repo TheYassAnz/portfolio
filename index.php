@@ -4,8 +4,8 @@ require_once('library/includes/global_variables.php'); // Inclut les variables g
 require_once('library/includes/connexionPDO.php'); // Inclut le script de connexion à la BDD
 require_once('library/function/required_function.php'); // Inclut les fonctions utiles
 ?>
-<!-- ®2023 YassAnz Corporation. Tout droit réservé/All rights reserved -->
-<!-- Using Bootstrap 5.2.2 -->
+<!-- ®2024 Yassine ANZAR BASHA. Tout droit réservé/All rights reserved -->
+<!-- Using Bootstrap 5.3.2 -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,21 +16,11 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
     <title><?= $_SESSION['WEBSITE_TITLE'] ?></title>
     <!-- Online Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- Local and Personalized Bootstrap CSS -->
-    <link href="css/add_style.css" rel="stylesheet">
-    <!-- Icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./img/icon.svg">
     <!-- Online Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Online Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <style type="text/css">
-        .accordion-item,
-        .card {
-            border: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -116,7 +106,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
 
                                 if ($row['exp_missions']) {
                                     echo '
-                        <div class="accordion-item mb-4">
+                        <div class="accordion-item mb-4 border border-0">
                             <h2 class="accordion-header" id="heading' . $row["exp_id"] . '">
                             <button class="accordion-button collapsed p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $row["exp_id"] . '" aria-expanded="true" aria-controls="collapse' . $row["exp_id"] . '">
                                 <div>
@@ -141,7 +131,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                         ';
                                 } else {
                                     echo '
-                        <div class="card mb-4">
+                        <div class="card mb-4 border border-0">
                             <div class="card-body p-1">
                                 <h4 class="mt-0 mb-1">' . $row["exp_libelle"] . ', ' . $row["exp_societe"] . ', ' . $row["exp_lieu"] . '</h4>
                                 <p class="lead">
