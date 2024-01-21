@@ -451,7 +451,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
         <!-- FOOTER -->
         <footer>
             <nav class="nav flex-column m-5">
-                <h5>Sommaire</h5>
+                <h5>Plan du site</h5>
                 <a href="#a-propos" class="nav-link text-muted">À propos</a>
                 <a href="#experiences" class="nav-link text-muted">Expériences</a>
                 <a href="#formations" class="nav-link text-muted">Formations</a>
