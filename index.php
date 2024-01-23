@@ -231,6 +231,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                         <li>Bash</li>
                                         <li>Git</li>
                                         <li>GitHub</li>
+                                        <li>API REST</li>
                                         <li>Postman</li>
                                     </ul>
                                 </div>
@@ -240,8 +241,8 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                     <h5 class="mb-3">Design</h5>
                                     <ul>
                                         <li>Bootstrap</li>
+                                        <li>TailwindUI</li>
                                         <li>Figma</li>
-                                        <li>Wireframe</li>
                                         <li>Canva</li>
                                     </ul>
                                 </div>
