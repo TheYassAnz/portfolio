@@ -317,7 +317,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                         </div>
                                     </div>
                                     <div class="col py-2">
-                                        <div style="width:10px;" class="g-recaptcha" data-sitekey="6LfbkVwiAAAAAPtNwsE5A2awWv2jvaNEhsSM7EmA"></div>
+                                        <div style="width:10px;" class="g-recaptcha" data-sitekey="6LeLe2MpAAAAAIHEgtKpC-t97TgALP_oKFL7t8MB"></div>
                                     </div>
                                     <button type="submit" class="btn btn-primary fs-5">Envoyer</button>
                                 </form>

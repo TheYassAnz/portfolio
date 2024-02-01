@@ -13,7 +13,7 @@ if ($_POST) {
         );
         # CAPTCHA AREA
         $captcha = $_POST['g-recaptcha-response'];
-        $secretKey = "6LfbkVwiAAAAAJcLuFfJ4XIFHohPXHjckHaj03zU";
+        $secretKey = "6LeLe2MpAAAAAAMonwQ9qOq3b_43tjePOjOZKiN5";
         $ip = $_SERVER['REMOTE_ADDR'];
         // post request to server
         $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
