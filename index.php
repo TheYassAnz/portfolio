@@ -45,9 +45,6 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                         <a class="nav-link" href="#competences">Compétences</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#projets">Projets</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="btn btn-outline-primary" href="#contact">Contact</a>
                     </li>
                 </ul>
@@ -244,7 +241,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                                     <h5 class="mb-3">Design</h5>
                                     <ul>
                                         <li>Bootstrap</li>
-                                        <li>TailwindUI</li>
+                                        <li>TailwindCSS</li>
                                         <li>Figma</li>
                                         <li>Canva</li>
                                     </ul>
