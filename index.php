@@ -60,9 +60,7 @@ require_once('library/function/required_function.php'); // Inclut les fonctions 
                 <div class="m-5">
                     <div class="mb-3">
                         <div class="row g-5">
-                            <div class="col-lg-4">
-                                <img src="./img/home-picture.jpg" class="img-fluid rounded-start float-start" alt="...">
-                            </div>
+                            <img src="./img/main-page.svg" class="img-fluid col-lg-4" alt="...">
                             <div class="col-lg-8 pt-3">
                                 <h1 class="display-4 mb-5">Développer le monde de demain, <strong>ensemble</strong>.</h1>
                                 <h2 class="display-6 mb-5">Passionné par les <strong>nouvelles technologies</strong>, je vous aide à propulser l'activité de votre entreprise grâce à des sites web dynamiques, sobres et accessibles.
