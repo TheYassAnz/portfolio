@@ -9,11 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.4.10",
+    "lucide-react": "^0.479.0",
+    "motion": "^12.4.10",
     "next": "14.2.4",
     "nodejs": "^0.0.0",
     "npm": "^10.8.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "simplex-noise": "^4.0.3",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "postcss": "^8",

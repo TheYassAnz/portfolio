@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Portfolio de Yassine ANZAR BASHA",
-  description: "Développeur JavaScript",
+  description: "Développeur Full Stack",
 };
 
 export default function RootLayout({ children }) {
