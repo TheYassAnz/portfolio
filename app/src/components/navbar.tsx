@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="h-15 flex justify-between items-center px-8 max-w-7xl mx-auto">
       <span className="text-lg font-semibold">Yassine ANZAR BASHA</span>
       {/* CTA */}
-      <Button label="Reserver un créneau" />
+      <Button label="Book a call" />
     </nav>
   );
 }
