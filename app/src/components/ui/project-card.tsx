@@ -1,4 +1,10 @@
-export default function ProjectCard() {
+export default function ProjectCard({
+  title = "Project Title",
+  description = "A brief description of the project.",
+}: {
+  title?: string;
+  description?: string;
+}) {
   return (
     <div className="flex flex-col min-w-[400px] h-[250px] border border-gray-300 rounded-md snap-start justify-between">
       <div className="place-self-end p-4">
@@ -18,8 +24,8 @@ export default function ProjectCard() {
         </svg>
       </div>
       <div className="p-4">
-        <h3 className="text-lg font-medium">Project Card Component</h3>
-        <p className="text-gray-500">Description of the project goes here.</p>
+        <h3 className="text-lg font-medium">{title}</h3>
+        <p className="text-gray-500">{description}</p>
       </div>
     </div>
   );
