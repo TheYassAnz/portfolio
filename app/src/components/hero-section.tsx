@@ -2,7 +2,7 @@ import Button from "./ui/button";
 
 export default function HeroSection() {
   return (
-    <section className="grid items-center max-w-7xl mx-auto p-8 border border-gray-300 rounded-md">
+    <section className="grid items-center py-8">
       <h1 className="text-4xl font-bold mb-4">
         I am <span className="text-gray-400">Yassine</span>
         <br />
