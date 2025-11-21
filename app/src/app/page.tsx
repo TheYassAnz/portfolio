@@ -1,4 +1,5 @@
 import CalendlySection from "@/components/calendly-section";
+import FooterSection from "@/components/footer-section";
 import HeroSection from "@/components/hero-section";
 import ServiceSection from "@/components/service-section";
 
@@ -9,6 +10,7 @@ export default function Home() {
         <HeroSection />
         <ServiceSection />
         <CalendlySection />
+        <FooterSection />
       </main>
     </>
   );
