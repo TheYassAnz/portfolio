@@ -1,5 +1,3 @@
-import Button from "./ui/button";
-
 export default function HeroSection() {
   return (
     <section className="grid items-center py-8">
@@ -16,7 +14,9 @@ export default function HeroSection() {
       </p>
       <div className="flex items-center gap-4">
         <button className="hover:cursor-pointer">Learn more</button>
-        <Button label="Book a call" />
+        <button className="px-4 py-2 bg-[#231F20] text-white rounded-3xl hover:opacity-80 hover:cursor-pointer border-2 transition">
+          Book a call
+        </button>
       </div>
     </section>
   );
