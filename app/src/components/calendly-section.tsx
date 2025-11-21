@@ -41,7 +41,7 @@ export default function CalendlySection() {
         {/* calendly widget */}
         <div className="col-span-2">
           <InlineWidget
-            url="https://calendly.com/book-with-yassine/15-minute-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=e5e7eb&text_color=000000&primary_color=000000"
+            url="https://calendly.com/book-with-yassine/15-minute-call?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=231f20"
             className="h-[700px] w-full"
           />
         </div>
