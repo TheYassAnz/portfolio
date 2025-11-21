@@ -29,7 +29,7 @@ export default function ServiceSection() {
   ];
 
   return (
-    <section>
+    <section id="services" className="scroll-mt-10">
       <h2 className="text-3xl font-semibold">Services</h2>
       <p className="text-gray-500">Here are some of the services I offer.</p>
       <div className="mt-8 grid xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-6">

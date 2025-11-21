@@ -17,7 +17,7 @@ export default function ServiceCard({
           src={imageUrl ?? ""}
           width={100}
           height={100}
-          className=""
+          className="transition-transform duration-300 hover:scale-105"
         />
       </div>
       <div className="col-span-2">

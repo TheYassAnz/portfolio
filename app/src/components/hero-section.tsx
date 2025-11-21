@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function HeroSection() {
   return (
     <section className="grid items-center">
@@ -19,10 +21,15 @@ export default function HeroSection() {
         technologies like Next.js, Angular 20, Express.js, MongoDB and more.
       </p>
       <div className="flex items-center gap-4">
-        <button className="hover:cursor-pointer">Learn more</button>
-        <button className="px-4 py-2 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-3xl hover:opacity-80 hover:cursor-pointer border-2 transition">
+        <Link href="#services" className="hover:cursor-pointer">
+          Learn more
+        </Link>
+        <Link
+          href="#contact"
+          className="px-4 py-2 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-3xl hover:opacity-80 hover:cursor-pointer border-2 transition"
+        >
           Book a call
-        </button>
+        </Link>
       </div>
     </section>
   );
