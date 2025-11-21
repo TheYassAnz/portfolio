@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <section className="grid items-center py-8">
+    <section className="grid items-center">
       <h1 className="text-4xl font-bold mb-4">
         I am{" "}
         <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500">
