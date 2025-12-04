@@ -6,7 +6,7 @@ import ServiceSection from "@/components/service-section";
 export default function Home() {
   return (
     <>
-      <main className="max-w-7xl mx-auto md:px-8 px-4 grid text-black mt-10 space-y-10">
+      <main className="mx-auto mt-10 grid max-w-7xl space-y-10 px-4 text-black md:px-8">
         <HeroSection />
         <ServiceSection />
         <CalendlySection />

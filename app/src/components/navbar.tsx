@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="h-15 flex justify-between items-center md:px-8 px-4 max-w-7xl mx-auto bg-[#231F20] text-white">
+    <nav className="text-white. mx-auto flex h-15 max-w-7xl items-center justify-between rounded-full bg-[#231F20] px-4 md:px-8">
       <span className="text-lg font-semibold">Yassine ANZAR BASHA</span>
       {/* CTA */}
       <div className="flex items-center">
@@ -20,7 +20,7 @@ export default function Navbar() {
             id="Capa_1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 112.196 112.196"
-            className="w-8 h-8 ml-4 hover:cursor-pointer fill-white"
+            className="ml-4 h-8 w-8 fill-white hover:cursor-pointer"
           >
             <g>
               <circle cx="56.098" cy="56.097" r="56.098" />

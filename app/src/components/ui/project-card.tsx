@@ -9,7 +9,7 @@ export default function ProjectCard({
 }) {
   return (
     <div
-      className="flex flex-col min-w-[400px] h-[250px] border border-gray-300 rounded-md snap-start justify-between bg-cover bg-center"
+      className="flex h-[250px] min-w-[400px] snap-start flex-col justify-between rounded-md border border-gray-300 bg-cover bg-center"
       style={
         backgroundImageUrl
           ? { backgroundImage: `url(${backgroundImageUrl})` }
@@ -32,7 +32,7 @@ export default function ProjectCard({
           />
         </svg>
       </div>
-      <div className="p-4 backdrop-blur-sm bg-white/30 rounded-b-md">
+      <div className="rounded-b-md bg-white/30 p-4 backdrop-blur-sm">
         <h3 className="text-lg font-medium">{title}</h3>
         <p className="text-gray-500">{description}</p>
       </div>

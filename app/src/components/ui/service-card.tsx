@@ -10,7 +10,7 @@ export default function ServiceCard({
   imageUrl?: string;
 }) {
   return (
-    <div className="grid grid-cols-3 items-center border border-gray-300 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+    <div className="grid grid-cols-3 items-center rounded-lg border border-gray-300 p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
       <div className="flex items-center">
         <Image
           alt="Services"
@@ -21,7 +21,7 @@ export default function ServiceCard({
         />
       </div>
       <div className="col-span-2">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <h3 className="mb-2 text-xl font-semibold">{title}</h3>
         <p className="text-gray-600">{description}</p>
       </div>
     </div>

@@ -11,7 +11,7 @@ export default function CalendlySection() {
         questions you may have.
       </p>
 
-      <div className="grid grid-cols-2 gap-6 mt-8">
+      <div className="mt-8 grid grid-cols-2 gap-6">
         <div className="col-span-2">
           <InlineWidget
             url="https://calendly.com/book-with-yassine/15-minute-call?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=231f20"

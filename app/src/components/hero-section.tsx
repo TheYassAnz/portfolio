@@ -3,20 +3,20 @@ import Link from "next/link";
 export default function HeroSection() {
   return (
     <section className="grid items-center">
-      <h1 className="text-4xl font-bold mb-4">
+      <h1 className="mb-4 text-4xl font-bold">
         I am{" "}
-        <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500">
+        <span className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
           Yassine
         </span>
         <br />
         Full-Stack Developer based in{" "}
-        <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500">
+        <span className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
           Paris
         </span>
         .
       </h1>
 
-      <p className="text-lg text-gray-700 mb-6">
+      <p className="mb-6 text-lg text-gray-700">
         I specialize in building high-quality web applications using modern
         technologies like Next.js, Angular 20, Express.js, MongoDB and more.
       </p>
@@ -26,7 +26,7 @@ export default function HeroSection() {
         </Link>
         <Link
           href="#contact"
-          className="px-4 py-2 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-3xl hover:opacity-80 hover:cursor-pointer border-2 transition"
+          className="rounded-3xl border-2 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-2 text-white transition hover:cursor-pointer hover:opacity-80"
         >
           Book a call
         </Link>
