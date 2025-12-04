@@ -16,7 +16,7 @@ export default function HeroSection() {
         .
       </h1>
 
-      <p className="mb-6 text-lg text-gray-700">
+      <p className="mb-6 w-[70%] text-lg text-gray-700">
         I specialize in building high-quality web applications using modern
         technologies like Next.js, Angular 20, Express.js, MongoDB and more.
       </p>
