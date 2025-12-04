@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body>
+      <body className="mx-auto max-w-6xl px-4 md:px-8">
         <Navbar />
         {children}
       </body>

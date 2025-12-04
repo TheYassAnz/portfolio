@@ -2,8 +2,10 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="text-white. mx-auto flex h-15 max-w-7xl items-center justify-between rounded-full bg-[#231F20] px-4 md:px-8">
-      <span className="text-lg font-semibold">Yassine ANZAR BASHA</span>
+    <nav className="mx-auto my-4 flex h-15 w-full items-center justify-between rounded-full bg-[#231F20] px-4">
+      <span className="text-lg font-semibold text-white">
+        Yassine ANZAR BASHA
+      </span>
       {/* CTA */}
       <div className="flex items-center">
         {/* <button className="px-4 py-1 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl hover:bg-gray-100 hover:cursor-pointer  transition font-semibold border">
