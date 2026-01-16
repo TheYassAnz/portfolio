@@ -4,16 +4,9 @@ export default function HeroSection() {
   return (
     <section className="grid items-center">
       <h1 className="mb-4 text-4xl font-bold">
-        I am{" "}
-        <span className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          Yassine
-        </span>
+        I am <span>Yassine ANZAR BASHA</span>
         <br />
-        Full-Stack Developer based in{" "}
-        <span className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          Paris
-        </span>
-        .
+        Full-Stack Developer based in <span>Paris</span>.
       </h1>
 
       <p className="mb-6 w-[70%] text-lg text-gray-700">
@@ -26,7 +19,7 @@ export default function HeroSection() {
         </Link>
         <Link
           href="#contact"
-          className="rounded-3xl border-2 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-2 text-white transition hover:cursor-pointer hover:opacity-80"
+          className="rounded-3xl border-2 px-4 py-2 transition hover:cursor-pointer hover:bg-black hover:text-white"
         >
           Book a call
         </Link>

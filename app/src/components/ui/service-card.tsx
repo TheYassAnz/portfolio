@@ -4,16 +4,20 @@ export default function ServiceCard({
   title,
   description,
   imageUrl,
+  ctaLabel,
+  ctaHref,
 }: {
   title?: string;
   description?: string;
   imageUrl?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
 }) {
   return (
-    <div className="grid grid-cols-3 items-center rounded-lg border border-gray-300 p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
-      <div className="flex items-center">
+    <div className="grid grid-cols-3 items-center gap-4 rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+      <div className="flex items-center justify-center">
         <Image
-          alt="Services"
+          alt={title ?? "Service"}
           src={imageUrl ?? ""}
           width={100}
           height={100}

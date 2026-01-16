@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import FooterSection from "@/components/footer-section";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,9 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="mx-auto max-w-6xl px-4 md:px-8">
+      <body className="mx-auto max-w-7xl px-4 md:px-8">
         <Navbar />
         {children}
+        <FooterSection />
       </body>
     </html>
   );
