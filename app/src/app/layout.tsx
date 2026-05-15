@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import FooterSection from "@/components/footer-section";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+const dmSerif = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-playfair",
+});
 
 export const metadata: Metadata = {
   title: "Yassine ANZAR BASHA — Développeur Full-Stack",
@@ -21,7 +25,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`scroll-smooth ${inter.variable} ${playfair.variable}`}
+      className={`scroll-smooth ${inter.variable} ${dmSerif.variable}`}
     >
       <body className="mx-auto max-w-7xl bg-black px-4 text-muted md:px-8">
         <Navbar />
