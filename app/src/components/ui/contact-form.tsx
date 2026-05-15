@@ -42,7 +42,7 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex h-full flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-8 text-center">
+      <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/20">
           <FiCheck className="text-accent" size={28} />
         </div>
