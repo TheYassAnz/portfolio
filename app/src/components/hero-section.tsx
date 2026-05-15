@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Terminal from "./ui/terminal";
 import {
   SiReact,
   SiNextdotjs,
@@ -71,15 +72,9 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Photo placeholder */}
-      <div className="flex justify-center md:justify-end">
-        <div className="relative h-72 w-72 md:h-96 md:w-96">
-          <div className="h-full w-full rounded-full border-4 border-accent bg-surface flex items-center justify-center">
-            <span className="font-serif text-6xl font-bold text-accent">YA</span>
-          </div>
-          {/* Decorative ring */}
-          <div className="absolute -inset-3 rounded-full border border-accent/20" />
-        </div>
+      {/* Terminal */}
+      <div className="hidden justify-end md:flex">
+        <Terminal />
       </div>
     </section>
   );
