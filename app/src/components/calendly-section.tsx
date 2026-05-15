@@ -1,101 +1,84 @@
-"use client";
-
-import { FiClock, FiMail } from "react-icons/fi";
+import { FiCalendar, FiClock, FiFileText } from "react-icons/fi";
+import ContactForm from "./ui/contact-form";
 
 const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL;
 
+const highlights = [
+  { icon: FiClock, text: "15 min — intro rapide et ciblée" },
+  { icon: FiCalendar, text: "Créneaux disponibles en CET/CEST" },
+  { icon: FiFileText, text: "Résumé envoyé sous 24h après l'appel" },
+];
+
 export default function CalendlySection() {
   return (
-    <section
-      id="contact"
-      className="scroll-mt-24 rounded-3xl border border-white/10 bg-surface p-8 py-16"
-    >
+    <section id="contact" className="scroll-mt-24 py-16">
       <p className="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">
-        Travaillons ensemble
+        Prenons contact
       </p>
       <h2 className="mb-2 font-serif text-4xl font-bold text-muted">
-        Prendre RDV
+        Travaillons ensemble
       </h2>
       <p className="mb-10 max-w-xl text-muted/60">
-        Discutons de votre projet, vos besoins et comment je peux vous aider à
-        les concrétiser.
+        Choisissez le mode de contact qui vous convient le mieux.
       </p>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Info */}
-        <div className="space-y-4 lg:col-span-1">
-          <div className="flex items-start gap-3 rounded-xl border border-white/10 bg-black/20 p-4">
-            <FiClock className="mt-0.5 shrink-0 text-accent" size={18} />
-            <div>
-              <p className="text-sm font-semibold text-muted">Disponibilité</p>
-              <p className="mt-1 text-sm text-muted/60">
-                Créneaux disponibles en CET/CEST, adaptés à votre fuseau horaire.
-              </p>
-            </div>
-          </div>
-
-          <ul className="space-y-3 rounded-xl border border-white/10 bg-black/20 p-4 text-sm text-muted/70">
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-              Définir vos objectifs et contraintes.
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-              Estimer la faisabilité et le planning.
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-              Repartir avec une feuille de route concrète.
-            </li>
-          </ul>
-        </div>
-
-        {/* CTA */}
-        <div className="flex flex-col justify-between gap-6 rounded-2xl border border-white/10 bg-black/20 p-6 lg:col-span-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        {/* Calendly */}
+        <div className="flex flex-col justify-between gap-8 rounded-2xl border border-accent/30 bg-surface p-8">
           <div>
-            <p className="text-xs font-semibold tracking-widest text-accent uppercase">
-              Intro 15 minutes
+            <p className="mb-1 text-xs font-semibold tracking-widest text-accent uppercase">
+              Appel vidéo
             </p>
-            <p className="mt-1 text-lg font-semibold text-muted">
-              Choisissez un créneau sur Calendly.
-            </p>
-            <p className="mt-1 text-sm text-muted/60">
-              Je confirme avec un ordre du jour et les éventuels documents
-              préparatoires.
+            <h3 className="mb-3 font-serif text-2xl font-bold text-muted">
+              Prendre RDV
+            </h3>
+            <p className="text-sm leading-relaxed text-muted/60">
+              Réservez un créneau de 15 minutes pour discuter de votre projet,
+              vos objectifs et les prochaines étapes.
             </p>
           </div>
+
+          <ul className="space-y-3">
+            {highlights.map(({ icon: Icon, text }) => (
+              <li key={text} className="flex items-center gap-3 text-sm text-muted/70">
+                <Icon className="shrink-0 text-accent" size={16} />
+                {text}
+              </li>
+            ))}
+          </ul>
 
           {calendlyUrl ? (
             <a
               href={calendlyUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex w-fit items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90"
             >
-              Ouvrir Calendly
+              <FiCalendar size={16} />
+              Réserver un créneau
             </a>
           ) : (
-            <p className="text-sm text-muted/40 italic">
-              Lien Calendly non configuré — ajouter{" "}
+            <p className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-xs text-muted/40 italic">
+              Lien Calendly non configuré —{" "}
               <code className="text-accent">NEXT_PUBLIC_CALENDLY_URL</code> dans{" "}
-              <code className="text-accent">.env.local</code>.
+              <code className="text-accent">.env.local</code>
             </p>
           )}
+        </div>
 
-          <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-black/20 p-4">
-            <FiMail className="shrink-0 text-accent" size={18} />
-            <div>
-              <p className="text-sm font-semibold text-muted">
-                Préférez l&apos;email ?
-              </p>
-              <a
-                href="mailto:contact@yassanz.com"
-                className="mt-1 text-sm text-muted/60 underline underline-offset-4 transition-colors hover:text-accent"
-              >
-                contact@yassanz.com
-              </a>
-            </div>
-          </div>
+        {/* Contact form */}
+        <div className="rounded-2xl border border-white/10 bg-surface p-8">
+          <p className="mb-1 text-xs font-semibold tracking-widest text-accent uppercase">
+            Message écrit
+          </p>
+          <h3 className="mb-3 font-serif text-2xl font-bold text-muted">
+            Envoyer un message
+          </h3>
+          <p className="mb-6 text-sm leading-relaxed text-muted/60">
+            Préférez l&apos;async ? Décrivez votre besoin et je vous réponds
+            sous 24h.
+          </p>
+          <ContactForm />
         </div>
       </div>
     </section>
