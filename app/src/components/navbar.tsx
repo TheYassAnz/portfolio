@@ -42,7 +42,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="mx-auto my-4 w-full rounded-full bg-surface px-6">
+    <nav className="relative mx-auto my-4 w-full rounded-full bg-surface px-6">
       {/* Main bar */}
       <div className="flex h-15 items-center justify-between">
         {/* Desktop links */}
@@ -80,15 +80,19 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* Mobile bubbles */}
       {open && (
-        <ul className="flex flex-col gap-1 pb-4 md:hidden">
-          {navLinks.map((link) => (
-            <li key={link.href}>
+        <ul className="absolute left-6 z-50 mt-2 flex flex-col items-start gap-2 md:hidden">
+          {navLinks.map((link, i) => (
+            <li
+              key={link.href}
+              style={{ animationDelay: `${i * 60}ms` }}
+              className="animate-fade-in-down"
+            >
               <Link
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-xl px-4 py-3 text-sm text-muted/70 transition-colors hover:bg-white/5 hover:text-accent"
+                className="block rounded-full bg-surface border border-white/10 px-5 py-2.5 text-sm font-semibold text-muted shadow-lg transition-colors hover:border-accent/40 hover:text-accent"
               >
                 {link.label}
               </Link>
