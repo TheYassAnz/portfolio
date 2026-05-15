@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --color-surface: #14213d;
+  --color-accent: #fca311;
+  --color-muted: #e5e5e5;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}

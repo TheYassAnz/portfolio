@@ -1,41 +1,66 @@
-export default function ProjectCard({
-  title = "Project Title",
-  description = "A brief description of the project.",
-  backgroundImageUrl = "https://png.pngtree.com/thumb_back/fh260/background/20240522/pngtree-abstract-cloudy-background-beautiful-natural-streaks-of-sky-and-clouds-red-image_15684333.jpg",
-}: {
-  title?: string;
-  description?: string;
-  backgroundImageUrl?: string;
-}) {
+"use client";
+
+import { useState } from "react";
+import { FiArrowUpRight } from "react-icons/fi";
+import ProjectModal from "./project-modal";
+import type { Project } from "@/data/projects";
+
+const statusColors: Record<string, string> = {
+  Terminé: "bg-emerald-500/20 text-emerald-400",
+  "En cours": "bg-accent/20 text-accent",
+  Archivé: "bg-white/10 text-muted/60",
+};
+
+export default function ProjectCard({ project }: { project: Project }) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div
-      className="flex h-[250px] min-w-[400px] snap-start flex-col justify-between rounded-md border border-gray-300 bg-cover bg-center"
-      style={
-        backgroundImageUrl
-          ? { backgroundImage: `url(${backgroundImageUrl})` }
-          : {}
-      }
-    >
-      <div className="place-self-end p-4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        className="group flex h-64 w-full cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-surface p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
+      >
+        <div className="flex items-start justify-between">
+          <span
+            className={`rounded-full px-3 py-1 text-xs font-semibold ${statusColors[project.status]}`}
+          >
+            {project.status}
+          </span>
+          <FiArrowUpRight
+            size={20}
+            className="text-muted/30 transition-colors group-hover:text-accent"
           />
-        </svg>
-      </div>
-      <div className="rounded-b-md bg-white/30 p-4 backdrop-blur-sm">
-        <h3 className="text-lg font-medium">{title}</h3>
-        <p className="text-gray-500">{description}</p>
-      </div>
-    </div>
+        </div>
+
+        <div>
+          <h3 className="mb-2 font-serif text-xl font-semibold text-muted">
+            {project.title}
+          </h3>
+          <p className="line-clamp-2 text-sm text-muted/60">
+            {project.description}
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {project.stack.slice(0, 3).map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border border-white/10 px-2 py-0.5 text-xs text-muted/50"
+            >
+              {tech}
+            </span>
+          ))}
+          {project.stack.length > 3 && (
+            <span className="text-xs text-muted/30">
+              +{project.stack.length - 3}
+            </span>
+          )}
+        </div>
+      </button>
+
+      {open && (
+        <ProjectModal project={project} onClose={() => setOpen(false)} />
+      )}
+    </>
   );
 }

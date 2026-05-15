@@ -1,18 +1,17 @@
 import ProjectCard from "./ui/project-card";
+import { projects } from "@/data/projects";
 
 export default function ProjectSection() {
   return (
-    <section>
-      <h2 className="text-3xl font-semibold">Projects</h2>
-      <p className="text-gray-500">Here are some of my recent projects.</p>
-      {/* Horizontal scroll container: overflow-x-auto to allow scrolling, hide vertical overflow */}
-      <div className="mt-8">
-        {/* Inner flex row with width based on children so it can scroll horizontally */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <ProjectCard key={i} />
-          ))}
-        </div>
+    <section id="projects" className="scroll-mt-24 py-16">
+      <p className="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">
+        Réalisations
+      </p>
+      <h2 className="mb-10 font-serif text-4xl font-bold text-muted">Projets</h2>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {projects.map((project) => (
+          <ProjectCard key={project.slug} project={project} />
+        ))}
       </div>
     </section>
   );

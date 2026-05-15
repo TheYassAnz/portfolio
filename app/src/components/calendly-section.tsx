@@ -1,107 +1,99 @@
 "use client";
 
+import { FiClock, FiMail } from "react-icons/fi";
+
+const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL;
+
 export default function CalendlySection() {
   return (
     <section
       id="contact"
-      className="scroll-mt-10 rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-sm"
+      className="scroll-mt-24 rounded-3xl border border-white/10 bg-surface p-8 py-16"
     >
-      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h2 className="mt-3 text-3xl font-semibold text-slate-900">
-            Book a call or contact me
-          </h2>
-          <p className="mt-2 max-w-2xl text-slate-600">
-            Discuss your project needs and explore how I can help bring your
-            vision to life.
-          </p>
-        </div>
-      </div>
+      <p className="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">
+        Travaillons ensemble
+      </p>
+      <h2 className="mb-2 font-serif text-4xl font-bold text-muted">
+        Prendre RDV
+      </h2>
+      <p className="mb-10 max-w-xl text-muted/60">
+        Discutons de votre projet, vos besoins et comment je peux vous aider à
+        les concrétiser.
+      </p>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50/80 p-6 text-slate-800 lg:col-span-1">
-          <h3 className="text-lg font-semibold">Why book?</h3>
-          <ul className="space-y-3 text-sm text-slate-700">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {/* Info */}
+        <div className="space-y-4 lg:col-span-1">
+          <div className="flex items-start gap-3 rounded-xl border border-white/10 bg-black/20 p-4">
+            <FiClock className="mt-0.5 shrink-0 text-accent" size={18} />
+            <div>
+              <p className="text-sm font-semibold text-muted">Disponibilité</p>
+              <p className="mt-1 text-sm text-muted/60">
+                Créneaux disponibles en CET/CEST, adaptés à votre fuseau horaire.
+              </p>
+            </div>
+          </div>
+
+          <ul className="space-y-3 rounded-xl border border-white/10 bg-black/20 p-4 text-sm text-muted/70">
             <li className="flex items-start gap-2">
-              <span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />
-              Define your goals and key constraints.
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+              Définir vos objectifs et contraintes.
             </li>
             <li className="flex items-start gap-2">
-              <span className="mt-1 h-2 w-2 rounded-full bg-amber-500" />
-              Identify priority deliverables and a realistic timeline.
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+              Estimer la faisabilité et le planning.
             </li>
             <li className="flex items-start gap-2">
-              <span className="mt-1 h-2 w-2 rounded-full bg-sky-500" />
-              Leave with a concrete roadmap.
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+              Repartir avec une feuille de route concrète.
             </li>
           </ul>
-          <div className="rounded-xl border border-dashed border-slate-300 bg-white/80 p-4 text-sm">
-            <p className="font-semibold text-slate-900">Availability</p>
-            <p className="mt-1 text-slate-600">
-              Open slots CET/CEST, automatically adjusted to your time zone.
+        </div>
+
+        {/* CTA */}
+        <div className="flex flex-col justify-between gap-6 rounded-2xl border border-white/10 bg-black/20 p-6 lg:col-span-2">
+          <div>
+            <p className="text-xs font-semibold tracking-widest text-accent uppercase">
+              Intro 15 minutes
+            </p>
+            <p className="mt-1 text-lg font-semibold text-muted">
+              Choisissez un créneau sur Calendly.
+            </p>
+            <p className="mt-1 text-sm text-muted/60">
+              Je confirme avec un ordre du jour et les éventuels documents
+              préparatoires.
             </p>
           </div>
-        </div>
-        <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-2">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold tracking-wide text-emerald-700 uppercase">
-                Quick 15-minute intro
-              </p>
-              <p className="text-lg font-semibold text-slate-900">
-                Pick a slot on Calendly to get started.
-              </p>
-              <p className="text-sm text-slate-600">
-                I’ll confirm with a short agenda and any prep materials if
-                needed.
-              </p>
-            </div>
+
+          {calendlyUrl ? (
             <a
-              href="https://calendly.com/book-with-yassine/15-minute-call?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=231f20"
+              href={calendlyUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-emerald-500"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90"
             >
-              Open Calendly
+              Ouvrir Calendly
             </a>
-          </div>
+          ) : (
+            <p className="text-sm text-muted/40 italic">
+              Lien Calendly non configuré — ajouter{" "}
+              <code className="text-accent">NEXT_PUBLIC_CALENDLY_URL</code> dans{" "}
+              <code className="text-accent">.env.local</code>.
+            </p>
+          )}
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4">
-              <p className="text-sm font-semibold text-slate-800">
-                What to expect
+          <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-black/20 p-4">
+            <FiMail className="shrink-0 text-accent" size={18} />
+            <div>
+              <p className="text-sm font-semibold text-muted">
+                Préférez l&apos;email ?
               </p>
-              <ul className="mt-2 space-y-2 text-sm text-slate-600">
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />
-                  15-minute intro focused on your goals.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-amber-500" />
-                  Quick feasibility check and next steps.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-sky-500" />
-                  Follow-up summary within 24h.
-                </li>
-              </ul>
-            </div>
-            <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4">
-              <p className="text-sm font-semibold text-slate-800">
-                Need something else?
-              </p>
-              <p className="mt-2 text-sm text-slate-600">
-                Prefer email or async? Drop a line and I’ll respond within one
-                business day.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2 text-sm text-slate-700">
-                <a
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 px-3 py-1 font-semibold transition-colors duration-200 hover:border-slate-400 hover:bg-slate-50"
-                  href="mailto:contact@yassanz.com"
-                >
-                  contact@yassanz.com
-                </a>
-              </div>
+              <a
+                href="mailto:contact@yassanz.com"
+                className="mt-1 text-sm text-muted/60 underline underline-offset-4 transition-colors hover:text-accent"
+              >
+                contact@yassanz.com
+              </a>
             </div>
           </div>
         </div>
