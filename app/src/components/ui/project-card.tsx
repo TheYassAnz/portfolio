@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import ProjectModal from "./project-modal";
-import type { Project } from "@/data/projects";
+import type { Project, ProjectStatus } from "@/lib/strapi";
+import { STATUS_LABELS } from "@/lib/strapi";
 
-const statusColors: Record<string, string> = {
-  Terminé: "bg-emerald-500/20 text-emerald-400",
-  "En cours": "bg-accent/20 text-accent",
-  Archivé: "bg-white/10 text-muted/60",
+const statusColors: Record<ProjectStatus, string> = {
+  done: "bg-emerald-500/20 text-emerald-400",
+  in_progress: "bg-accent/20 text-accent",
+  archived: "bg-white/10 text-muted/60",
 };
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -24,7 +25,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           <span
             className={`rounded-full px-3 py-1 text-xs font-semibold ${statusColors[project.status]}`}
           >
-            {project.status}
+            {STATUS_LABELS[project.status]}
           </span>
           <FiArrowUpRight
             size={20}

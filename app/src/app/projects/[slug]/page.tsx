@@ -1,16 +1,18 @@
-import { projects } from "@/data/projects";
+import { getProject, getProjectSlugs, STATUS_LABELS } from "@/lib/strapi";
+import type { ProjectStatus } from "@/lib/strapi";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { FiArrowLeft, FiGithub, FiExternalLink } from "react-icons/fi";
 
-const statusColors: Record<string, string> = {
-  Terminé: "bg-emerald-500/20 text-emerald-400",
-  "En cours": "bg-accent/20 text-accent",
-  Archivé: "bg-white/10 text-muted/60",
+const statusColors: Record<ProjectStatus, string> = {
+  done: "bg-emerald-500/20 text-emerald-400",
+  in_progress: "bg-accent/20 text-accent",
+  archived: "bg-white/10 text-muted/60",
 };
 
-export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const slugs = await getProjectSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export default async function ProjectPage({
@@ -19,7 +21,7 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = await getProject(slug);
 
   if (!project) notFound();
 
@@ -37,7 +39,7 @@ export default async function ProjectPage({
         <span
           className={`mb-4 inline-block rounded-full px-3 py-1 text-xs font-semibold ${statusColors[project.status]}`}
         >
-          {project.status}
+          {STATUS_LABELS[project.status]}
         </span>
 
         <h1 className="mb-4 font-serif text-5xl font-bold text-muted">
@@ -47,7 +49,6 @@ export default async function ProjectPage({
           {project.longDescription}
         </p>
 
-        {/* Stack */}
         <div className="mb-10">
           <p className="mb-3 text-xs font-semibold tracking-widest text-accent uppercase">
             Stack technique
@@ -64,7 +65,6 @@ export default async function ProjectPage({
           </div>
         </div>
 
-        {/* Links */}
         <div className="flex gap-4">
           {project.github && (
             <a
