@@ -37,6 +37,10 @@ type StrapiProject = {
 };
 
 const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
+const fetchOptions: RequestInit =
+  process.env.NODE_ENV === "development"
+    ? { cache: "no-store" }
+    : { next: { revalidate: 3600 } };
 
 function mapProject(raw: StrapiProject): Project {
   return {
@@ -56,7 +60,7 @@ export async function getProjects(): Promise<Project[]> {
   try {
     const res = await fetch(
       `${STRAPI_URL}/api/projects?populate=image&sort=createdAt:desc`,
-      { next: { revalidate: 3600 } }
+      fetchOptions
     );
     if (!res.ok) return [];
     const { data }: { data: StrapiProject[] } = await res.json();
@@ -70,7 +74,7 @@ export async function getProject(slug: string): Promise<Project | null> {
   try {
     const res = await fetch(
       `${STRAPI_URL}/api/projects?filters[slug][$eq]=${slug}&populate=image`,
-      { next: { revalidate: 3600 } }
+      fetchOptions
     );
     if (!res.ok) return null;
     const { data }: { data: StrapiProject[] } = await res.json();
@@ -85,7 +89,7 @@ export async function getProjectSlugs(): Promise<string[]> {
   try {
     const res = await fetch(
       `${STRAPI_URL}/api/projects?fields[0]=slug&pagination[pageSize]=100`,
-      { next: { revalidate: 3600 } }
+      fetchOptions
     );
     if (!res.ok) return [];
     const { data }: { data: Pick<StrapiProject, "slug">[] } = await res.json();

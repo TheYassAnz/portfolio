@@ -55,7 +55,7 @@ export default function ProjectModal({
           {project.title}
         </h2>
         <p className="mb-6 text-sm leading-relaxed text-muted/70">
-          {project.longDescription}
+          {project.longDescription || project.description}
         </p>
 
         {/* Stack */}
