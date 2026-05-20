@@ -1,7 +1,9 @@
 import ProjectCard from "./ui/project-card";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/lib/strapi";
 
-export default function ProjectSection() {
+export default async function ProjectSection() {
+  const projects = await getProjects();
+
   return (
     <section id="projects" className="scroll-mt-24 py-16">
       <p className="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">

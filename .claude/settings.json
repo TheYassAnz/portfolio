@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sqlite3 /Users/theyassanz/DEV/PERSO/portfolio/backend/.tmp/data.db \".tables\")",
+      "Bash(sqlite3 /Users/theyassanz/DEV/PERSO/portfolio/backend/database/data.db \".tables\")"
+    ]
+  }
+}
