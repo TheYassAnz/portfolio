@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Terminal from "./ui/terminal";
+import TiltCard from "./ui/tilt-card";
 import {
   SiReact,
   SiNextdotjs,
@@ -126,7 +127,9 @@ export default function HeroSection() {
         initial="hidden"
         animate="visible"
       >
-        <Terminal />
+        <TiltCard className="w-full max-w-md">
+          <Terminal />
+        </TiltCard>
       </motion.div>
     </section>
   );
