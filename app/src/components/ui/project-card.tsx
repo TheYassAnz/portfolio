@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 import ProjectModal from "./project-modal";
 import type { Project, ProjectStatus } from "@/lib/strapi";
@@ -17,9 +18,11 @@ export default function ProjectCard({ project }: { project: Project }) {
 
   return (
     <>
-      <button
+      <motion.button
         onClick={() => setOpen(true)}
-        className="group flex h-64 w-full cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-surface p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
+        className="group flex h-64 w-full cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-surface p-6 text-left"
+        whileHover={{ y: -4, borderColor: "rgba(252, 163, 17, 0.4)" }}
+        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="flex items-start justify-between">
           <span
@@ -57,11 +60,13 @@ export default function ProjectCard({ project }: { project: Project }) {
             </span>
           )}
         </div>
-      </button>
+      </motion.button>
 
-      {open && (
-        <ProjectModal project={project} onClose={() => setOpen(false)} />
-      )}
+      <AnimatePresence>
+        {open && (
+          <ProjectModal project={project} onClose={() => setOpen(false)} />
+        )}
+      </AnimatePresence>
     </>
   );
 }

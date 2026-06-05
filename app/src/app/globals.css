@@ -15,6 +15,14 @@
   animation: fade-in-down 0.2s ease both;
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
 @theme {
   --color-surface: #14213d;
   --color-accent: #fca311;

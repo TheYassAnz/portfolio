@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { FiX, FiGithub, FiExternalLink } from "react-icons/fi";
 import type { Project, ProjectStatus } from "@/lib/strapi";
 import { STATUS_LABELS } from "@/lib/strapi";
@@ -10,6 +11,8 @@ const statusColors: Record<ProjectStatus, string> = {
   in_progress: "bg-accent/20 text-accent",
   archived: "bg-white/10 text-muted/60",
 };
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function ProjectModal({
   project,
@@ -27,12 +30,30 @@ export default function ProjectModal({
   }, [onClose]);
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
       onClick={onClose}
     >
-      <div
+      {/* Backdrop */}
+      <motion.div
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+      />
+
+      {/* Panel */}
+      <motion.div
         className="relative w-full max-w-lg rounded-2xl border border-white/10 bg-surface p-8"
+        initial={{ opacity: 0, scale: 0.96, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 8 }}
+        transition={{ duration: 0.35, ease }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}
@@ -100,7 +121,7 @@ export default function ProjectModal({
             </a>
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
