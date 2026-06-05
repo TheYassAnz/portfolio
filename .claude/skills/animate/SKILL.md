@@ -9,7 +9,13 @@ Analyze a feature and strategically add animations and micro-interactions that e
 
 ## MANDATORY PREPARATION
 
-Invoke /frontend-design — it contains design principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no design context exists yet, you MUST run /teach-impeccable first. Additionally gather: performance constraints.
+Read `CLAUDE.md` (check both `CLAUDE.md` and `.claude/CLAUDE.md`) to gather:
+- The CSS framework and animation libraries in use
+- The design system (colors, spacing, motion preferences)
+- Component structure and naming conventions
+- Any performance constraints mentioned
+
+If `CLAUDE.md` doesn't exist or lacks design details, ask the user to clarify the design personality (playful vs serious, energy level) and performance constraints before proceeding.
 
 ---
 
