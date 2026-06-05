@@ -1,0 +1,1 @@
+- [Animation Patterns](project-animation-patterns.md) — Framer Motion easing, timing, scroll triggers, and per-component animation decisions for this portfolio

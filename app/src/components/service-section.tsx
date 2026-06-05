@@ -1,5 +1,5 @@
-import ServiceCard from "./ui/service-card";
 import { FiGlobe, FiSmartphone, FiLayout, FiServer } from "react-icons/fi";
+import AnimatedServiceGrid from "./ui/animated-service-grid";
 
 const services = [
   {
@@ -31,15 +31,7 @@ const services = [
 export default function ServiceSection() {
   return (
     <section id="services" className="scroll-mt-24 py-16">
-      <p className="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">
-        Ce que je fais
-      </p>
-      <h2 className="mb-10 font-serif text-4xl font-bold text-muted">Services</h2>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {services.map((service) => (
-          <ServiceCard key={service.title} {...service} />
-        ))}
-      </div>
+      <AnimatedServiceGrid services={services} />
     </section>
   );
 }

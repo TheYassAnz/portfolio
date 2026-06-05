@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Terminal from "./ui/terminal";
 import {
   SiReact,
@@ -20,12 +23,67 @@ const skills = [
   { icon: SiKubernetes, label: "Kubernetes", color: "#326CE5" },
 ];
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease },
+  },
+};
+
+const skillsContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+      delayChildren: 0.35,
+    },
+  },
+};
+
+const skillChipVariants = {
+  hidden: { opacity: 0, y: 12, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.4, ease },
+  },
+};
+
+const terminalVariants = {
+  hidden: { opacity: 0, x: 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease, delay: 0.2 },
+  },
+};
+
 export default function HeroSection() {
   return (
     <section className="grid items-center gap-12 py-16 md:grid-cols-2 md:py-24">
       {/* Text */}
-      <div className="flex flex-col gap-6">
-        <div>
+      <motion.div
+        className="flex flex-col gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={itemVariants}>
           <p className="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">
             Développeur Full-Stack
           </p>
@@ -34,29 +92,38 @@ export default function HeroSection() {
             <br />
             <span className="text-accent">ANZAR BASHA</span>
           </h1>
-        </div>
+        </motion.div>
 
-        <p className="max-w-md text-muted/70">
+        <motion.p
+          className="max-w-md text-muted/70"
+          variants={itemVariants}
+        >
           Je conçois et développe des applications web et mobiles modernes, du
           design à l&apos;infrastructure — pour les entreprises et les
           entrepreneurs ambitieux.
-        </p>
+        </motion.p>
 
         {/* Skills */}
-        <div className="flex flex-wrap gap-3">
+        <motion.div
+          className="flex flex-wrap gap-3"
+          variants={skillsContainerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {skills.map(({ icon: Icon, label, color }) => (
-            <div
+            <motion.div
               key={label}
+              variants={skillChipVariants}
               className="flex items-center gap-2 rounded-full border border-white/10 bg-surface px-3 py-1.5 text-sm text-muted/80"
             >
               <Icon style={{ color }} size={16} />
               {label}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="flex items-center gap-4">
+        <motion.div className="flex items-center gap-4" variants={itemVariants}>
           <Link
             href="#contact"
             className="rounded-full bg-accent px-6 py-3 font-semibold text-black transition-opacity hover:opacity-90"
@@ -69,13 +136,18 @@ export default function HeroSection() {
           >
             Voir mes projets
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Terminal */}
-      <div className="hidden justify-end md:flex">
+      <motion.div
+        className="hidden justify-end md:flex"
+        variants={terminalVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <Terminal />
-      </div>
+      </motion.div>
     </section>
   );
 }

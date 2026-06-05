@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const navLinks = [
@@ -9,6 +10,8 @@ const navLinks = [
   { label: "Projets", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 function LinkedInIcon() {
   return (
@@ -40,9 +43,25 @@ function LinkedInIcon() {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="relative mx-auto my-4 w-full rounded-full bg-surface px-6">
+    <motion.nav
+      className="relative mx-auto my-4 w-full rounded-full bg-surface px-6 transition-shadow duration-300"
+      animate={{
+        boxShadow: scrolled
+          ? "0 8px 32px rgba(0,0,0,0.35)"
+          : "0 0px 0px rgba(0,0,0,0)",
+        backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
+      }}
+      transition={{ duration: 0.3 }}
+    >
       {/* Main bar */}
       <div className="flex h-15 items-center justify-between">
         {/* Desktop links */}
@@ -59,13 +78,35 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Hamburger — mobile only, left side when links are hidden */}
+        {/* Hamburger — mobile only */}
         <button
           onClick={() => setOpen((o) => !o)}
           className="text-muted/70 transition-colors hover:text-accent md:hidden"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
         >
-          {open ? <FiX size={22} /> : <FiMenu size={22} />}
+          <AnimatePresence mode="wait" initial={false}>
+            {open ? (
+              <motion.span
+                key="close"
+                initial={{ rotate: -45, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 45, opacity: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                <FiX size={22} />
+              </motion.span>
+            ) : (
+              <motion.span
+                key="open"
+                initial={{ rotate: 45, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -45, opacity: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                <FiMenu size={22} />
+              </motion.span>
+            )}
+          </AnimatePresence>
         </button>
 
         {/* CTA + LinkedIn — always right */}
@@ -80,26 +121,36 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile bubbles */}
-      {open && (
-        <ul className="absolute left-6 z-50 mt-2 flex flex-col items-start gap-2 md:hidden">
-          {navLinks.map((link, i) => (
-            <li
-              key={link.href}
-              style={{ animationDelay: `${i * 60}ms` }}
-              className="animate-fade-in-down"
-            >
-              <Link
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="block rounded-full bg-surface border border-white/10 px-5 py-2.5 text-sm font-semibold text-muted shadow-lg transition-colors hover:border-accent/40 hover:text-accent"
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            className="absolute left-6 z-50 mt-2 flex flex-col items-start gap-2 md:hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease }}
+          >
+            {navLinks.map((link, i) => (
+              <motion.li
+                key={link.href}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -8 }}
+                transition={{ duration: 0.2, delay: i * 0.05, ease }}
               >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </nav>
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-full border border-white/10 bg-surface px-5 py-2.5 text-sm font-semibold text-muted shadow-lg transition-colors hover:border-accent/40 hover:text-accent"
+                >
+                  {link.label}
+                </Link>
+              </motion.li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }
