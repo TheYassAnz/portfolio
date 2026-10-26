@@ -62,7 +62,7 @@ export default function Navbar({
           >
             [ cv.pdf ]
           </a>
-          <LangSwitch lang={lang} label={nav.switchLang} />
+          <LangSwitch lang={lang} />
           <ThemeToggle label={nav.theme} />
         </div>
       </div>

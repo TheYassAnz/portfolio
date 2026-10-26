@@ -25,6 +25,7 @@ export default function ThemeToggle({ label }: { label: string }) {
       type="button"
       onClick={toggle}
       aria-label={label}
+      aria-pressed={light}
       className="font-mono text-fg hover:text-accent-ink"
     >
       {light ? "[ ☀ ]" : "[ ☾ ]"}

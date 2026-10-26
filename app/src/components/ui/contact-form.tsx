@@ -5,7 +5,7 @@ import type { Dictionary } from "@/content";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const empty = { name: "", email: "", subject: "", message: "" };
+const empty = { name: "", email: "", subject: "", message: "", website: "" };
 const field =
   "border border-line bg-bg px-3 py-2 text-sm text-fg placeholder:text-fg-muted focus:outline focus:outline-accent";
 const label = "font-mono text-xs uppercase text-fg-muted";
@@ -59,7 +59,17 @@ export default function ContactForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit} className="relative flex flex-col gap-4">
+      {/* Honeypot: off-screen (not display:none) so bots still fill it. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <input
+          name="website"
+          value={form.website}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5">
           <span className={label}>{dict.name}</span>

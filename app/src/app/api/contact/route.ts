@@ -8,7 +8,10 @@ const bad = (error: string) => NextResponse.json({ error }, { status: 400 });
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
-  const { name, email, subject, message } = body ?? {};
+  const { name, email, subject, message, website } = body ?? {};
+
+  // Honeypot filled: pretend success, send nothing.
+  if (typeof website === "string" && website) return NextResponse.json({ success: true });
 
   const fields = [name, email, subject, message];
   if (!fields.every((f) => typeof f === "string" && f.trim())) {

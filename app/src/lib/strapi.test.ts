@@ -63,3 +63,16 @@ test("getProjects falls back to fr per project, keeping fr order", async () => {
   );
   assert.deepEqual((await getProjects("en")).map((p) => p.title), ["A en", "B fr"]);
 });
+
+test("absolute (Cloudinary) image URLs are kept as-is", async () => {
+  const abs = "https://res.cloudinary.com/x/image/upload/a.jpg";
+  mock.method(globalThis, "fetch", async () =>
+    json({
+      data: [{ ...rawFixture, image: { url: abs }, gallery: [{ url: abs }, { url: "/uploads/b.jpg" }] }],
+    }),
+  );
+  const p = await getProject("demo", "fr");
+  assert.equal(p?.image, abs);
+  assert.equal(p?.gallery[0], abs);
+  assert.match(p!.gallery[1], /^http:\/\/localhost:1337\/uploads\/b\.jpg$/);
+});

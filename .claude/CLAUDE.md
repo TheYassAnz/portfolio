@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a monorepo with two separate apps:
 
 - `app/` — Next.js 16 frontend (portfolio site)
-- `backend/` — Strapi 5 headless CMS (not yet integrated with frontend)
+- `backend/` — Strapi 5 headless CMS (projects are fetched by the frontend via `src/lib/strapi.ts`)
 
 ## Commands
 
@@ -26,11 +26,17 @@ Prettier runs via editor integration (`.prettierrc` with `prettier-plugin-tailwi
 
 **Stack:** Next.js 16 App Router, React 19, TypeScript (strict), Tailwind CSS 4. Brutalist / tech look, FR/EN, light/dark.
 
-**Routes:** everything lives under `src/app/[lang]/` (`fr` | `en`). `src/proxy.ts` redirects `/` to `/fr` or `/en`. Case studies: `[lang]/projects/[slug]`. Contact form posts to `src/app/api/contact/route.ts` (Resend).
+**Routes:** everything lives under `src/app/[lang]/` (`fr` | `en`). `src/proxy.ts` redirects every path without a locale prefix to `/fr` or `/en` (negotiated from Accept-Language), except `/api`, `/_next` and dotted paths. Case studies: `[lang]/projects/[slug]`. Contact form posts to `src/app/api/contact/route.ts` (Resend).
 
 **Page structure:** Single page, anchor nav. Order: Hero → Stats → Projects (`#projects`) → About (`#about`) → Stack (`#stack`) → Contact (`#contact`). Navbar and Footer are in `[lang]/layout.tsx`.
 
-**i18n:** dictionaries in `src/content/{fr,en}.ts`, `Dictionary = typeof fr` (en must match fr's shape); `src/content/index.ts` exposes the getter. Sections receive their slice as a `dict` prop. Strapi i18n: `fr` is default, `en` falls back to fr per project when a translation is missing (`src/lib/strapi.ts`).
+**i18n:** dictionaries in `src/content/{fr,en}.ts`, `Dictionary = typeof fr` (en must match fr's shape); `src/content/index.ts` exposes the getter. Components receive their dictionary slice as a `dict` prop (or the full `Dictionary` where several slices are needed, e.g. Navbar), and `lang` where needed. Strapi i18n: `fr` is default, `en` falls back to fr per project when a translation is missing (`src/lib/strapi.ts`).
+
+**Strapi i18n migration runbook** (before the i18n schema goes live):
+1. Strapi admin → Settings → Internationalization: create the `fr` locale and set it as default; create `en` too.
+2. Deploy the schema.
+3. Verify existing project entries are in `fr`.
+4. Add `en` versions of each project. Slugs must be identical across locales.
 
 **Path alias:** `@/*` maps to `src/*`
 

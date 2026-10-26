@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         fr: `/fr/projects/${slug}`,
         en: `/en/projects/${slug}`,
+        "x-default": `/fr/projects/${slug}`,
       },
     },
   };
@@ -44,6 +45,7 @@ export default async function ProjectPage({ params }: Props) {
   const meta = [project.role, project.year, work.status[project.status]].filter(
     Boolean,
   );
+  const intro = toParagraphs(project.longDescription);
   const blocks = [
     [work.problem, project.problem],
     [work.solution, project.solution],
@@ -98,6 +100,14 @@ export default async function ProjectPage({ params }: Props) {
           className="mt-8 h-auto w-full border border-line"
           priority
         />
+      )}
+
+      {intro.length > 0 && (
+        <section className="max-w-2xl space-y-4 border-b border-line py-8">
+          {intro.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </section>
       )}
 
       {blocks.map(([label, text]) => (

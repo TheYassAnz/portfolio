@@ -13,9 +13,15 @@ export default function Terminal({ lines }: { lines: Line[] }) {
   const [currentLine, setCurrentLine] = useState(0);
   const [typedCmd, setTypedCmd] = useState("");
   const [showOutput, setShowOutput] = useState(false);
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    if (currentLine >= lines.length) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- matchMedia is client-only
+    setReduced(matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (reduced || currentLine >= lines.length) return;
     const { cmd, output } = lines[currentLine];
 
     if (typedCmd.length < cmd.length) {
@@ -36,16 +42,16 @@ export default function Terminal({ lines }: { lines: Line[] }) {
       setCurrentLine((n) => n + 1);
     }, PAUSE_AFTER_OUTPUT);
     return () => clearTimeout(t);
-  }, [typedCmd, showOutput, currentLine, lines]);
+  }, [typedCmd, showOutput, currentLine, lines, reduced]);
 
   useEffect(() => {
-    if (currentLine < lines.length) return;
+    if (reduced || currentLine < lines.length) return;
     const t = setTimeout(() => {
       setDisplayed([]);
       setCurrentLine(0);
     }, RESTART_PAUSE);
     return () => clearTimeout(t);
-  }, [currentLine, lines.length]);
+  }, [currentLine, lines.length, reduced]);
 
   return (
     <div className="w-full max-w-md border border-line bg-bg">
@@ -53,7 +59,7 @@ export default function Terminal({ lines }: { lines: Line[] }) {
         bash
       </div>
       <div className="min-h-64 space-y-3 p-5 text-sm">
-        {displayed.map((line, i) => (
+        {(reduced ? lines : displayed).map((line, i) => (
           <div key={i}>
             <p className="text-fg-muted">
               <span className="text-accent-ink">~</span> $ {line.cmd}
@@ -61,7 +67,7 @@ export default function Terminal({ lines }: { lines: Line[] }) {
             <p className="text-fg">{line.output}</p>
           </div>
         ))}
-        {currentLine < lines.length && (
+        {!reduced && currentLine < lines.length && (
           <div>
             <p className="text-fg-muted">
               <span className="text-accent-ink">~</span> ${" "}

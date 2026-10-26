@@ -17,7 +17,6 @@ const fr = {
     cv: "CV",
     cvHref: "/cv-fr.pdf",
     theme: "Changer de thème",
-    switchLang: "Switch to English",
     menu: "Menu",
   },
   hero: {

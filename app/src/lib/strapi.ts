@@ -50,7 +50,9 @@ const fetchOptions: RequestInit =
     ? { cache: "no-store" }
     : { next: { revalidate: 3600 } };
 
-const img = (i: StrapiImage) => `${STRAPI_URL}${i.url}`;
+// Cloudinary provider returns absolute URLs; local uploads are relative.
+const img = (i: StrapiImage) =>
+  i.url.startsWith("http") ? i.url : `${STRAPI_URL}${i.url}`;
 
 function mapProject(raw: StrapiProject): Project {
   return {

@@ -36,7 +36,10 @@ export async function generateMetadata({
     metadataBase: new URL("https://www.yassanz.com"),
     title: meta.title,
     description: meta.description,
-    alternates: { languages: { fr: "/fr", en: "/en" } },
+    alternates: {
+      canonical: `/${lang}`,
+      languages: { fr: "/fr", en: "/en", "x-default": "/fr" },
+    },
   };
 }
 
