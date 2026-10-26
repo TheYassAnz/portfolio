@@ -1,7 +1,5 @@
 import type { ProjectStatus } from "@/lib/projects";
 
-const TODO = "À COMPLÉTER";
-
 const fr = {
   meta: {
     title: "Yassine ANZAR BASHA — Développeur Full-Stack",
@@ -33,12 +31,7 @@ const fr = {
       { cmd: "status", output: "Disponible" },
     ],
   },
-  stats: [
-    { value: TODO, label: `${TODO} 1` },
-    { value: TODO, label: `${TODO} 2` },
-    { value: TODO, label: `${TODO} 3` },
-    { value: TODO, label: `${TODO} 4` },
-  ] as { value: string; label: string }[],
+  stats: [] as { value: string; label: string }[],
   work: {
     title: "Projets",
     empty: "Aucun projet à afficher pour le moment.",
@@ -62,17 +55,35 @@ const fr = {
       "Je conçois et développe des applications web et mobiles modernes, du design à l'infrastructure — pour les entreprises et les entrepreneurs ambitieux.",
     photoAlt: "Portrait de Yassine ANZAR BASHA",
     timeline: [
-      { period: `${TODO} 1`, role: TODO, org: TODO, summary: TODO },
-      { period: `${TODO} 2`, role: TODO, org: TODO, summary: TODO },
-      { period: `${TODO} 3`, role: TODO, org: TODO, summary: TODO },
+      {
+        period: "Juil. 2025 — Présent",
+        role: "Développeur Full Stack",
+        org: "Crédit Agricole Leasing & Factoring",
+        summary:
+          "Refonte d'une application vers Angular et Java 21, création d'une librairie de composants.",
+      },
+      {
+        period: "Sept. 2024 — Juin 2025",
+        role: "Développeur Solution Cloud",
+        org: "Crédit Agricole Assurances",
+        summary:
+          "Développement et intégration de solutions cloud sur la plateforme ServiceNow.",
+      },
+      {
+        period: "Janv. 2023 — Févr. 2023",
+        role: "Développeur Full Stack (Stage)",
+        org: "Ceos Tech",
+        summary:
+          "Création de sites web pour la restauration rapide au sein d'une agence digitale.",
+      },
     ] as { period: string; role: string; org: string; summary: string }[],
   },
   stack: {
     title: "Stack",
     groups: [
-      { name: "Front", items: ["React", "Next.js", "TypeScript", "Tailwind"] },
+      { name: "Front", items: ["React", "Next.js", "Angular 21", "TypeScript", "Tailwind"] },
       { name: "Mobile", items: ["React Native", "Expo"] },
-      { name: "Back", items: ["Node.js", "Strapi"] },
+      { name: "Back", items: ["Node.js", "Java 21", "Strapi"] },
       { name: "Infra / DevOps", items: ["Terraform", "Kubernetes", "Jenkins"] },
       { name: "Design", items: ["Figma"] },
     ],
