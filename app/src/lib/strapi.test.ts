@@ -53,3 +53,13 @@ test("getProject returns null on 404", async () => {
   mock.method(globalThis, "fetch", async () => json({}, { ok: false, status: 404 }));
   assert.equal(await getProject("demo", "fr"), null);
 });
+
+test("getProjects falls back to fr per project, keeping fr order", async () => {
+  const a = { ...rawFixture, slug: "a", title: "A fr" };
+  const b = { ...rawFixture, slug: "b", title: "B fr" };
+  const a2 = { ...a, title: "A en" };
+  mock.method(globalThis, "fetch", async (url: string) =>
+    json({ data: url.includes("locale=en") ? [a2] : [a, b] }),
+  );
+  assert.deepEqual((await getProjects("en")).map((p) => p.title), ["A en", "B fr"]);
+});

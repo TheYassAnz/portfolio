@@ -88,25 +88,33 @@ export function toParagraphs(text: string): string[] {
 const POPULATE = "populate[0]=image&populate[1]=gallery";
 
 // Throws on network error or non-OK response; caller decides how to degrade.
+async function fetchLocale(query: string, locale: Locale): Promise<StrapiProject[]> {
+  const res = await fetch(
+    `${STRAPI_URL}/api/projects?${query}&locale=${locale}`,
+    fetchOptions
+  );
+  if (!res.ok) throw new Error(`status ${res.status}`);
+  const { data }: { data: StrapiProject[] } = await res.json();
+  return data;
+}
+
 async function fetchList(query: string, lang: Locale): Promise<StrapiProject[]> {
-  const get = async (locale: Locale) => {
-    const res = await fetch(
-      `${STRAPI_URL}/api/projects?${query}&locale=${locale}`,
-      fetchOptions
-    );
-    if (!res.ok) throw new Error(`status ${res.status}`);
-    const { data }: { data: StrapiProject[] } = await res.json();
-    return data;
-  };
-  const data = await get(lang);
+  const data = await fetchLocale(query, lang);
   // Untranslated content falls back to the default locale.
-  return data.length || lang === "fr" ? data : get("fr");
+  return data.length || lang === "fr" ? data : fetchLocale(query, "fr");
 }
 
 export async function getProjects(lang: Locale): Promise<Project[]> {
+  const query = `${POPULATE}&sort=createdAt:desc`;
   try {
-    const data = await fetchList(`${POPULATE}&sort=createdAt:desc`, lang);
-    return data.map(mapProject);
+    const fr = await fetchLocale(query, "fr");
+    // Per-project fallback: keep fr order, swap in the translation when it exists.
+    const translated =
+      lang === "fr"
+        ? []
+        : await fetchLocale(query, lang).catch(() => [] as StrapiProject[]);
+    const bySlug = new Map(translated.map((p) => [p.slug, p]));
+    return fr.map((p) => mapProject(bySlug.get(p.slug) ?? p));
   } catch (err) {
     console.error("Strapi getProjects failed:", err);
     return [];
