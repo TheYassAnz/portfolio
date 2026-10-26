@@ -23,7 +23,7 @@ export default async function ProjectPage({
 }) {
   const { lang, slug } = await params;
   if (!isLocale(lang)) notFound();
-  const project = await getProject(slug);
+  const project = await getProject(slug, lang);
 
   if (!project) notFound();
 
