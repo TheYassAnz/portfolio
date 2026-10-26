@@ -62,10 +62,14 @@ export async function getProjects(): Promise<Project[]> {
       `${STRAPI_URL}/api/projects?populate=image&sort=createdAt:desc`,
       fetchOptions
     );
-    if (!res.ok) return [];
+    if (!res.ok) {
+      console.error(`Strapi getProjects failed: ${res.status}`);
+      return [];
+    }
     const { data }: { data: StrapiProject[] } = await res.json();
     return data.map(mapProject);
-  } catch {
+  } catch (err) {
+    console.error("Strapi getProjects failed:", err);
     return [];
   }
 }
