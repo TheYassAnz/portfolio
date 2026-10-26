@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Navbar from "@/components/navbar";
 import FooterSection from "@/components/footer-section";
 import MotionProvider from "@/components/ui/motion-provider";
 import { THEME_SCRIPT } from "@/components/ui/theme-toggle";
+import { isLocale, locales } from "@/lib/i18n";
+import { getDictionary } from "@/content";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -17,20 +20,37 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
 });
 
-export const metadata: Metadata = {
-  title: "Yassine ANZAR BASHA — Développeur Full-Stack",
-  description:
-    "Portfolio de Yassine ANZAR BASHA, développeur Full-Stack basé à Paris. Web, Mobile, UI/UX, Architecture.",
-};
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
 
-export default function RootLayout({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+  const { meta } = getDictionary(lang);
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: { languages: { fr: "/fr", en: "/en" } },
+  };
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }>) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
   return (
     <html
-      lang="fr"
+      lang={lang}
       suppressHydrationWarning
       className={`scroll-smooth ${spaceGrotesk.variable} ${jetbrains.variable}`}
     >

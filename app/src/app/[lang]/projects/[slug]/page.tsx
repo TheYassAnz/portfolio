@@ -1,5 +1,6 @@
 import { getProject, getProjectSlugs, STATUS_LABELS } from "@/lib/strapi";
 import type { ProjectStatus } from "@/lib/strapi";
+import { isLocale, locales } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { FiArrowLeft, FiGithub, FiExternalLink } from "react-icons/fi";
@@ -12,15 +13,16 @@ const statusColors: Record<ProjectStatus, string> = {
 
 export async function generateStaticParams() {
   const slugs = await getProjectSlugs();
-  return slugs.map((slug) => ({ slug }));
+  return locales.flatMap((lang) => slugs.map((slug) => ({ lang, slug })));
 }
 
 export default async function ProjectPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { lang, slug } = await params;
+  if (!isLocale(lang)) notFound();
   const project = await getProject(slug);
 
   if (!project) notFound();
@@ -28,7 +30,7 @@ export default async function ProjectPage({
   return (
     <main className="py-16">
       <Link
-        href="/#projects"
+        href={`/${lang}#projects`}
         className="mb-10 inline-flex items-center gap-2 text-sm text-muted/60 transition-colors hover:text-accent"
       >
         <FiArrowLeft size={16} />
