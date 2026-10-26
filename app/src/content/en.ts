@@ -18,6 +18,7 @@ const en: Dictionary = {
     cvHref: "/cv-en.pdf",
     theme: "Toggle theme",
     switchLang: "Passer en français",
+    menu: "Menu",
   },
   hero: {
     comment: "Available for new missions",

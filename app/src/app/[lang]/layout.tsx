@@ -59,9 +59,9 @@ export default async function RootLayout({
       </head>
       <body className="grid-bg mx-auto max-w-7xl bg-bg px-4 font-mono text-fg md:px-8">
         <MotionProvider>
-          <Navbar />
+          <Navbar dict={getDictionary(lang)} lang={lang} />
           {children}
-          <FooterSection />
+          <FooterSection dict={getDictionary(lang)} />
         </MotionProvider>
       </body>
     </html>

@@ -18,6 +18,7 @@ const fr = {
     cvHref: "/cv-fr.pdf",
     theme: "Changer de thème",
     switchLang: "Switch to English",
+    menu: "Menu",
   },
   hero: {
     comment: "Disponible pour de nouvelles missions",
