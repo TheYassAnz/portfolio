@@ -51,8 +51,15 @@ const fetchOptions: RequestInit =
     : { next: { revalidate: 3600 } };
 
 // Cloudinary provider returns absolute URLs; local uploads are relative.
-const img = (i: StrapiImage) =>
-  i.url.startsWith("http") ? i.url : `${STRAPI_URL}${i.url}`;
+// Absolute URLs are accepted only from our own hosts (next/image allowlist).
+function img({ url }: StrapiImage): string {
+  if (!url.startsWith("http")) return `${STRAPI_URL}${url}`;
+  const cloud = process.env.CLOUDINARY_NAME;
+  const ok =
+    url.startsWith(`${STRAPI_URL}/`) ||
+    (cloud && url.startsWith(`https://res.cloudinary.com/${cloud}/`));
+  return ok ? url : "";
+}
 
 function mapProject(raw: StrapiProject): Project {
   return {

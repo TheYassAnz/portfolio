@@ -48,6 +48,6 @@ Prettier runs via editor integration (`.prettierrc` with `prettier-plugin-tailwi
 
 **Styling:** Tailwind utilities only; tokens in `globals.css` (`bg-bg`, `text-fg`, `text-fg-muted`, `border-line`, `bg-accent`, `text-accent-ink` for text on the page background, `text-on-accent`, `font-display`, `font-mono`). Light theme = `html.light`. Brutalist rules: no rounded corners, 1px `border-line` borders, no shadows. Use `md:`, `lg:`, `xl:` breakpoints.
 
-**Env vars:** `STRAPI_URL`, `NEXT_PUBLIC_CONTACT_EMAIL` (displayed/copy), `CONTACT_EMAIL` (form recipient), `RESEND_API_KEY`, `REVALIDATE_SECRET` (Strapi webhook revalidation).
+**Env vars:** `STRAPI_URL`, `CLOUDINARY_NAME` (own Cloudinary cloud, same as backend; allowlists `res.cloudinary.com/<name>/**` for next/image), `NEXT_PUBLIC_CONTACT_EMAIL` (displayed/copy), `CONTACT_EMAIL` (form recipient), `RESEND_API_KEY`, `REVALIDATE_SECRET` (Strapi webhook revalidation).
 
 **Content still to provide:** `public/me.jpg`, `public/cv-fr.pdf`, `public/cv-en.pdf`, real stats and timeline in the dictionaries.
