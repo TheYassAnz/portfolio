@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/i18n";
-import CalendlySection from "@/components/calendly-section";
+import ContactSection from "@/components/contact-section";
 import HeroSection from "@/components/hero-section";
 import ProjectSection from "@/components/project-section";
 import AboutSection from "@/components/about-section";
@@ -23,7 +23,7 @@ export default async function Home({
       <ProjectSection lang={lang} dict={dict} />
       <AboutSection dict={dict.about} />
       <StackSection dict={dict.stack} />
-      <CalendlySection />
+      <ContactSection dict={dict.contact} />
     </main>
   );
 }

@@ -81,7 +81,7 @@ const en: Dictionary = {
   contact: {
     title: "Let's work together",
     intro:
-      "Book a 15-minute call or send me a message: I reply within 24 hours.",
+      "Have a role to fill or a question? Write to me — I reply within 24h.",
     email: "Email",
     copy: "Copy",
     copied: "Copied!",
@@ -92,7 +92,7 @@ const en: Dictionary = {
       emailPlaceholder: "john@example.com",
       subject: "Subject",
       subjectPlaceholder: "Choose a subject...",
-      subjects: ["Freelance mission", "Hiring", "Collaboration", "Other"],
+      subjects: ["Job opportunity", "Question", "Other"],
       message: "Message",
       messagePlaceholder: "Describe your project or your need...",
       submit: "Send message",

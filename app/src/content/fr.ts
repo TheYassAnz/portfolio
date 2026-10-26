@@ -81,7 +81,7 @@ const fr = {
   contact: {
     title: "Travaillons ensemble",
     intro:
-      "Réservez un créneau de 15 minutes ou envoyez-moi un message : je vous réponds sous 24h.",
+      "Un poste à pourvoir ou une question ? Écrivez-moi, je réponds sous 24h.",
     email: "Email",
     copy: "Copier",
     copied: "Copié !",
@@ -92,7 +92,7 @@ const fr = {
       emailPlaceholder: "jean@exemple.com",
       subject: "Sujet",
       subjectPlaceholder: "Choisir un sujet...",
-      subjects: ["Mission freelance", "Recrutement", "Collaboration", "Autre"],
+      subjects: ["Opportunité CDI", "Question", "Autre"],
       message: "Message",
       messagePlaceholder: "Décrivez votre projet ou votre besoin...",
       submit: "Envoyer le message",
