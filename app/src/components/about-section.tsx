@@ -14,7 +14,7 @@ export default function AboutSection({ dict }: Readonly<{ dict: Dictionary["abou
           alt={dict.photoAlt}
           width={280}
           height={280}
-          className="border border-line grayscale"
+          className="border border-line aspect-square object-cover grayscale"
         />
         <p className="text-lg text-fg-muted">{dict.intro}</p>
       </div>

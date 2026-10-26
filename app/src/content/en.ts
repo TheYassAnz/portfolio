@@ -1,7 +1,5 @@
 import type { Dictionary } from "./index";
 
-const TODO = "TO COMPLETE";
-
 const en: Dictionary = {
   meta: {
     title: "Yassine ANZAR BASHA — Full-Stack Developer",
@@ -33,12 +31,7 @@ const en: Dictionary = {
       { cmd: "status", output: "Available" },
     ],
   },
-  stats: [
-    { value: TODO, label: `${TODO} 1` },
-    { value: TODO, label: `${TODO} 2` },
-    { value: TODO, label: `${TODO} 3` },
-    { value: TODO, label: `${TODO} 4` },
-  ],
+  stats: [],
   work: {
     title: "Work",
     empty: "No projects to show yet.",
@@ -62,17 +55,35 @@ const en: Dictionary = {
       "I design and build modern web and mobile applications, from design to infrastructure — for companies and ambitious entrepreneurs.",
     photoAlt: "Portrait of Yassine ANZAR BASHA",
     timeline: [
-      { period: `${TODO} 1`, role: TODO, org: TODO, summary: TODO },
-      { period: `${TODO} 2`, role: TODO, org: TODO, summary: TODO },
-      { period: `${TODO} 3`, role: TODO, org: TODO, summary: TODO },
+      {
+        period: "Jul. 2025 — Present",
+        role: "Full Stack Developer",
+        org: "Crédit Agricole Leasing & Factoring",
+        summary:
+          "Application redesign to Angular and Java 21, UI component library development.",
+      },
+      {
+        period: "Sep. 2024 — Jun. 2025",
+        role: "Cloud Solutions Developer",
+        org: "Crédit Agricole Assurances",
+        summary:
+          "Development and integration of cloud solutions on the ServiceNow platform.",
+      },
+      {
+        period: "Jan. 2023 — Feb. 2023",
+        role: "Full Stack Developer (Intern)",
+        org: "Ceos Tech",
+        summary:
+          "Website development for fast-food businesses in a digital web agency.",
+      },
     ],
   },
   stack: {
     title: "Stack",
     groups: [
-      { name: "Front", items: ["React", "Next.js", "TypeScript", "Tailwind"] },
+      { name: "Front", items: ["React", "Next.js", "Angular 21", "TypeScript", "Tailwind"] },
       { name: "Mobile", items: ["React Native", "Expo"] },
-      { name: "Back", items: ["Node.js", "Strapi"] },
+      { name: "Back", items: ["Node.js", "Java 21", "Strapi"] },
       { name: "Infra / DevOps", items: ["Terraform", "Kubernetes", "Jenkins"] },
       { name: "Design", items: ["Figma"] },
     ],

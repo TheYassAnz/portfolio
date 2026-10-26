@@ -5,6 +5,8 @@ export default function StatsSection({
 }: Readonly<{
   stats: Dictionary["stats"];
 }>) {
+  if (!stats.length) return null;
+
   return (
     <section className="grid grid-cols-2 divide-x divide-y divide-line border-b border-line md:grid-cols-4 md:divide-y-0">
       {stats.map((s) => (
