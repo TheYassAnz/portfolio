@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, DM_Serif_Display } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import FooterSection from "@/components/footer-section";
+import MotionProvider from "@/components/ui/motion-provider";
+import { THEME_SCRIPT } from "@/components/ui/theme-toggle";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const dmSerif = DM_Serif_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-playfair",
+  weight: "500",
+  variable: "--font-space-grotesk",
+});
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
 });
 
 export const metadata: Metadata = {
@@ -25,12 +31,18 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`scroll-smooth ${inter.variable} ${dmSerif.variable}`}
+      suppressHydrationWarning
+      className={`scroll-smooth ${spaceGrotesk.variable} ${jetbrains.variable}`}
     >
-      <body className="mx-auto max-w-7xl bg-black px-4 text-muted md:px-8">
-        <Navbar />
-        {children}
-        <FooterSection />
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
+      <body className="grid-bg mx-auto max-w-7xl bg-bg px-4 font-mono text-fg md:px-8">
+        <MotionProvider>
+          <Navbar />
+          {children}
+          <FooterSection />
+        </MotionProvider>
       </body>
     </html>
   );
