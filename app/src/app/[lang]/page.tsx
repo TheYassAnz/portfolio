@@ -17,7 +17,7 @@ export default async function Home({
   const dict = getDictionary(lang);
   return (
     <main className="flex flex-col gap-4 px-2 md:px-0">
-      <HeroSection dict={dict} />
+      <HeroSection key={lang} dict={dict} />
       <StatsSection stats={dict.stats} />
       <ServiceSection />
       <ProjectSection />

@@ -21,11 +21,10 @@ const en: Dictionary = {
     menu: "Menu",
   },
   hero: {
-    comment: "Available for new missions",
-    firstName: "Yassine",
-    lastName: "ANZAR BASHA",
-    stackLine: "Full-Stack Developer",
-    cta: "See my work",
+    comment: "full-stack developer · paris",
+    firstName: "YASSINE",
+    lastName: "ANZAR_BASHA",
+    stackLine: "react · next.js · expo · node · terraform · k8s",
     contactCta: "Book a call",
     terminal: [
       { cmd: "whoami", output: "Yassine ANZAR BASHA" },

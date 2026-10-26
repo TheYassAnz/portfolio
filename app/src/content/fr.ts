@@ -10,8 +10,8 @@ const fr = {
   },
   nav: {
     home: "Accueil",
-    work: "Projets",
-    about: "À propos",
+    work: "travaux",
+    about: "parcours",
     stack: "Stack",
     contact: "Contact",
     cv: "CV",
@@ -21,11 +21,10 @@ const fr = {
     menu: "Menu",
   },
   hero: {
-    comment: "Disponible pour de nouvelles missions",
-    firstName: "Yassine",
-    lastName: "ANZAR BASHA",
-    stackLine: "Développeur Full-Stack",
-    cta: "Voir mes projets",
+    comment: "développeur full-stack · paris",
+    firstName: "YASSINE",
+    lastName: "ANZAR_BASHA",
+    stackLine: "react · next.js · expo · node · terraform · k8s",
     contactCta: "Prendre RDV",
     terminal: [
       { cmd: "whoami", output: "Yassine ANZAR BASHA" },
