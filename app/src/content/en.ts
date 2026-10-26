@@ -34,10 +34,10 @@ const en: Dictionary = {
     ],
   },
   stats: [
-    { value: TODO, label: TODO },
-    { value: TODO, label: TODO },
-    { value: TODO, label: TODO },
-    { value: TODO, label: TODO },
+    { value: TODO, label: `${TODO} 1` },
+    { value: TODO, label: `${TODO} 2` },
+    { value: TODO, label: `${TODO} 3` },
+    { value: TODO, label: `${TODO} 4` },
   ],
   work: {
     title: "Work",
@@ -62,9 +62,9 @@ const en: Dictionary = {
       "I design and build modern web and mobile applications, from design to infrastructure — for companies and ambitious entrepreneurs.",
     photoAlt: "Portrait of Yassine ANZAR BASHA",
     timeline: [
-      { period: TODO, role: TODO, org: TODO, summary: TODO },
-      { period: TODO, role: TODO, org: TODO, summary: TODO },
-      { period: TODO, role: TODO, org: TODO, summary: TODO },
+      { period: `${TODO} 1`, role: TODO, org: TODO, summary: TODO },
+      { period: `${TODO} 2`, role: TODO, org: TODO, summary: TODO },
+      { period: `${TODO} 3`, role: TODO, org: TODO, summary: TODO },
     ],
   },
   stack: {

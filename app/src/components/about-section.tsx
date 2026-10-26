@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { Dictionary } from "@/content";
 
-export default function AboutSection({ dict }: { dict: Dictionary["about"] }) {
+export default function AboutSection({ dict }: Readonly<{ dict: Dictionary["about"] }>) {
   return (
     <section id="about" className="scroll-mt-14 py-12">
       <h2 className="mb-6 px-3 font-display text-4xl">
@@ -19,9 +19,9 @@ export default function AboutSection({ dict }: { dict: Dictionary["about"] }) {
         <p className="text-lg text-fg-muted">{dict.intro}</p>
       </div>
       <ol className="mt-10 border-t border-line">
-        {dict.timeline.map((e, i) => (
+        {dict.timeline.map((e) => (
           <li
-            key={i}
+            key={`${e.period}-${e.role}-${e.org}`}
             className="flex flex-col gap-1 border-b border-line px-3 py-4 font-mono text-sm md:flex-row md:items-baseline md:gap-4"
           >
             <span className="text-fg-muted md:w-40 md:shrink-0">{e.period}</span>

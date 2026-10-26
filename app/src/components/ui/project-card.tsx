@@ -8,12 +8,12 @@ export default function ProjectCard({
   index,
   lang,
   dict,
-}: {
+}: Readonly<{
   project: Project;
   index: number;
   lang: Locale;
   dict: Dictionary["work"];
-}) {
+}>) {
   return (
     <Link
       href={`/${lang}/projects/${project.slug}`}

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Dictionary } from "@/content";
 import Terminal from "./ui/terminal";
 
-export default function HeroSection({ dict }: { dict: Dictionary }) {
+export default function HeroSection({ dict }: Readonly<{ dict: Dictionary }>) {
   const { hero } = dict;
   return (
     <section className="grid items-center gap-12 border-b border-line py-16 md:grid-cols-2 md:py-24">

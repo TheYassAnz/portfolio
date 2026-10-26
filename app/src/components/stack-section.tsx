@@ -1,6 +1,6 @@
 import type { Dictionary } from "@/content";
 
-export default function StackSection({ dict }: { dict: Dictionary["stack"] }) {
+export default function StackSection({ dict }: Readonly<{ dict: Dictionary["stack"] }>) {
   return (
     <section id="stack" className="scroll-mt-14 py-12">
       <h2 className="mb-6 px-3 font-display text-4xl">

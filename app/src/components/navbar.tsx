@@ -12,10 +12,10 @@ const tab = "whitespace-nowrap px-4 py-3 hover:text-accent-ink";
 export default function Navbar({
   dict,
   lang,
-}: {
+}: Readonly<{
   dict: Dictionary;
   lang: Locale;
-}) {
+}>) {
   const [open, setOpen] = useState(false);
   const { nav } = dict;
   const links = [

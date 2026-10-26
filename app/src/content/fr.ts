@@ -34,10 +34,10 @@ const fr = {
     ],
   },
   stats: [
-    { value: TODO, label: TODO },
-    { value: TODO, label: TODO },
-    { value: TODO, label: TODO },
-    { value: TODO, label: TODO },
+    { value: TODO, label: `${TODO} 1` },
+    { value: TODO, label: `${TODO} 2` },
+    { value: TODO, label: `${TODO} 3` },
+    { value: TODO, label: `${TODO} 4` },
   ] as { value: string; label: string }[],
   work: {
     title: "Projets",
@@ -62,9 +62,9 @@ const fr = {
       "Je conçois et développe des applications web et mobiles modernes, du design à l'infrastructure — pour les entreprises et les entrepreneurs ambitieux.",
     photoAlt: "Portrait de Yassine ANZAR BASHA",
     timeline: [
-      { period: TODO, role: TODO, org: TODO, summary: TODO },
-      { period: TODO, role: TODO, org: TODO, summary: TODO },
-      { period: TODO, role: TODO, org: TODO, summary: TODO },
+      { period: `${TODO} 1`, role: TODO, org: TODO, summary: TODO },
+      { period: `${TODO} 2`, role: TODO, org: TODO, summary: TODO },
+      { period: `${TODO} 3`, role: TODO, org: TODO, summary: TODO },
     ] as { period: string; role: string; org: string; summary: string }[],
   },
   stack: {

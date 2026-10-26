@@ -6,7 +6,7 @@ const socials = [
   { href: LINKEDIN, label: "LinkedIn" },
 ];
 
-export default function FooterSection({ dict }: { dict: Dictionary }) {
+export default function FooterSection({ dict }: Readonly<{ dict: Dictionary }>) {
   return (
     <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-line py-4 text-sm">
       <span className="text-fg-muted">

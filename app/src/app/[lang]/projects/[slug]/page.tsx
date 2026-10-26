@@ -6,7 +6,7 @@ import { getDictionary } from "@/content";
 import { isLocale, locales } from "@/lib/i18n";
 import { getProject, getProjectSlugs, toParagraphs } from "@/lib/strapi";
 
-type Props = { params: Promise<{ lang: string; slug: string }> };
+type Props = Readonly<{ params: Promise<{ lang: string; slug: string }> }>;
 
 export async function generateStaticParams() {
   const slugs = await getProjectSlugs();
@@ -104,8 +104,8 @@ export default async function ProjectPage({ params }: Props) {
 
       {intro.length > 0 && (
         <section className="max-w-2xl space-y-4 border-b border-line py-8">
-          {intro.map((p, i) => (
-            <p key={i}>{p}</p>
+          {intro.map((p) => (
+            <p key={p}>{p}</p>
           ))}
         </section>
       )}
@@ -117,8 +117,8 @@ export default async function ProjectPage({ params }: Props) {
         >
           <h2 className="text-sm text-fg-muted uppercase">{label}</h2>
           <div className="max-w-2xl space-y-4">
-            {toParagraphs(text).map((p, i) => (
-              <p key={i}>{p}</p>
+            {toParagraphs(text).map((p) => (
+              <p key={p}>{p}</p>
             ))}
           </div>
         </section>

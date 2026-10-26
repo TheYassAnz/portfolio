@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import { escapeHtml } from "@/lib/escape-html";
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/;
 const MAX_LEN = 5000;
 const bad = (error: string) => NextResponse.json({ error }, { status: 400 });
 

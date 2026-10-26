@@ -10,9 +10,9 @@ import { getDictionary } from "@/content";
 
 export default async function Home({
   params,
-}: {
+}: Readonly<{
   params: Promise<{ lang: string }>;
-}) {
+}>) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const dict = getDictionary(lang);

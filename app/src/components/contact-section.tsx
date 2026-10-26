@@ -5,9 +5,9 @@ import { GITHUB, LINKEDIN } from "@/lib/socials";
 
 export default function ContactSection({
   dict,
-}: {
+}: Readonly<{
   dict: Dictionary["contact"];
-}) {
+}>) {
   const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
   const links = [
     { cmd: "linkedin", href: LINKEDIN, label: "linkedin.com/in/yanzarbasha" },

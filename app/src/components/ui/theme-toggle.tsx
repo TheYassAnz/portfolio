@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export const THEME_SCRIPT = `try{var t=localStorage.theme;if(t==="light"||(!t&&matchMedia("(prefers-color-scheme: light)").matches))document.documentElement.classList.add("light")}catch(e){}`;
 
-export default function ThemeToggle({ label }: { label: string }) {
+export default function ThemeToggle({ label }: Readonly<{ label: string }>) {
   const [light, setLight] = useState(false);
 
   useEffect(() => {

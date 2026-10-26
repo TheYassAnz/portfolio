@@ -12,9 +12,9 @@ const label = "font-mono text-xs uppercase text-fg-muted";
 
 export default function ContactForm({
   dict,
-}: {
+}: Readonly<{
   dict: Dictionary["contact"]["form"];
-}) {
+}>) {
   const [form, setForm] = useState(empty);
   const [status, setStatus] = useState<Status>("idle");
 
@@ -41,7 +41,7 @@ export default function ContactForm({
 
   if (status === "success") {
     return (
-      <div className="flex flex-col gap-3 border border-line p-4" role="status">
+      <output className="flex flex-col gap-3 border border-line p-4">
         <p className="font-display text-xl">{dict.successTitle}</p>
         <p className="text-sm text-fg-muted">{dict.successText}</p>
         <button
@@ -54,7 +54,7 @@ export default function ContactForm({
         >
           {dict.another}
         </button>
-      </div>
+      </output>
     );
   }
 

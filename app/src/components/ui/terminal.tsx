@@ -8,7 +8,7 @@ const TYPING_SPEED = 55;
 const PAUSE_AFTER_OUTPUT = 900;
 const RESTART_PAUSE = 1500;
 
-export default function Terminal({ lines }: { lines: Line[] }) {
+export default function Terminal({ lines }: Readonly<{ lines: Line[] }>) {
   const [displayed, setDisplayed] = useState<Line[]>([]);
   const [currentLine, setCurrentLine] = useState(0);
   const [typedCmd, setTypedCmd] = useState("");
@@ -59,8 +59,8 @@ export default function Terminal({ lines }: { lines: Line[] }) {
         bash
       </div>
       <div className="min-h-64 space-y-3 p-5 text-sm">
-        {(reduced ? lines : displayed).map((line, i) => (
-          <div key={i}>
+        {(reduced ? lines : displayed).map((line) => (
+          <div key={line.cmd}>
             <p className="text-fg-muted">
               <span className="text-accent-ink">~</span> $ {line.cmd}
             </p>
