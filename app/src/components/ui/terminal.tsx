@@ -2,27 +2,26 @@
 
 import { useEffect, useState } from "react";
 
-const lines = [
-  { cmd: "whoami", output: "Yassine ANZAR BASHA" },
-  { cmd: "title", output: "Développeur Full-Stack" },
-  { cmd: "location", output: "Paris, France 📍" },
-  { cmd: "stack", output: "React · Next.js · Expo · K8s · Terraform" },
-  { cmd: "status", output: "Disponible ✓" },
-];
+type Line = { cmd: string; output: string };
 
 const TYPING_SPEED = 55;
 const PAUSE_AFTER_OUTPUT = 900;
-const PAUSE_BETWEEN_LINES = 300;
+const RESTART_PAUSE = 1500;
 
-export default function Terminal() {
-  const [displayed, setDisplayed] = useState<{ cmd: string; output: string }[]>([]);
+export default function Terminal({ lines }: Readonly<{ lines: Line[] }>) {
+  const [displayed, setDisplayed] = useState<Line[]>([]);
   const [currentLine, setCurrentLine] = useState(0);
   const [typedCmd, setTypedCmd] = useState("");
   const [showOutput, setShowOutput] = useState(false);
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    if (currentLine >= lines.length) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- matchMedia is client-only
+    setReduced(matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
 
+  useEffect(() => {
+    if (reduced || currentLine >= lines.length) return;
     const { cmd, output } = lines[currentLine];
 
     if (typedCmd.length < cmd.length) {
@@ -32,64 +31,50 @@ export default function Terminal() {
       );
       return () => clearTimeout(t);
     }
-
     if (!showOutput) {
       const t = setTimeout(() => setShowOutput(true), 180);
       return () => clearTimeout(t);
     }
-
     const t = setTimeout(() => {
       setDisplayed((prev) => [...prev, { cmd, output }]);
       setTypedCmd("");
       setShowOutput(false);
       setCurrentLine((n) => n + 1);
     }, PAUSE_AFTER_OUTPUT);
-
     return () => clearTimeout(t);
-  }, [typedCmd, showOutput, currentLine]);
+  }, [typedCmd, showOutput, currentLine, lines, reduced]);
 
   useEffect(() => {
-    if (currentLine < lines.length) return;
+    if (reduced || currentLine < lines.length) return;
     const t = setTimeout(() => {
       setDisplayed([]);
       setCurrentLine(0);
-      setTypedCmd("");
-      setShowOutput(false);
-    }, PAUSE_BETWEEN_LINES + 1200);
+    }, RESTART_PAUSE);
     return () => clearTimeout(t);
-  }, [currentLine]);
+  }, [currentLine, lines.length, reduced]);
 
   return (
-    <div className="w-full max-w-md rounded-2xl border border-white/10 bg-black/60 shadow-xl backdrop-blur-sm">
-      {/* Title bar */}
-      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-        <span className="h-3 w-3 rounded-full bg-red-500/70" />
-        <span className="h-3 w-3 rounded-full bg-yellow-500/70" />
-        <span className="h-3 w-3 rounded-full bg-green-500/70" />
-        <span className="ml-2 text-xs text-muted/30">bash</span>
+    <div className="w-full max-w-md border border-line bg-bg">
+      <div className="border-b border-line px-4 py-2 text-xs text-fg-muted">
+        bash
       </div>
-
-      {/* Content */}
-      <div className="space-y-3 p-5 font-mono text-sm">
-        {displayed.map((line, i) => (
-          <div key={i} className="space-y-0.5">
-            <p className="text-muted/50">
-              <span className="text-accent">~</span> $ {line.cmd}
+      <div className="min-h-64 space-y-3 p-5 text-sm">
+        {(reduced ? lines : displayed).map((line) => (
+          <div key={line.cmd}>
+            <p className="text-fg-muted">
+              <span className="text-accent-ink">~</span> $ {line.cmd}
             </p>
-            <p className="text-muted/80">{line.output}</p>
+            <p className="text-fg">{line.output}</p>
           </div>
         ))}
-
-        {currentLine < lines.length && (
-          <div className="space-y-0.5">
-            <p className="text-muted/50">
-              <span className="text-accent">~</span> ${" "}
-              <span className="text-muted">{typedCmd}</span>
-              <span className="animate-pulse text-accent">▋</span>
+        {!reduced && currentLine < lines.length && (
+          <div>
+            <p className="text-fg-muted">
+              <span className="text-accent-ink">~</span> ${" "}
+              <span className="text-fg">{typedCmd}</span>
+              <span className="animate-pulse text-accent-ink">▋</span>
             </p>
-            {showOutput && (
-              <p className="text-muted/80">{lines[currentLine].output}</p>
-            )}
+            {showOutput && <p className="text-fg">{lines[currentLine].output}</p>}
           </div>
         )}
       </div>

@@ -1,37 +1,29 @@
-import Link from "next/link";
-import { FiGithub, FiLinkedin } from "react-icons/fi";
+import type { Dictionary } from "@/content";
+import { GITHUB, LINKEDIN } from "@/lib/socials";
 
 const socials = [
-  {
-    href: "https://github.com/TheYassAnz",
-    icon: FiGithub,
-    label: "GitHub",
-  },
-  {
-    href: "https://www.linkedin.com/in/yanzarbasha/",
-    icon: FiLinkedin,
-    label: "LinkedIn",
-  },
+  { href: GITHUB, label: "GitHub" },
+  { href: LINKEDIN, label: "LinkedIn" },
 ];
 
-export default function FooterSection() {
+export default function FooterSection({ dict }: Readonly<{ dict: Dictionary }>) {
   return (
-    <footer className="mx-auto my-4 flex w-full items-center justify-between rounded-full bg-surface px-6 py-4">
-      <span className="text-sm text-muted/50">
-        © {new Date().getFullYear()} Yassine ANZAR BASHA
+    <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-line py-4 text-sm">
+      <span className="text-fg-muted">
+        © {new Date().getFullYear()} {dict.footer.rights}
       </span>
-      <div className="flex items-center gap-3">
-        {socials.map(({ href, icon: Icon, label }) => (
-          <Link
+      <div className="flex gap-4">
+        {socials.map(({ href, label }) => (
+          <a
             key={label}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
-            className="text-muted/50 transition-colors hover:text-accent"
+            className="hover:text-accent-ink"
           >
-            <Icon size={20} />
-          </Link>
+            [ {label.toLowerCase()} ]
+          </a>
         ))}
       </div>
     </footer>
