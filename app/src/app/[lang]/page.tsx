@@ -20,7 +20,7 @@ export default async function Home({
       <HeroSection key={lang} dict={dict} />
       <StatsSection stats={dict.stats} />
       <ServiceSection />
-      <ProjectSection lang={lang} />
+      <ProjectSection lang={lang} dict={dict} />
       <CalendlySection />
     </main>
   );
