@@ -1,4 +1,6 @@
-// Add a project: append an entry below (fr required, en optional per field); images go in public/projects/<slug>/ and are referenced as "/projects/<slug>/file.webp".
+// Add a project: append an entry below (fr required, en optional per field).
+// Images go in public/projects/<slug>/,
+// referenced as "/projects/<slug>/file.webp".
 import type { ProjectEntry } from "../lib/projects.ts";
 
 const empty = { longDescription: "", problem: "", solution: "", results: "" };
