@@ -1,8 +1,9 @@
 import type { Dictionary } from "@/content";
+import { GITHUB, LINKEDIN } from "@/lib/socials";
 
 const socials = [
-  { href: "https://github.com/TheYassAnz", label: "GitHub" },
-  { href: "https://www.linkedin.com/in/yanzarbasha/", label: "LinkedIn" },
+  { href: GITHUB, label: "GitHub" },
+  { href: LINKEDIN, label: "LinkedIn" },
 ];
 
 export default function FooterSection({ dict }: { dict: Dictionary }) {

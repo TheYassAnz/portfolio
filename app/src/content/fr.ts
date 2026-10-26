@@ -25,7 +25,7 @@ const fr = {
     firstName: "YASSINE",
     lastName: "ANZAR_BASHA",
     stackLine: "react · next.js · expo · node · terraform · k8s",
-    contactCta: "Prendre RDV",
+    contactCta: "contact",
     terminal: [
       { cmd: "whoami", output: "Yassine ANZAR BASHA" },
       { cmd: "title", output: "Développeur Full-Stack" },

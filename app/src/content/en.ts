@@ -25,7 +25,7 @@ const en: Dictionary = {
     firstName: "YASSINE",
     lastName: "ANZAR_BASHA",
     stackLine: "react · next.js · expo · node · terraform · k8s",
-    contactCta: "Book a call",
+    contactCta: "contact",
     terminal: [
       { cmd: "whoami", output: "Yassine ANZAR BASHA" },
       { cmd: "title", output: "Full-Stack Developer" },

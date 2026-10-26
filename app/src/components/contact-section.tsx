@@ -1,9 +1,7 @@
 import type { Dictionary } from "@/content";
 import CopyEmail from "./ui/copy-email";
 import ContactForm from "./ui/contact-form";
-
-const GITHUB = "https://github.com/TheYassAnz";
-const LINKEDIN = "https://www.linkedin.com/in/yanzarbasha/";
+import { GITHUB, LINKEDIN } from "@/lib/socials";
 
 export default function ContactSection({
   dict,

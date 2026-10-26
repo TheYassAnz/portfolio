@@ -17,10 +17,17 @@ export async function POST(req: Request) {
   if (fields.some((f: string) => f.length > MAX_LEN)) return bad("Field too long.");
   if (!EMAIL_RE.test(email)) return bad("Invalid email.");
 
+  const to = process.env.CONTACT_EMAIL;
+  if (!to) {
+    console.error("CONTACT_EMAIL is not set");
+    return NextResponse.json({ error: "Envoi impossible." }, { status: 500 });
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY);
   const { error } = await resend.emails.send({
     from: "onboarding@resend.dev",
-    to: process.env.CONTACT_EMAIL!,
+    to,
+    replyTo: email,
     subject: `[Portfolio] ${subject}`.replace(/[\r\n]+/g, " "),
     text: `Nom : ${name}\nEmail : ${email}\n\n${message}`,
     html: `
@@ -33,7 +40,8 @@ export async function POST(req: Request) {
   });
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("Resend error:", error);
+    return NextResponse.json({ error: "Envoi impossible." }, { status: 500 });
   }
 
   return NextResponse.json({ success: true });
