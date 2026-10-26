@@ -1,24 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { FiSend, FiCheck, FiAlertCircle } from "react-icons/fi";
+import type { Dictionary } from "@/content";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const subjects = [
-  "Mission freelance",
-  "Recrutement",
-  "Collaboration",
-  "Autre",
-];
+const empty = { name: "", email: "", subject: "", message: "", website: "" };
+const field =
+  "border border-line bg-bg px-3 py-2 text-sm text-fg placeholder:text-fg-muted focus:outline focus:outline-accent";
+const label = "font-mono text-xs uppercase text-fg-muted";
 
-export default function ContactForm() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+export default function ContactForm({
+  dict,
+}: Readonly<{
+  dict: Dictionary["contact"]["form"];
+}>) {
+  const [form, setForm] = useState(empty);
   const [status, setStatus] = useState<Status>("idle");
 
   const handleChange = (
@@ -30,126 +27,123 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
-
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-
-    setStatus(res.ok ? "success" : "error");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
   };
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
-        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/20">
-          <FiCheck className="text-accent" size={28} />
-        </div>
-        <div>
-          <p className="font-serif text-xl font-semibold text-muted">
-            Message envoyé !
-          </p>
-          <p className="mt-1 text-sm text-muted/60">
-            Je vous répondrai dans les 24 heures.
-          </p>
-        </div>
+      <output className="flex flex-col gap-3 border border-line p-4">
+        <p className="font-display text-xl">{dict.successTitle}</p>
+        <p className="text-sm text-fg-muted">{dict.successText}</p>
         <button
+          type="button"
           onClick={() => {
             setStatus("idle");
-            setForm({ name: "", email: "", subject: "", message: "" });
+            setForm(empty);
           }}
-          className="mt-2 text-sm text-accent underline underline-offset-4"
+          className="self-start font-mono text-sm underline underline-offset-4 hover:text-accent-ink"
         >
-          Envoyer un autre message
+          {dict.another}
         </button>
-      </div>
+      </output>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit} className="relative flex flex-col gap-4">
+      {/* Honeypot: off-screen (not display:none) so bots still fill it. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <input
+          name="website"
+          value={form.website}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-semibold tracking-wide text-muted/60 uppercase">
-            Nom
-          </label>
+        <label className="flex flex-col gap-1.5">
+          <span className={label}>{dict.name}</span>
           <input
             name="name"
             value={form.name}
             onChange={handleChange}
             required
-            placeholder="Jean Dupont"
-            className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-muted placeholder:text-muted/30 outline-none transition-colors focus:border-accent/50"
+            maxLength={5000}
+            placeholder={dict.namePlaceholder}
+            className={field}
           />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-semibold tracking-wide text-muted/60 uppercase">
-            Email
-          </label>
+        </label>
+        <label className="flex flex-col gap-1.5">
+          <span className={label}>{dict.email}</span>
           <input
             name="email"
             type="email"
             value={form.email}
             onChange={handleChange}
             required
-            placeholder="jean@exemple.com"
-            className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-muted placeholder:text-muted/30 outline-none transition-colors focus:border-accent/50"
+            maxLength={5000}
+            placeholder={dict.emailPlaceholder}
+            className={field}
           />
-        </div>
+        </label>
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label className="text-xs font-semibold tracking-wide text-muted/60 uppercase">
-          Sujet
-        </label>
+      <label className="flex flex-col gap-1.5">
+        <span className={label}>{dict.subject}</span>
         <select
           name="subject"
           value={form.subject}
           onChange={handleChange}
           required
-          className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-muted outline-none transition-colors focus:border-accent/50"
+          className={field}
         >
           <option value="" disabled>
-            Choisir un sujet...
+            {dict.subjectPlaceholder}
           </option>
-          {subjects.map((s) => (
-            <option key={s} value={s} className="bg-surface">
+          {dict.subjects.map((s) => (
+            <option key={s} value={s}>
               {s}
             </option>
           ))}
         </select>
-      </div>
+      </label>
 
-      <div className="flex flex-col gap-1.5">
-        <label className="text-xs font-semibold tracking-wide text-muted/60 uppercase">
-          Message
-        </label>
+      <label className="flex flex-col gap-1.5">
+        <span className={label}>{dict.message}</span>
         <textarea
           name="message"
           value={form.message}
           onChange={handleChange}
           required
+          maxLength={5000}
           rows={5}
-          placeholder="Décrivez votre projet ou votre besoin..."
-          className="resize-none rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-muted placeholder:text-muted/30 outline-none transition-colors focus:border-accent/50"
+          placeholder={dict.messagePlaceholder}
+          className={`${field} resize-none`}
         />
-      </div>
+      </label>
 
       {status === "error" && (
-        <div className="flex items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
-          <FiAlertCircle size={16} />
-          Une erreur est survenue. Réessayez ou contactez-moi par email.
-        </div>
+        <p role="alert" className="border border-line px-3 py-2 text-sm">
+          {dict.error}
+        </p>
       )}
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="bg-accent px-6 py-3 font-mono text-sm text-on-accent hover:opacity-90 focus-visible:outline focus-visible:outline-accent disabled:opacity-50"
       >
-        <FiSend size={16} />
-        {status === "loading" ? "Envoi en cours..." : "Envoyer le message"}
+        {status === "loading" ? dict.sending : dict.submit}
       </button>
     </form>
   );
