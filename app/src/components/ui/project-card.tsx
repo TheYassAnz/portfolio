@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Dictionary } from "@/content";
 import type { Locale } from "@/lib/i18n";
-import type { Project } from "@/lib/strapi";
+import type { Project } from "@/lib/projects";
 
 export default function ProjectCard({
   project,

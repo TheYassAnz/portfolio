@@ -4,19 +4,21 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/content";
 import { isLocale, locales } from "@/lib/i18n";
-import { getProject, getProjectSlugs, toParagraphs } from "@/lib/strapi";
+import { getProject, getProjectSlugs, toParagraphs } from "@/lib/projects";
 
 type Props = Readonly<{ params: Promise<{ lang: string; slug: string }> }>;
 
-export async function generateStaticParams() {
-  const slugs = await getProjectSlugs();
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  const slugs = getProjectSlugs();
   return locales.flatMap((lang) => slugs.map((slug) => ({ lang, slug })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
   if (!isLocale(lang)) notFound();
-  const project = await getProject(slug, lang);
+  const project = getProject(slug, lang);
   if (!project) notFound();
   return {
     title: project.title,
@@ -38,7 +40,7 @@ const linkClass =
 export default async function ProjectPage({ params }: Props) {
   const { lang, slug } = await params;
   if (!isLocale(lang)) notFound();
-  const project = await getProject(slug, lang);
+  const project = getProject(slug, lang);
   if (!project) notFound();
   const { work } = getDictionary(lang);
 

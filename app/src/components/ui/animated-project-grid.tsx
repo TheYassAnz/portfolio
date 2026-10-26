@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import ProjectCard from "./project-card";
 import type { Dictionary } from "@/content";
 import type { Locale } from "@/lib/i18n";
-import type { Project } from "@/lib/strapi";
+import type { Project } from "@/lib/projects";
 
 const item = {
   hidden: { opacity: 0, y: 8 },

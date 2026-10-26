@@ -1,4 +1,4 @@
-import type { ProjectStatus } from "@/lib/strapi";
+import type { ProjectStatus } from "@/lib/projects";
 
 const TODO = "À COMPLÉTER";
 
