@@ -33,6 +33,7 @@ export async function generateMetadata({
   if (!isLocale(lang)) notFound();
   const { meta } = getDictionary(lang);
   return {
+    metadataBase: new URL("https://www.yassanz.com"),
     title: meta.title,
     description: meta.description,
     alternates: { languages: { fr: "/fr", en: "/en" } },

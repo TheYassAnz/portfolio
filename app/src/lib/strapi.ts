@@ -2,12 +2,6 @@ import type { Locale } from "./i18n.ts";
 
 export type ProjectStatus = "done" | "in_progress" | "archived";
 
-export const STATUS_LABELS: Record<ProjectStatus, string> = {
-  done: "Terminé",
-  in_progress: "En cours",
-  archived: "Archivé",
-};
-
 export type Project = {
   slug: string;
   title: string;
