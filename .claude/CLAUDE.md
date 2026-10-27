@@ -43,4 +43,4 @@ Prettier runs via editor integration (`.prettierrc` with `prettier-plugin-tailwi
 
 **Env vars:** `NEXT_PUBLIC_CONTACT_EMAIL` (displayed/copy), `CONTACT_EMAIL` (form recipient), `RESEND_API_KEY`.
 
-**Content still to provide:** `public/me.jpg`, `public/cv-fr.pdf`, `public/cv-en.pdf`, real stats and timeline in the dictionaries.
+**Content still to provide:** real stats in the dictionaries.
