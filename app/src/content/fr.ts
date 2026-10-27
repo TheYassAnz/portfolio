@@ -12,8 +12,6 @@ const fr = {
     about: "parcours",
     stack: "Stack",
     contact: "Contact",
-    cv: "CV",
-    cvHref: "/cv-fr.pdf",
     theme: "Changer de thème",
     menu: "Menu",
   },
