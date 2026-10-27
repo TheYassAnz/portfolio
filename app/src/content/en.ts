@@ -23,13 +23,6 @@ const en: Dictionary = {
     lastName: "ANZAR_BASHA",
     stackLine: "react · next.js · expo · node · terraform · k8s",
     contactCta: "contact",
-    terminal: [
-      { cmd: "whoami", output: "Yassine ANZAR BASHA" },
-      { cmd: "title", output: "Full-Stack Developer" },
-      { cmd: "location", output: "Paris, France" },
-      { cmd: "stack", output: "React · Next.js · Expo · K8s · Terraform" },
-      { cmd: "status", output: "Available" },
-    ],
   },
   stats: [],
   work: {

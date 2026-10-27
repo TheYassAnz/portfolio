@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Dictionary } from "@/content";
 
 export default function AboutSection({ dict }: Readonly<{ dict: Dictionary["about"] }>) {
@@ -8,16 +7,7 @@ export default function AboutSection({ dict }: Readonly<{ dict: Dictionary["abou
         <span className="mr-3 font-mono text-base text-fg-muted">{"// 02"}</span>
         {dict.title}
       </h2>
-      <div className="grid gap-8 px-3 md:grid-cols-[280px_1fr]">
-        <Image
-          src="/me.jpg"
-          alt={dict.photoAlt}
-          width={280}
-          height={280}
-          className="border border-line aspect-square object-cover grayscale"
-        />
-        <p className="text-lg text-fg-muted">{dict.intro}</p>
-      </div>
+      <p className="px-3 text-lg text-fg-muted">{dict.intro}</p>
       <ol className="mt-10 border-t border-line">
         {dict.timeline.map((e) => (
           <li

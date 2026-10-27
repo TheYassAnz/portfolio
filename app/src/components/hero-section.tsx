@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/content";
-import Terminal from "./ui/terminal";
 
 export default function HeroSection({ dict }: Readonly<{ dict: Dictionary }>) {
   const { hero } = dict;
@@ -31,7 +31,20 @@ export default function HeroSection({ dict }: Readonly<{ dict: Dictionary }>) {
         </div>
       </div>
       <div className="hidden justify-end md:flex">
-        <Terminal lines={hero.terminal} />
+        <figure className="w-72 border border-line font-mono text-xs text-fg-muted">
+          <div className="border-b border-line px-3 py-1">me.jpg</div>
+          <Image
+            src="/me.jpg"
+            alt={dict.about.photoAlt}
+            width={288}
+            height={288}
+            priority
+            className="aspect-square object-cover grayscale"
+          />
+          <figcaption className="border-t border-line px-3 py-1">
+            fig.01 — paris
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
