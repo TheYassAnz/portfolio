@@ -55,13 +55,6 @@ export default function Navbar({
           <span className="hidden sm:inline"> {nav.menu}</span>
         </button>
         <div className="ml-auto flex items-center gap-3 px-3 whitespace-nowrap sm:gap-4 sm:px-4">
-          <a
-            href={nav.cvHref}
-            download
-            className="hover:text-accent-ink hidden sm:inline"
-          >
-            [ cv.pdf ]
-          </a>
           <LangSwitch lang={lang} />
           <ThemeToggle label={nav.theme} />
         </div>
@@ -82,15 +75,6 @@ export default function Navbar({
               </Link>
             </li>
           ))}
-          <li className="sm:hidden">
-            <a
-              href={nav.cvHref}
-              download
-              className="hover:text-accent-ink block px-4 py-3"
-            >
-              [ cv.pdf ]
-            </a>
-          </li>
         </ul>
       )}
     </nav>
