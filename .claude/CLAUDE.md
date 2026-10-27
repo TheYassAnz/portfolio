@@ -19,6 +19,15 @@ npm test         # node --test (lib unit tests)
 
 Prettier runs via editor integration (`.prettierrc` with `prettier-plugin-tailwindcss` for class sorting).
 
+## Git Workflow
+
+Git flow. `main` = production, `dev` = integration.
+
+- Never commit directly on `dev` or `main`: every change starts from a branch and comes back through a PR.
+- Branch names: `feature/<name>` and `bugfix/<name>` (created from `dev`), `hotfix/<name>` (created from `main`).
+- PR targets: `feature/*` and `bugfix/*` → `dev`, **never `main`**. Only `dev` (release PR) and `hotfix/*` may target `main`.
+- After a `hotfix/*` is merged into `main`, merge `main` back into `dev`.
+
 ## Frontend Architecture
 
 **Stack:** Next.js 16 App Router, React 19, TypeScript (strict), Tailwind CSS 4. Brutalist / tech look, FR/EN, light/dark.
