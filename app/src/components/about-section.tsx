@@ -8,19 +8,18 @@ export default function AboutSection({ dict }: Readonly<{ dict: Dictionary["abou
         {dict.title}
       </h2>
       <p className="px-3 text-lg text-fg-muted">{dict.intro}</p>
-      <ol className="mt-10 border-t border-line">
-        {dict.timeline.map((e) => (
-          <li
-            key={`${e.period}-${e.role}-${e.org}`}
-            className="flex flex-col gap-1 border-b border-line px-3 py-4 font-mono text-sm md:flex-row md:items-baseline md:gap-4"
-          >
-            <span className="text-fg-muted md:w-40 md:shrink-0">{e.period}</span>
-            <span aria-hidden className="hidden text-fg-muted md:inline">|</span>
-            <span className="text-fg md:shrink-0">
-              {e.role} <span className="text-fg-muted">@</span> {e.org}
-            </span>
-            <span aria-hidden className="hidden text-fg-muted md:inline">|</span>
-            <span className="text-fg-muted">{e.summary}</span>
+      <ol className="mt-10 ml-3 border-l border-line font-mono text-sm">
+        {dict.timeline.map((e, i) => (
+          <li key={`${e.period}-${e.role}-${e.org}`} className="relative pb-8 pl-6 last:pb-0">
+            <span
+              aria-hidden
+              className={`absolute -left-[5px] top-1 size-[9px] ${i === 0 ? "bg-accent" : "border border-line bg-bg"}`}
+            />
+            <p className="whitespace-nowrap text-xs text-fg-muted">{e.period}</p>
+            <p className="mt-1 text-fg">
+              {e.role} <span className="text-fg-muted">@ {e.org}</span>
+            </p>
+            <p className="mt-1 text-fg-muted">{e.summary}</p>
           </li>
         ))}
       </ol>
