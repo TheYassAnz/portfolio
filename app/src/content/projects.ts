@@ -42,4 +42,51 @@ export const projects: ProjectEntry[] = [
       ...empty,
     },
   },
+  {
+    slug: "my-pets",
+    status: "in_progress",
+    stack: ["React Native", "Expo", "Tailwind", "NestJS", "Prisma", "Supabase"],
+    fr: {
+      title: "My Pets",
+      description:
+        "Application mobile pour suivre la santé de ses animaux : carnet de santé, échéances, rappels par notification et export PDF, partagés au sein du foyer.",
+      ...empty,
+    },
+    en: {
+      description:
+        "Mobile app to track your pets' health: health records, due dates, push reminders and PDF export, shared across the household.",
+    },
+  },
+  {
+    slug: "tennis-score",
+    status: "done",
+    stack: ["Next.js", "React", "Express", "Prisma", "Postgresql"],
+    demo: "https://tennis-score-one.vercel.app",
+    fr: {
+      title: "Tennis Score",
+      description:
+        "Application web pour enregistrer ses matchs de tennis, suivre ses statistiques et se situer au classement avec un profil public.",
+      ...empty,
+    },
+    en: {
+      description:
+        "Web app to record your tennis matches, track your stats and see where you stand on the leaderboard with a public profile.",
+    },
+  },
+  {
+    slug: "my-body",
+    status: "in_progress",
+    stack: ["Next.js", "React", "TypeScript", "Drizzle", "Postgresql"],
+    demo: "https://my-body-green.vercel.app",
+    fr: {
+      title: "My Body",
+      description:
+        "Application web de suivi personnel en cours de développement, avec authentification complète (email, Google) et tests de bout en bout.",
+      ...empty,
+    },
+    en: {
+      description:
+        "Personal tracking web app in development, with full authentication (email, Google) and end-to-end tests.",
+    },
+  },
 ];
