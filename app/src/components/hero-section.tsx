@@ -15,17 +15,7 @@ export default function HeroSection({ dict }: Readonly<{ dict: Dictionary }>) {
         </h1>
         <p>{hero.stackLine}</p>
         <div className="flex flex-wrap gap-3">
-          <a
-            href={dict.nav.cvHref}
-            download
-            className="bg-accent px-5 py-3 text-on-accent"
-          >
-            [ cv.pdf ]
-          </a>
-          <Link
-            href="#contact"
-            className="border border-line px-5 py-3 hover:text-accent-ink"
-          >
+          <Link href="#contact" className="bg-accent px-5 py-3 text-on-accent">
             $ {hero.contactCta}
           </Link>
         </div>

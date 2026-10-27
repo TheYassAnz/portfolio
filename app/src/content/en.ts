@@ -12,8 +12,6 @@ const en: Dictionary = {
     about: "About",
     stack: "Stack",
     contact: "Contact",
-    cv: "Resume",
-    cvHref: "/cv-en.pdf",
     theme: "Toggle theme",
     menu: "Menu",
   },
