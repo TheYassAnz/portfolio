@@ -46,9 +46,11 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
   const { work } = getDictionary(lang);
 
-  const meta = [project.role, project.year, work.status[project.status]].filter(
-    Boolean,
-  );
+  const meta = [
+    project.role,
+    project.year,
+    project.featured && `★ ${work.featured}`,
+  ].filter(Boolean);
   const intro = toParagraphs(project.longDescription);
   const blocks = [
     [work.problem, project.problem],

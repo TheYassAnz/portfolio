@@ -1,11 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localize, toEntry, toParagraphs } from "./projects.ts";
+import { localize, sortFeaturedFirst, toEntry, toParagraphs } from "./projects.ts";
 import type { ProjectEntry, Repo } from "./projects.ts";
 import { overrides } from "../content/projects.ts";
 
 const entry: ProjectEntry = {
-  slug: "demo", status: "done", stack: ["Next.js"],
+  slug: "demo", stack: ["Next.js"], featured: false,
   fr: { title: "Démo", description: "desc fr", longDescription: "", problem: "p fr", solution: "", results: "" },
   en: { title: "Demo", problem: "" },
 };
@@ -16,7 +16,6 @@ const repo: Repo = {
   html_url: "https://github.com/TheYassAnz/boxing-timer",
   homepage: "",
   topics: ["portfolio", "expo", "react-native"],
-  archived: false,
   created_at: "2024-03-01T00:00:00Z",
   pushed_at: "2025-01-01T00:00:00Z",
   default_branch: "main",
@@ -42,14 +41,13 @@ test("toEntry maps GitHub fields without override", () => {
   assert.equal(e.fr.description, "From GitHub");
   assert.deepEqual(e.stack, ["expo", "react-native"]);
   assert.equal(e.year, 2024);
-  assert.equal(e.status, "done");
   assert.equal(e.demo, undefined);
-  assert.equal(toEntry({ ...repo, archived: true }).status, "archived");
+  assert.equal(e.featured, false);
 });
 
 test("toEntry: override wins field by field, undefined keeps GitHub value", () => {
-  const e = toEntry(repo, { slug: "boxing-timer", status: "in_progress", demo: undefined, fr: { problem: "p" }, en: { title: "Timer" } }, "/cover.png");
-  assert.equal(e.status, "in_progress");
+  const e = toEntry(repo, { slug: "boxing-timer", stack: ["Expo"], demo: undefined, fr: { problem: "p" }, en: { title: "Timer" } }, "/cover.png");
+  assert.deepEqual(e.stack, ["Expo"]);
   assert.equal(e.fr.problem, "p");
   assert.equal(e.fr.description, "From GitHub");
   assert.equal(e.image, "/cover.png");
@@ -63,4 +61,20 @@ test("content: override slugs are unique", () => {
 
 test("toParagraphs splits on blank lines and drops empties", () => {
   assert.deepEqual(toParagraphs("a\n\n\nb\n"), ["a", "b"]);
+});
+
+test("toEntry: featured topic flags the project and stays out of the stack", () => {
+  const e = toEntry({ ...repo, topics: ["portfolio", "featured", "expo"] });
+  assert.equal(e.featured, true);
+  assert.deepEqual(e.stack, ["expo"]);
+});
+
+test("sortFeaturedFirst keeps push order within each group", () => {
+  const items = [
+    { slug: "a", featured: false },
+    { slug: "b", featured: true },
+    { slug: "c", featured: false },
+    { slug: "d", featured: true },
+  ];
+  assert.deepEqual(sortFeaturedFirst(items).map((i) => i.slug), ["b", "d", "a", "c"]);
 });

@@ -1,6 +1,6 @@
 // Projects come from GitHub: every public repo of TheYassAnz with the
 // `portfolio` topic is listed (see src/lib/projects.ts). From GitHub:
-// description, topics → stack, homepage → demo, archived → status, created year,
+// description, topics → stack, homepage → demo, created year,
 // docs/cover.png → image.
 // Entries below are optional local overrides keyed by repo name (= slug):
 // EN translations, case-study text (problem/solution/results), role, title,
@@ -32,5 +32,21 @@ export const overrides: ProjectOverride[] = [
         "Application mobile pour lancer un timer de boxe en réglant le nombre de round, la durée d'un round et le temps de repos.",
     },
   },
-  { slug: "my-pets_app", fr: { title: "My Pets" } },
+  {
+    slug: "my-pets_app",
+    stack: ["React Native", "Expo", "Tailwind", "TypeScript"],
+    fr: { title: "My Pets" },
+  },
+  {
+    slug: "my-body",
+    stack: ["Next.js", "React", "Drizzle", "Postgresql", "Better Auth"],
+  },
+  {
+    slug: "tennis-score",
+    stack: ["Next.js", "React", "Express", "Prisma", "Postgresql"],
+  },
+  {
+    slug: "ace-vision",
+    stack: ["Swift", "SwiftUI", "Python", "YOLO"],
+  },
 ];
