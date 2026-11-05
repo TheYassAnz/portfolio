@@ -1,8 +1,6 @@
 import { overrides } from "../content/projects.ts";
 import type { Locale } from "./i18n.ts";
 
-export type ProjectStatus = "done" | "in_progress" | "archived";
-
 export type Project = {
   slug: string;
   title: string;
@@ -10,9 +8,9 @@ export type Project = {
   longDescription: string;
   image: string;
   stack: string[];
+  featured: boolean;
   github?: string;
   demo?: string;
-  status: ProjectStatus;
   role?: string;
   year?: number;
   problem: string;
@@ -33,8 +31,8 @@ export type LocalizedFields = {
 
 export type ProjectEntry = {
   slug: string;
-  status: ProjectStatus;
   stack: string[];
+  featured: boolean;
   year?: number;
   github?: string;
   demo?: string;
@@ -57,7 +55,6 @@ export type Repo = {
   html_url: string;
   homepage: string | null;
   topics: string[];
-  archived: boolean;
   created_at: string;
   pushed_at: string;
   default_branch: string;
@@ -65,6 +62,7 @@ export type Repo = {
 
 export const GITHUB_USER = "TheYassAnz";
 export const GITHUB_TOPIC = "portfolio";
+export const FEATURED_TOPIC = "featured";
 const REVALIDATE = 3600;
 
 export const coverUrl = (repo: Repo) =>
@@ -80,8 +78,8 @@ export function toEntry(repo: Repo, override?: ProjectOverride, image?: string):
   const { fr, ...rest } = override ?? {};
   return {
     slug: repo.name,
-    status: repo.archived ? "archived" : "done",
-    stack: repo.topics.filter((t) => t !== GITHUB_TOPIC),
+    stack: repo.topics.filter((t) => t !== GITHUB_TOPIC && t !== FEATURED_TOPIC),
+    featured: repo.topics.includes(FEATURED_TOPIC),
     year: new Date(repo.created_at).getFullYear(),
     github: repo.html_url,
     demo: repo.homepage || undefined,
@@ -141,12 +139,17 @@ async function findCover(repo: Repo): Promise<string | undefined> {
 
 async function getEntries(): Promise<ProjectEntry[]> {
   const repos = await fetchRepos();
-  return Promise.all(
+  const entries = await Promise.all(
     repos.map(async (repo) =>
       toEntry(repo, overrides.find((o) => o.slug === repo.name), await findCover(repo))
     )
   );
+  return sortFeaturedFirst(entries);
 }
+
+// Stable sort: favourites first, each group keeps the last-push order.
+export const sortFeaturedFirst = <T extends { featured: boolean }>(items: T[]) =>
+  items.toSorted((a, b) => Number(b.featured) - Number(a.featured));
 
 export async function getProjects(lang: Locale): Promise<Project[]> {
   return (await getEntries()).map((p) => localize(p, lang));
