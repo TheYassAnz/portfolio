@@ -45,4 +45,8 @@ export const overrides: ProjectOverride[] = [
     slug: "tennis-score",
     stack: ["Next.js", "React", "Express", "Prisma", "Postgresql"],
   },
+  {
+    slug: "ace-vision",
+    stack: ["Swift", "SwiftUI", "Python", "YOLO"],
+  },
 ];
