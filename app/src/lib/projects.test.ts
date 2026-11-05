@@ -1,11 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localize, toEntry, toParagraphs } from "./projects.ts";
+import { localize, sortFeaturedFirst, toEntry, toParagraphs } from "./projects.ts";
 import type { ProjectEntry, Repo } from "./projects.ts";
 import { overrides } from "../content/projects.ts";
 
 const entry: ProjectEntry = {
-  slug: "demo", stack: ["Next.js"],
+  slug: "demo", stack: ["Next.js"], featured: false,
   fr: { title: "Démo", description: "desc fr", longDescription: "", problem: "p fr", solution: "", results: "" },
   en: { title: "Demo", problem: "" },
 };
@@ -42,6 +42,7 @@ test("toEntry maps GitHub fields without override", () => {
   assert.deepEqual(e.stack, ["expo", "react-native"]);
   assert.equal(e.year, 2024);
   assert.equal(e.demo, undefined);
+  assert.equal(e.featured, false);
 });
 
 test("toEntry: override wins field by field, undefined keeps GitHub value", () => {
@@ -60,4 +61,20 @@ test("content: override slugs are unique", () => {
 
 test("toParagraphs splits on blank lines and drops empties", () => {
   assert.deepEqual(toParagraphs("a\n\n\nb\n"), ["a", "b"]);
+});
+
+test("toEntry: featured topic flags the project and stays out of the stack", () => {
+  const e = toEntry({ ...repo, topics: ["portfolio", "featured", "expo"] });
+  assert.equal(e.featured, true);
+  assert.deepEqual(e.stack, ["expo"]);
+});
+
+test("sortFeaturedFirst keeps push order within each group", () => {
+  const items = [
+    { slug: "a", featured: false },
+    { slug: "b", featured: true },
+    { slug: "c", featured: false },
+    { slug: "d", featured: true },
+  ];
+  assert.deepEqual(sortFeaturedFirst(items).map((i) => i.slug), ["b", "d", "a", "c"]);
 });

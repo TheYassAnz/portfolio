@@ -26,6 +26,7 @@ const en: Dictionary = {
   work: {
     title: "Work",
     empty: "No projects to show yet.",
+    featured: "Favorite",
     back: "Back to projects",
     problem: "Problem",
     solution: "Solution",

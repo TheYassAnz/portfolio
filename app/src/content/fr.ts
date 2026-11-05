@@ -25,6 +25,7 @@ const fr = {
   work: {
     title: "Projets",
     empty: "Aucun projet à afficher pour le moment.",
+    featured: "Favori",
     back: "Retour aux projets",
     problem: "Problème",
     solution: "Solution",
