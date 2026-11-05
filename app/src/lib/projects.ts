@@ -1,8 +1,6 @@
 import { overrides } from "../content/projects.ts";
 import type { Locale } from "./i18n.ts";
 
-export type ProjectStatus = "done" | "in_progress" | "archived";
-
 export type Project = {
   slug: string;
   title: string;
@@ -12,7 +10,6 @@ export type Project = {
   stack: string[];
   github?: string;
   demo?: string;
-  status: ProjectStatus;
   role?: string;
   year?: number;
   problem: string;
@@ -33,7 +30,6 @@ export type LocalizedFields = {
 
 export type ProjectEntry = {
   slug: string;
-  status: ProjectStatus;
   stack: string[];
   year?: number;
   github?: string;
@@ -57,7 +53,6 @@ export type Repo = {
   html_url: string;
   homepage: string | null;
   topics: string[];
-  archived: boolean;
   created_at: string;
   pushed_at: string;
   default_branch: string;
@@ -80,7 +75,6 @@ export function toEntry(repo: Repo, override?: ProjectOverride, image?: string):
   const { fr, ...rest } = override ?? {};
   return {
     slug: repo.name,
-    status: repo.archived ? "archived" : "done",
     stack: repo.topics.filter((t) => t !== GITHUB_TOPIC),
     year: new Date(repo.created_at).getFullYear(),
     github: repo.html_url,

@@ -5,7 +5,7 @@ import type { ProjectEntry, Repo } from "./projects.ts";
 import { overrides } from "../content/projects.ts";
 
 const entry: ProjectEntry = {
-  slug: "demo", status: "done", stack: ["Next.js"],
+  slug: "demo", stack: ["Next.js"],
   fr: { title: "Démo", description: "desc fr", longDescription: "", problem: "p fr", solution: "", results: "" },
   en: { title: "Demo", problem: "" },
 };
@@ -16,7 +16,6 @@ const repo: Repo = {
   html_url: "https://github.com/TheYassAnz/boxing-timer",
   homepage: "",
   topics: ["portfolio", "expo", "react-native"],
-  archived: false,
   created_at: "2024-03-01T00:00:00Z",
   pushed_at: "2025-01-01T00:00:00Z",
   default_branch: "main",
@@ -42,14 +41,12 @@ test("toEntry maps GitHub fields without override", () => {
   assert.equal(e.fr.description, "From GitHub");
   assert.deepEqual(e.stack, ["expo", "react-native"]);
   assert.equal(e.year, 2024);
-  assert.equal(e.status, "done");
   assert.equal(e.demo, undefined);
-  assert.equal(toEntry({ ...repo, archived: true }).status, "archived");
 });
 
 test("toEntry: override wins field by field, undefined keeps GitHub value", () => {
-  const e = toEntry(repo, { slug: "boxing-timer", status: "in_progress", demo: undefined, fr: { problem: "p" }, en: { title: "Timer" } }, "/cover.png");
-  assert.equal(e.status, "in_progress");
+  const e = toEntry(repo, { slug: "boxing-timer", stack: ["Expo"], demo: undefined, fr: { problem: "p" }, en: { title: "Timer" } }, "/cover.png");
+  assert.deepEqual(e.stack, ["Expo"]);
   assert.equal(e.fr.problem, "p");
   assert.equal(e.fr.description, "From GitHub");
   assert.equal(e.image, "/cover.png");

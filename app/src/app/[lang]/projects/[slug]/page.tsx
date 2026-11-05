@@ -46,7 +46,7 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
   const { work } = getDictionary(lang);
 
-  const meta = [project.role, project.year, work.status[project.status]].filter(
+  const meta = [project.role, project.year].filter(
     Boolean,
   );
   const intro = toParagraphs(project.longDescription);

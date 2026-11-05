@@ -1,4 +1,3 @@
-import type { ProjectStatus } from "@/lib/projects";
 
 const fr = {
   meta: {
@@ -26,11 +25,6 @@ const fr = {
   work: {
     title: "Projets",
     empty: "Aucun projet à afficher pour le moment.",
-    status: {
-      done: "Terminé",
-      in_progress: "En cours",
-      archived: "Archivé",
-    } as Record<ProjectStatus, string>,
     back: "Retour aux projets",
     problem: "Problème",
     solution: "Solution",

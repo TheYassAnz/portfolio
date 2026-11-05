@@ -26,11 +26,6 @@ const en: Dictionary = {
   work: {
     title: "Work",
     empty: "No projects to show yet.",
-    status: {
-      done: "Completed",
-      in_progress: "In progress",
-      archived: "Archived",
-    },
     back: "Back to projects",
     problem: "Problem",
     solution: "Solution",

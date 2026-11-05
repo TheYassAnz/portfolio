@@ -1,6 +1,6 @@
 // Projects come from GitHub: every public repo of TheYassAnz with the
 // `portfolio` topic is listed (see src/lib/projects.ts). From GitHub:
-// description, topics → stack, homepage → demo, archived → status, created year,
+// description, topics → stack, homepage → demo, created year,
 // docs/cover.png → image.
 // Entries below are optional local overrides keyed by repo name (= slug):
 // EN translations, case-study text (problem/solution/results), role, title,

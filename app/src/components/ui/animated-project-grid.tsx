@@ -34,7 +34,7 @@ export default function AnimatedProjectGrid({
       <div className="border-t border-line">
         {projects.map((project, i) => (
           <motion.div key={project.slug} variants={item}>
-            <ProjectCard project={project} index={i} lang={lang} dict={dict} />
+            <ProjectCard project={project} index={i} lang={lang} />
           </motion.div>
         ))}
       </div>
