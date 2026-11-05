@@ -38,7 +38,7 @@ Git flow. `main` = production, `dev` = integration.
 
 **i18n:** dictionaries in `src/content/{fr,en}.ts`, `Dictionary = typeof fr` (en must match fr's shape); `src/content/index.ts` exposes the getter. Components receive their dictionary slice as a `dict` prop (or the full `Dictionary` where several slices are needed, e.g. Navbar), and `lang` where needed.
 
-**Projects:** content lives in `src/content/projects.ts` (per-locale `fr`/`en` blocks; `en` falls back to `fr` per field), read through `src/lib/projects.ts`. Images go in `public/projects/<slug>/`. To add a project: add an entry in `projects.ts`, drop its images in that folder; the slug becomes `/[lang]/projects/<slug>` (statically generated).
+**Projects:** listed from GitHub in `src/lib/projects.ts`: every public repo of `TheYassAnz` with the `portfolio` topic (search API, ISR 1h, sorted by last push). GitHub gives description, topics → stack, homepage → demo, archived → status, created year, and `docs/cover.png` in the repo → image (only if it exists). `src/content/projects.ts` holds optional per-slug overrides (slug = repo name): EN translations, case-study text, title, role, or any field. To add a project: add the `portfolio` topic to the repo; the slug becomes `/[lang]/projects/<slug>` (ISR, `dynamicParams = true`). A GitHub failure hides the section instead of breaking the build.
 
 **Path alias:** `@/*` maps to `src/*`
 
@@ -50,6 +50,6 @@ Git flow. `main` = production, `dev` = integration.
 
 **Styling:** Tailwind utilities only; tokens in `globals.css` (`bg-bg`, `text-fg`, `text-fg-muted`, `border-line`, `bg-accent`, `text-accent-ink` for text on the page background, `text-on-accent`, `font-display`, `font-mono`). Light theme = `html.light`. Brutalist rules: no rounded corners, 1px `border-line` borders, no shadows. Use `md:`, `lg:`, `xl:` breakpoints.
 
-**Env vars:** `NEXT_PUBLIC_CONTACT_EMAIL` (displayed/copy), `CONTACT_EMAIL` (form recipient), `RESEND_API_KEY`.
+**Env vars:** `NEXT_PUBLIC_CONTACT_EMAIL` (displayed/copy), `CONTACT_EMAIL` (form recipient), `RESEND_API_KEY`, `GITHUB_TOKEN` (optional, raises the GitHub API rate limit).
 
 **Content still to provide:** real stats in the dictionaries.
