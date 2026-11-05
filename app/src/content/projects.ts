@@ -32,5 +32,17 @@ export const overrides: ProjectOverride[] = [
         "Application mobile pour lancer un timer de boxe en réglant le nombre de round, la durée d'un round et le temps de repos.",
     },
   },
-  { slug: "my-pets_app", fr: { title: "My Pets" } },
+  {
+    slug: "my-pets_app",
+    stack: ["React Native", "Expo", "Tailwind", "TypeScript"],
+    fr: { title: "My Pets" },
+  },
+  {
+    slug: "my-body",
+    stack: ["Next.js", "React", "Drizzle", "Postgresql", "Better Auth"],
+  },
+  {
+    slug: "tennis-score",
+    stack: ["Next.js", "React", "Express", "Prisma", "Postgresql"],
+  },
 ];
