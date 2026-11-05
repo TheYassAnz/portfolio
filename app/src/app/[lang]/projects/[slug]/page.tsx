@@ -8,17 +8,19 @@ import { getProject, getProjectSlugs, toParagraphs } from "@/lib/projects";
 
 type Props = Readonly<{ params: Promise<{ lang: string; slug: string }> }>;
 
-export const dynamicParams = false;
+// Repos tagged on GitHub after a deploy render on first request (ISR).
+export const dynamicParams = true;
+export const revalidate = 3600;
 
-export function generateStaticParams() {
-  const slugs = getProjectSlugs();
+export async function generateStaticParams() {
+  const slugs = await getProjectSlugs();
   return locales.flatMap((lang) => slugs.map((slug) => ({ lang, slug })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
   if (!isLocale(lang)) notFound();
-  const project = getProject(slug, lang);
+  const project = await getProject(slug, lang);
   if (!project) notFound();
   return {
     title: project.title,
@@ -40,7 +42,7 @@ const linkClass =
 export default async function ProjectPage({ params }: Props) {
   const { lang, slug } = await params;
   if (!isLocale(lang)) notFound();
-  const project = getProject(slug, lang);
+  const project = await getProject(slug, lang);
   if (!project) notFound();
   const { work } = getDictionary(lang);
 
