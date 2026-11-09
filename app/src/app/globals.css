@@ -43,6 +43,7 @@ html.light {
 }
 .readme .markdown-body { max-width: 48rem; }
 .readme .markdown-body > .markdown-heading:first-child:has(h1) { display: none; }
+.readme .markdown-body > h1:first-child { display: none; }
 .readme a.anchor { display: none; }
 .readme .markdown-heading { margin: 2rem 0 1rem; }
 .readme .markdown-heading > :is(h1, h2, h3, h4, h5, h6) { margin: 0; }

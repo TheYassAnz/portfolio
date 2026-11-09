@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/content";
 import { isLocale, locales } from "@/lib/i18n";
-import { getProject, getProjectSlugs, getReadme } from "@/lib/projects";
+import {
+  getProject,
+  getProjectContent,
+  getProjectSlugs,
+  getScreenshots,
+} from "@/lib/projects";
 
 type Props = Readonly<{ params: Promise<{ lang: string; slug: string }> }>;
 
@@ -43,7 +49,11 @@ export default async function ProjectPage({ params }: Props) {
   if (!isLocale(lang)) notFound();
   const project = await getProject(slug, lang);
   if (!project) notFound();
-  const readme = await getReadme(project.slug);
+  const content = await getProjectContent(project.slug, lang);
+  // Sequential on purpose: skip the GitHub call when there is no portfolio doc.
+  const screenshots =
+    content?.source === "portfolio" ? await getScreenshots(project.slug) : [];
+  const showGallery = screenshots.length > 0;
   const { work } = getDictionary(lang);
 
   const meta = [
@@ -90,16 +100,44 @@ export default async function ProjectPage({ params }: Props) {
         )}
       </header>
 
-      {readme ? (
+      {content ? (
         // HTML comes from GitHub's renderer, which sanitizes it.
         <div
           className="readme border-line border-b py-8"
-          dangerouslySetInnerHTML={{ __html: readme }}
+          dangerouslySetInnerHTML={{ __html: content.html }}
         />
       ) : (
         project.description && (
           <p className="max-w-2xl py-8">{project.description}</p>
         )
+      )}
+
+      {showGallery && (
+        <section className="py-8">
+          <h2 className="text-fg-muted mb-6 text-sm uppercase">
+            {work.gallery}
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {screenshots.map((src, i) => (
+              <a
+                key={src}
+                href={src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-line flex items-center justify-center border p-2"
+              >
+                <Image
+                  src={src}
+                  alt={`${project.title} — ${i + 1}`}
+                  width={1600}
+                  height={900}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="h-auto max-h-[80vh] w-auto max-w-full"
+                />
+              </a>
+            ))}
+          </div>
+        </section>
       )}
     </main>
   );

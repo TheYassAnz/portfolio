@@ -1,4 +1,3 @@
-
 const fr = {
   meta: {
     title: "Yassine ANZAR BASHA — Développeur Full-Stack",
@@ -27,6 +26,7 @@ const fr = {
     empty: "Aucun projet à afficher pour le moment.",
     featured: "Favori",
     back: "Retour aux projets",
+    gallery: "Galerie",
     code: "Code",
     demo: "Demo live",
   },
@@ -62,7 +62,10 @@ const fr = {
   stack: {
     title: "Stack",
     groups: [
-      { name: "Front", items: ["React", "Next.js", "Angular 21", "TypeScript", "Tailwind"] },
+      {
+        name: "Front",
+        items: ["React", "Next.js", "Angular 21", "TypeScript", "Tailwind"],
+      },
       { name: "Mobile", items: ["React Native", "Expo"] },
       { name: "Back", items: ["Node.js", "Java 21", "Strapi"] },
       { name: "Infra / DevOps", items: ["Terraform", "Kubernetes", "Jenkins"] },
