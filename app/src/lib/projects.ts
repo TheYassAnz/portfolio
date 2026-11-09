@@ -62,13 +62,21 @@ const titleCase = (name: string) =>
   name.replace(/[-_]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
 const defined = <T extends object>(o: T) =>
-  Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined)) as Partial<T>;
+  Object.fromEntries(
+    Object.entries(o).filter(([, v]) => v !== undefined),
+  ) as Partial<T>;
 
-export function toEntry(repo: Repo, override?: ProjectOverride, image?: string): ProjectEntry {
+export function toEntry(
+  repo: Repo,
+  override?: ProjectOverride,
+  image?: string,
+): ProjectEntry {
   const { fr, ...rest } = override ?? {};
   return {
     slug: repo.name,
-    stack: repo.topics.filter((t) => t !== GITHUB_TOPIC && t !== FEATURED_TOPIC),
+    stack: repo.topics.filter(
+      (t) => t !== GITHUB_TOPIC && t !== FEATURED_TOPIC,
+    ),
     featured: repo.topics.includes(FEATURED_TOPIC),
     year: new Date(repo.created_at).getFullYear(),
     github: repo.html_url,
@@ -87,7 +95,9 @@ export function localize(entry: ProjectEntry, lang: Locale): Project {
   const { fr, en, image, ...common } = entry;
   // Per-field fallback: undefined or "" in `en` keeps the fr value.
   const over = Object.fromEntries(
-    Object.entries(lang === "en" ? (en ?? {}) : {}).filter(([, v]) => v !== undefined && v !== "")
+    Object.entries(lang === "en" ? (en ?? {}) : {}).filter(
+      ([, v]) => v !== undefined && v !== "",
+    ),
   );
   return { ...common, ...fr, ...over, image: image ?? "" };
 }
@@ -98,7 +108,8 @@ const cached = { next: { revalidate: REVALIDATE } } as RequestInit;
 
 function githubHeaders(accept: string): HeadersInit {
   const headers: Record<string, string> = { Accept: accept };
-  if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  if (process.env.GITHUB_TOKEN)
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   return headers;
 }
 
@@ -132,21 +143,29 @@ async function getEntries(): Promise<ProjectEntry[]> {
   const repos = await fetchRepos();
   const entries = await Promise.all(
     repos.map(async (repo) =>
-      toEntry(repo, overrides.find((o) => o.slug === repo.name), await findCover(repo))
-    )
+      toEntry(
+        repo,
+        overrides.find((o) => o.slug === repo.name),
+        await findCover(repo),
+      ),
+    ),
   );
   return sortFeaturedFirst(entries);
 }
 
 // Stable sort: favourites first, each group keeps the last-push order.
-export const sortFeaturedFirst = <T extends { featured: boolean }>(items: T[]) =>
-  items.toSorted((a, b) => Number(b.featured) - Number(a.featured));
+export const sortFeaturedFirst = <T extends { featured: boolean }>(
+  items: T[],
+) => items.toSorted((a, b) => Number(b.featured) - Number(a.featured));
 
 export async function getProjects(lang: Locale): Promise<Project[]> {
   return (await getEntries()).map((p) => localize(p, lang));
 }
 
-export async function getProject(slug: string, lang: Locale): Promise<Project | null> {
+export async function getProject(
+  slug: string,
+  lang: Locale,
+): Promise<Project | null> {
   const entry = (await getEntries()).find((p) => p.slug === slug);
   return entry ? localize(entry, lang) : null;
 }
@@ -157,17 +176,23 @@ export async function getProjectSlugs(): Promise<string[]> {
 
 // GitHub's README HTML keeps relative paths: point them at raw.githubusercontent.com.
 export function absolutizeReadme(html: string, slug: string): string {
-  return html.replace(/\bsrc="(?!https?|\/\/|data:|#)(?:\.?\/)?([^"]*)"/g, (_, path) =>
-    `src="https://raw.githubusercontent.com/${GITHUB_USER}/${slug}/HEAD/${path}"`);
+  return html.replace(
+    /(?<![\w-])src="(?!https?:|\/\/|data:|#)(?:\.?\/)?([^"]*)"/g,
+    (_, path) =>
+      `src="https://raw.githubusercontent.com/${GITHUB_USER}/${slug}/HEAD/${path}"`,
+  );
 }
 
 // Rendered README HTML, or null when missing/unreachable (never throws).
 export async function getReadme(slug: string): Promise<string | null> {
   try {
-    const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${slug}/readme`, {
-      ...cached,
-      headers: githubHeaders("application/vnd.github.html"),
-    });
+    const res = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${encodeURIComponent(slug)}/readme`,
+      {
+        ...cached,
+        headers: githubHeaders("application/vnd.github.html"),
+      },
+    );
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`GitHub API ${res.status}`);
     return absolutizeReadme(await res.text(), slug);

@@ -41,8 +41,9 @@ const linkClass =
 export default async function ProjectPage({ params }: Props) {
   const { lang, slug } = await params;
   if (!isLocale(lang)) notFound();
-  const [project, readme] = await Promise.all([getProject(slug, lang), getReadme(slug)]);
+  const project = await getProject(slug, lang);
   if (!project) notFound();
+  const readme = await getReadme(project.slug);
   const { work } = getDictionary(lang);
 
   const meta = [
@@ -55,14 +56,14 @@ export default async function ProjectPage({ params }: Props) {
     <main className="py-16">
       <Link
         href={`/${lang}#projects`}
-        className="mb-10 inline-block text-sm text-fg-muted hover:text-fg"
+        className="text-fg-muted hover:text-fg mb-10 inline-block text-sm"
       >
         ← {work.back}
       </Link>
 
-      <header className="border-y border-line py-8">
+      <header className="border-line border-y py-8">
         <h1 className="font-display text-4xl md:text-6xl">{project.title}</h1>
-        <p className="mt-4 text-sm text-fg-muted">{meta.join(" · ")}</p>
+        <p className="text-fg-muted mt-4 text-sm">{meta.join(" · ")}</p>
         {(project.github || project.demo) && (
           <div className="mt-6 flex gap-4 text-sm">
             {project.github && (
@@ -91,9 +92,14 @@ export default async function ProjectPage({ params }: Props) {
 
       {readme ? (
         // HTML comes from GitHub's renderer, which sanitizes it.
-        <article className="readme border-b border-line py-8" dangerouslySetInnerHTML={{ __html: readme }} />
+        <article
+          className="readme border-line border-b py-8"
+          dangerouslySetInnerHTML={{ __html: readme }}
+        />
       ) : (
-        project.description && <p className="max-w-2xl py-8">{project.description}</p>
+        project.description && (
+          <p className="max-w-2xl py-8">{project.description}</p>
+        )
       )}
     </main>
   );

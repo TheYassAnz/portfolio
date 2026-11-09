@@ -1,11 +1,18 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { absolutizeReadme, localize, sortFeaturedFirst, toEntry } from "./projects.ts";
+import {
+  absolutizeReadme,
+  localize,
+  sortFeaturedFirst,
+  toEntry,
+} from "./projects.ts";
 import type { ProjectEntry, Repo } from "./projects.ts";
 import { overrides } from "../content/projects.ts";
 
 const entry: ProjectEntry = {
-  slug: "demo", stack: ["Next.js"], featured: false,
+  slug: "demo",
+  stack: ["Next.js"],
+  featured: false,
   fr: { title: "Démo", description: "desc fr", role: "role fr" },
   en: { title: "Demo", role: "" },
 };
@@ -45,7 +52,17 @@ test("toEntry maps GitHub fields without override", () => {
 });
 
 test("toEntry: override wins field by field, undefined keeps GitHub value", () => {
-  const e = toEntry(repo, { slug: "boxing-timer", stack: ["Expo"], demo: undefined, fr: { role: "r" }, en: { title: "Timer" } }, "/cover.png");
+  const e = toEntry(
+    repo,
+    {
+      slug: "boxing-timer",
+      stack: ["Expo"],
+      demo: undefined,
+      fr: { role: "r" },
+      en: { title: "Timer" },
+    },
+    "/cover.png",
+  );
   assert.deepEqual(e.stack, ["Expo"]);
   assert.equal(e.fr.role, "r");
   assert.equal(e.fr.description, "From GitHub");
@@ -61,12 +78,12 @@ test("content: override slugs are unique", () => {
 test("absolutizeReadme rewrites relative src only", () => {
   const raw = "https://raw.githubusercontent.com/TheYassAnz/demo/HEAD/";
   const out = absolutizeReadme(
-    '<img src="docs/a.png"><img src="./b.png"><img src="/c.png"><img src="https://x/y.png"><img src="data:image/png;base64,AA"><img src="//x/z.png">',
-    "demo"
+    '<img src="docs/a.png"><img src="./b.png"><img src="/c.png"><img src="https://x/y.png"><img src="data:image/png;base64,AA"><img src="//x/z.png"><img data-src="lazy.png"><img src="httpdocs/a.png">',
+    "demo",
   );
   assert.equal(
     out,
-    `<img src="${raw}docs/a.png"><img src="${raw}b.png"><img src="${raw}c.png"><img src="https://x/y.png"><img src="data:image/png;base64,AA"><img src="//x/z.png">`
+    `<img src="${raw}docs/a.png"><img src="${raw}b.png"><img src="${raw}c.png"><img src="https://x/y.png"><img src="data:image/png;base64,AA"><img src="//x/z.png"><img data-src="lazy.png"><img src="${raw}httpdocs/a.png">`,
   );
 });
 
@@ -83,5 +100,8 @@ test("sortFeaturedFirst keeps push order within each group", () => {
     { slug: "c", featured: false },
     { slug: "d", featured: true },
   ];
-  assert.deepEqual(sortFeaturedFirst(items).map((i) => i.slug), ["b", "d", "a", "c"]);
+  assert.deepEqual(
+    sortFeaturedFirst(items).map((i) => i.slug),
+    ["b", "d", "a", "c"],
+  );
 });
