@@ -28,6 +28,7 @@ const en: Dictionary = {
     empty: "No projects to show yet.",
     featured: "Favorite",
     back: "Back to projects",
+    gallery: "Gallery",
     code: "Code",
     demo: "Live demo",
   },
@@ -63,7 +64,10 @@ const en: Dictionary = {
   stack: {
     title: "Stack",
     groups: [
-      { name: "Front", items: ["React", "Next.js", "Angular 21", "TypeScript", "Tailwind"] },
+      {
+        name: "Front",
+        items: ["React", "Next.js", "Angular 21", "TypeScript", "Tailwind"],
+      },
       { name: "Mobile", items: ["React Native", "Expo"] },
       { name: "Back", items: ["Node.js", "Java 21", "Strapi"] },
       { name: "Infra / DevOps", items: ["Terraform", "Kubernetes", "Jenkins"] },
