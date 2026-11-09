@@ -1,13 +1,20 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localize, sortFeaturedFirst, toEntry, toParagraphs } from "./projects.ts";
+import {
+  absolutizeReadme,
+  localize,
+  sortFeaturedFirst,
+  toEntry,
+} from "./projects.ts";
 import type { ProjectEntry, Repo } from "./projects.ts";
 import { overrides } from "../content/projects.ts";
 
 const entry: ProjectEntry = {
-  slug: "demo", stack: ["Next.js"], featured: false,
-  fr: { title: "Démo", description: "desc fr", longDescription: "", problem: "p fr", solution: "", results: "" },
-  en: { title: "Demo", problem: "" },
+  slug: "demo",
+  stack: ["Next.js"],
+  featured: false,
+  fr: { title: "Démo", description: "desc fr", role: "role fr" },
+  en: { title: "Demo", role: "" },
 };
 
 const repo: Repo = {
@@ -25,9 +32,8 @@ test("localize en overrides only provided non-empty fields", () => {
   const p = localize(entry, "en");
   assert.equal(p.title, "Demo");
   assert.equal(p.description, "desc fr");
-  assert.equal(p.problem, "p fr");
+  assert.equal(p.role, "role fr");
   assert.equal(p.image, "");
-  assert.deepEqual(p.gallery, []);
 });
 
 test("localize without en block falls back to fr", () => {
@@ -46,9 +52,19 @@ test("toEntry maps GitHub fields without override", () => {
 });
 
 test("toEntry: override wins field by field, undefined keeps GitHub value", () => {
-  const e = toEntry(repo, { slug: "boxing-timer", stack: ["Expo"], demo: undefined, fr: { problem: "p" }, en: { title: "Timer" } }, "/cover.png");
+  const e = toEntry(
+    repo,
+    {
+      slug: "boxing-timer",
+      stack: ["Expo"],
+      demo: undefined,
+      fr: { role: "r" },
+      en: { title: "Timer" },
+    },
+    "/cover.png",
+  );
   assert.deepEqual(e.stack, ["Expo"]);
-  assert.equal(e.fr.problem, "p");
+  assert.equal(e.fr.role, "r");
   assert.equal(e.fr.description, "From GitHub");
   assert.equal(e.image, "/cover.png");
   assert.equal(localize(e, "en").title, "Timer");
@@ -59,8 +75,28 @@ test("content: override slugs are unique", () => {
   assert.equal(new Set(slugs).size, slugs.length);
 });
 
-test("toParagraphs splits on blank lines and drops empties", () => {
-  assert.deepEqual(toParagraphs("a\n\n\nb\n"), ["a", "b"]);
+test("absolutizeReadme rewrites relative src only", () => {
+  const raw = "https://raw.githubusercontent.com/TheYassAnz/demo/HEAD/";
+  const out = absolutizeReadme(
+    '<img src="docs/a.png"><img src="./b.png"><img src="/c.png"><img src="https://x/y.png"><img src="data:image/png;base64,AA"><img src="//x/z.png"><img data-src="lazy.png"><img src="httpdocs/a.png">',
+    "demo",
+  );
+  assert.equal(
+    out,
+    `<img src="${raw}docs/a.png"><img src="${raw}b.png"><img src="${raw}c.png"><img src="https://x/y.png"><img src="data:image/png;base64,AA"><img src="//x/z.png"><img data-src="lazy.png"><img src="${raw}httpdocs/a.png">`,
+  );
+});
+
+test("absolutizeReadme rewrites relative href to github blob", () => {
+  const blob = "https://github.com/TheYassAnz/demo/";
+  const out = absolutizeReadme(
+    '<a href="docs/x.png">a</a><a href="../../releases">b</a><a href="#top">c</a><a href="mailto:a@b.c">d</a><a href="https://x.io">e</a><a data-href="k">f</a>',
+    "demo",
+  );
+  assert.equal(
+    out,
+    `<a href="${blob}blob/HEAD/docs/x.png">a</a><a href="${blob}releases">b</a><a href="#top">c</a><a href="mailto:a@b.c">d</a><a href="https://x.io">e</a><a data-href="k">f</a>`,
+  );
 });
 
 test("toEntry: featured topic flags the project and stays out of the stack", () => {
@@ -76,5 +112,8 @@ test("sortFeaturedFirst keeps push order within each group", () => {
     { slug: "c", featured: false },
     { slug: "d", featured: true },
   ];
-  assert.deepEqual(sortFeaturedFirst(items).map((i) => i.slug), ["b", "d", "a", "c"]);
+  assert.deepEqual(
+    sortFeaturedFirst(items).map((i) => i.slug),
+    ["b", "d", "a", "c"],
+  );
 });

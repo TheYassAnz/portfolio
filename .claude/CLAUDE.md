@@ -32,13 +32,13 @@ Git flow. `main` = production, `dev` = integration.
 
 **Stack:** Next.js 16 App Router, React 19, TypeScript (strict), Tailwind CSS 4. Brutalist / tech look, FR/EN, light/dark.
 
-**Routes:** everything lives under `src/app/[lang]/` (`fr` | `en`). `src/proxy.ts` redirects every path without a locale prefix to `/fr` or `/en` (negotiated from Accept-Language), except `/api`, `/_next` and dotted paths. Case studies: `[lang]/projects/[slug]`. Contact form posts to `src/app/api/contact/route.ts` (Resend).
+**Routes:** everything lives under `src/app/[lang]/` (`fr` | `en`). `src/proxy.ts` redirects every path without a locale prefix to `/fr` or `/en` (negotiated from Accept-Language), except `/api`, `/_next` and dotted paths. Project pages `[lang]/projects/[slug]` show the repo README. Contact form posts to `src/app/api/contact/route.ts` (Resend).
 
 **Page structure:** Single page, anchor nav. Order: Hero → Stats → Projects (`#projects`) → About (`#about`) → Stack (`#stack`) → Contact (`#contact`). Navbar and Footer are in `[lang]/layout.tsx`.
 
 **i18n:** dictionaries in `src/content/{fr,en}.ts`, `Dictionary = typeof fr` (en must match fr's shape); `src/content/index.ts` exposes the getter. Components receive their dictionary slice as a `dict` prop (or the full `Dictionary` where several slices are needed, e.g. Navbar), and `lang` where needed.
 
-**Projects:** listed from GitHub in `src/lib/projects.ts`: every public repo of `TheYassAnz` with the `portfolio` topic (search API, ISR 1h, sorted by last push). GitHub gives description, topics → stack, homepage → demo, created year, and `docs/cover.png` in the repo → image (only if it exists). `src/content/projects.ts` holds optional per-slug overrides (slug = repo name): EN translations, case-study text, title, role, or any field. Add the `featured` topic to mark a favorite: ★ on the card and project page, listed first. To add a project: add the `portfolio` topic to the repo; the slug becomes `/[lang]/projects/<slug>` (ISR, `dynamicParams = true`). A GitHub failure hides the section instead of breaking the build.
+**Projects:** listed from GitHub in `src/lib/projects.ts`: every public repo of `TheYassAnz` with the `portfolio` topic (search API, ISR 1h, sorted by last push). GitHub gives description, topics → stack, homepage → demo, created year, and `docs/cover.png` in the repo → image (only if it exists). `src/content/projects.ts` holds optional per-slug overrides (slug = repo name): EN translations, title, role, or any field (no case-study text: the project page shows the repo README, fetched from the GitHub API, ISR 1h). Add the `featured` topic to mark a favorite: ★ on the card and project page, listed first. To add a project: add the `portfolio` topic to the repo; the slug becomes `/[lang]/projects/<slug>` (ISR, `dynamicParams = true`). A GitHub failure hides the section instead of breaking the build.
 
 **Path alias:** `@/*` maps to `src/*`
 

@@ -1,10 +1,9 @@
 // Projects come from GitHub: every public repo of TheYassAnz with the
 // `portfolio` topic is listed (see src/lib/projects.ts). From GitHub:
 // description, topics → stack, homepage → demo, created year,
-// docs/cover.png → image.
+// docs/cover.png → image. The project page shows the repo README.
 // Entries below are optional local overrides keyed by repo name (= slug):
-// EN translations, case-study text (problem/solution/results), role, title,
-// or any field to replace the GitHub value.
+// EN translations, role, title, or any field to replace the GitHub value.
 import type { ProjectOverride } from "../lib/projects.ts";
 
 export const overrides: ProjectOverride[] = [
