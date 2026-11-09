@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/content";
 import { isLocale, locales } from "@/lib/i18n";
-import { getProject, getProjectSlugs, toParagraphs } from "@/lib/projects";
+import { getProject, getProjectSlugs, getReadme } from "@/lib/projects";
 
 type Props = Readonly<{ params: Promise<{ lang: string; slug: string }> }>;
 
@@ -42,7 +41,7 @@ const linkClass =
 export default async function ProjectPage({ params }: Props) {
   const { lang, slug } = await params;
   if (!isLocale(lang)) notFound();
-  const project = await getProject(slug, lang);
+  const [project, readme] = await Promise.all([getProject(slug, lang), getReadme(slug)]);
   if (!project) notFound();
   const { work } = getDictionary(lang);
 
@@ -51,12 +50,6 @@ export default async function ProjectPage({ params }: Props) {
     project.year,
     project.featured && `★ ${work.featured}`,
   ].filter(Boolean);
-  const intro = toParagraphs(project.longDescription);
-  const blocks = [
-    [work.problem, project.problem],
-    [work.solution, project.solution],
-    [work.results, project.results],
-  ].filter(([, text]) => text);
 
   return (
     <main className="py-16">
@@ -96,70 +89,11 @@ export default async function ProjectPage({ params }: Props) {
         )}
       </header>
 
-      {project.image && (
-        <Image
-          src={project.image}
-          alt={project.title}
-          width={1600}
-          height={900}
-          sizes="(min-width: 1280px) 1216px, 100vw"
-          className="mt-8 h-auto w-full border border-line"
-          priority
-        />
-      )}
-
-      {intro.length > 0 && (
-        <section className="max-w-2xl space-y-4 border-b border-line py-8">
-          {intro.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </section>
-      )}
-
-      {blocks.map(([label, text]) => (
-        <section
-          key={label}
-          className="grid gap-4 border-b border-line py-8 md:grid-cols-[12rem_1fr]"
-        >
-          <h2 className="text-sm text-fg-muted uppercase">{label}</h2>
-          <div className="max-w-2xl space-y-4">
-            {toParagraphs(text).map((p) => (
-              <p key={p}>{p}</p>
-            ))}
-          </div>
-        </section>
-      ))}
-
-      <section className="grid gap-4 border-b border-line py-8 md:grid-cols-[12rem_1fr]">
-        <h2 className="text-sm text-fg-muted uppercase">{work.stack}</h2>
-        <ul className="flex flex-wrap gap-2 text-sm">
-          {project.stack.map((tech) => (
-            <li key={tech} className="border border-line px-3 py-1">
-              {tech}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {project.gallery.length > 0 && (
-        <section className="py-8">
-          <h2 className="mb-4 text-sm text-fg-muted uppercase">
-            {work.gallery}
-          </h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {project.gallery.map((src, i) => (
-              <Image
-                key={src}
-                src={src}
-                alt={`${project.title} — ${i + 1}`}
-                width={1600}
-                height={900}
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="h-auto w-full border border-line"
-              />
-            ))}
-          </div>
-        </section>
+      {readme ? (
+        // HTML comes from GitHub's renderer, which sanitizes it.
+        <article className="readme border-b border-line py-8" dangerouslySetInnerHTML={{ __html: readme }} />
+      ) : (
+        project.description && <p className="max-w-2xl py-8">{project.description}</p>
       )}
     </main>
   );

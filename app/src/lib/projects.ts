@@ -5,7 +5,6 @@ export type Project = {
   slug: string;
   title: string;
   description: string;
-  longDescription: string;
   image: string;
   stack: string[];
   featured: boolean;
@@ -13,20 +12,12 @@ export type Project = {
   demo?: string;
   role?: string;
   year?: number;
-  problem: string;
-  solution: string;
-  results: string;
-  gallery: string[];
 };
 
 export type LocalizedFields = {
   title: string;
   description: string;
-  longDescription: string;
   role?: string;
-  problem: string;
-  solution: string;
-  results: string;
 };
 
 export type ProjectEntry = {
@@ -37,7 +28,6 @@ export type ProjectEntry = {
   github?: string;
   demo?: string;
   image?: string;
-  gallery?: string[];
   fr: LocalizedFields;
   en?: Partial<LocalizedFields>;
 };
@@ -88,31 +78,32 @@ export function toEntry(repo: Repo, override?: ProjectOverride, image?: string):
     fr: {
       title: titleCase(repo.name),
       description: repo.description ?? "",
-      longDescription: "",
-      problem: "",
-      solution: "",
-      results: "",
       ...defined(fr ?? {}),
     },
   };
 }
 
 export function localize(entry: ProjectEntry, lang: Locale): Project {
-  const { fr, en, image, gallery, ...common } = entry;
+  const { fr, en, image, ...common } = entry;
   // Per-field fallback: undefined or "" in `en` keeps the fr value.
   const over = Object.fromEntries(
     Object.entries(lang === "en" ? (en ?? {}) : {}).filter(([, v]) => v !== undefined && v !== "")
   );
-  return { ...common, ...fr, ...over, image: image ?? "", gallery: gallery ?? [] };
+  return { ...common, ...fr, ...over, image: image ?? "" };
 }
 
 // GitHub data is cached by Next for REVALIDATE seconds (ISR); outside Next the
 // extra `next` option is ignored.
 const cached = { next: { revalidate: REVALIDATE } } as RequestInit;
 
-async function fetchRepos(): Promise<Repo[]> {
-  const headers: HeadersInit = { Accept: "application/vnd.github+json" };
+function githubHeaders(accept: string): HeadersInit {
+  const headers: Record<string, string> = { Accept: accept };
   if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  return headers;
+}
+
+async function fetchRepos(): Promise<Repo[]> {
+  const headers = githubHeaders("application/vnd.github+json");
   const url = `https://api.github.com/search/repositories?q=user:${GITHUB_USER}+topic:${GITHUB_TOPIC}&sort=updated&per_page=100`;
   try {
     const res = await fetch(url, { ...cached, headers });
@@ -164,9 +155,24 @@ export async function getProjectSlugs(): Promise<string[]> {
   return (await getEntries()).map((p) => p.slug);
 }
 
-export function toParagraphs(text: string): string[] {
-  return text
-    .split(/\n\s*\n/)
-    .map((p) => p.trim())
-    .filter(Boolean);
+// GitHub's README HTML keeps relative paths: point them at raw.githubusercontent.com.
+export function absolutizeReadme(html: string, slug: string): string {
+  return html.replace(/\bsrc="(?!https?|\/\/|data:|#)(?:\.?\/)?([^"]*)"/g, (_, path) =>
+    `src="https://raw.githubusercontent.com/${GITHUB_USER}/${slug}/HEAD/${path}"`);
+}
+
+// Rendered README HTML, or null when missing/unreachable (never throws).
+export async function getReadme(slug: string): Promise<string | null> {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${slug}/readme`, {
+      ...cached,
+      headers: githubHeaders("application/vnd.github.html"),
+    });
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    return absolutizeReadme(await res.text(), slug);
+  } catch (err) {
+    console.error("[projects] README fetch failed:", err);
+    return null;
+  }
 }
