@@ -49,11 +49,11 @@ export default async function ProjectPage({ params }: Props) {
   if (!isLocale(lang)) notFound();
   const project = await getProject(slug, lang);
   if (!project) notFound();
-  const [content, screenshots] = await Promise.all([
-    getProjectContent(project.slug, lang),
-    getScreenshots(project.slug),
-  ]);
-  const showGallery = content?.source === "portfolio" && screenshots.length > 0;
+  const content = await getProjectContent(project.slug, lang);
+  // Sequential on purpose: skip the GitHub call when there is no portfolio doc.
+  const screenshots =
+    content?.source === "portfolio" ? await getScreenshots(project.slug) : [];
+  const showGallery = screenshots.length > 0;
   const { work } = getDictionary(lang);
 
   const meta = [
@@ -117,16 +117,22 @@ export default async function ProjectPage({ params }: Props) {
           <h2 className="text-fg-muted mb-6 text-sm uppercase">
             {work.gallery}
           </h2>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {screenshots.map((src, i) => (
-              <a key={src} href={src} target="_blank" rel="noopener noreferrer">
+              <a
+                key={src}
+                href={src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-line flex items-center justify-center border p-2"
+              >
                 <Image
                   src={src}
                   alt={`${project.title} — ${i + 1}`}
                   width={1600}
                   height={900}
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="border-line h-auto w-full border"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="h-auto max-h-[80vh] w-auto max-w-full"
                 />
               </a>
             ))}

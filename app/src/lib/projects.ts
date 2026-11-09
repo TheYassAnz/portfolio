@@ -219,6 +219,7 @@ export const portfolioDocPaths = (lang: Locale) => [
 
 // Next does not reliably cache POST fetches, so the render is wrapped in
 // unstable_cache (dynamic import keeps this module loadable by node --test).
+// render() runs directly only if next/cache can't load or there is no cache.
 async function renderMarkdown(slug: string, text: string): Promise<string> {
   const render = async () => {
     const res = await fetch("https://api.github.com/markdown", {
@@ -236,15 +237,22 @@ async function renderMarkdown(slug: string, text: string): Promise<string> {
     if (!res.ok) throw new Error(`GitHub API ${res.status}`);
     return res.text();
   };
+  let cache: typeof import("next/cache").unstable_cache;
   try {
-    const { unstable_cache } = await import("next/cache");
-    return await unstable_cache(render, ["md", slug, text], {
+    ({ unstable_cache: cache } = await import("next/cache"));
+  } catch {
+    return render(); // next/cache not loadable (node --test)
+  }
+  try {
+    return await cache(render, ["md", slug, text], {
       revalidate: REVALIDATE,
     })();
   } catch (err) {
-    // Outside Next (no incremental cache) or cache failure: render directly.
-    if (err instanceof Error && /^GitHub API/.test(err.message)) throw err;
-    return render();
+    // Only "no incremental cache" (called outside Next) renders directly;
+    // anything else (GitHub or network error) propagates to the caller.
+    if (err instanceof Error && /incremental ?cache/i.test(err.message))
+      return render();
+    throw err;
   }
 }
 
