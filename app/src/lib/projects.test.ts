@@ -2,6 +2,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   absolutizeReadme,
+  portfolioDocPaths,
+  toScreenshots,
   localize,
   sortFeaturedFirst,
   toEntry,
@@ -115,5 +117,42 @@ test("sortFeaturedFirst keeps push order within each group", () => {
   assert.deepEqual(
     sortFeaturedFirst(items).map((i) => i.slug),
     ["b", "d", "a", "c"],
+  );
+});
+
+test("absolutizeReadme resolves from dir", () => {
+  const base = "https://raw.githubusercontent.com/TheYassAnz/x/HEAD/";
+  const out = absolutizeReadme(
+    '<img src="screenshots/a.png"><a href="screenshots/a.png">l</a><img src="../README.md"><img src="/x.png">',
+    "x",
+    "docs/",
+  );
+  assert.ok(out.includes(`src="${base}docs/screenshots/a.png"`));
+  assert.ok(
+    out.includes(
+      'href="https://github.com/TheYassAnz/x/blob/HEAD/docs/screenshots/a.png"',
+    ),
+  );
+  assert.ok(out.includes(`src="${base}README.md"`));
+  assert.ok(out.includes(`src="${base}x.png"`));
+});
+
+test("portfolioDocPaths", () => {
+  assert.deepEqual(portfolioDocPaths("en"), [
+    "docs/portfolio.en.md",
+    "docs/portfolio.fr.md",
+  ]);
+  assert.deepEqual(portfolioDocPaths("fr"), ["docs/portfolio.fr.md"]);
+});
+
+test("toScreenshots filters, sorts numerically, maps to url", () => {
+  const f = (name: string, type = "file") => ({
+    name,
+    type,
+    download_url: `u/${name}`,
+  });
+  assert.deepEqual(
+    toScreenshots([f("10.png"), f("2.PNG"), f("a.md"), f("dir.png", "dir")]),
+    ["u/2.PNG", "u/10.png"],
   );
 });

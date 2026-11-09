@@ -175,7 +175,7 @@ export async function getProjectSlugs(): Promise<string[]> {
 }
 
 // GitHub's README HTML keeps relative paths: point them at raw.githubusercontent.com.
-export function absolutizeReadme(html: string, slug: string): string {
+export function absolutizeReadme(html: string, slug: string, dir = ""): string {
   return html.replace(
     /(?<![\w-])(src|href)="(?![a-z][a-z0-9+.-]*:|\/\/|#)([^"]*)"/gi,
     (_, attr: string, value: string) => {
@@ -187,7 +187,7 @@ export function absolutizeReadme(html: string, slug: string): string {
       // A leading "/" means repo root, as on GitHub.
       const url = new URL(
         value.replace(/^\//, ""),
-        `https://${root}/${GITHUB_USER}/${slug}/${path}HEAD/`,
+        `https://${root}/${GITHUB_USER}/${slug}/${path}HEAD/${value.startsWith("/") ? "" : dir}`,
       ).href;
       return `${attr}="${url}"`;
     },
@@ -210,5 +210,106 @@ export async function getReadme(slug: string): Promise<string | null> {
   } catch (err) {
     console.error("[projects] README fetch failed:", err);
     return null;
+  }
+}
+
+export const portfolioDocPaths = (lang: Locale) => [
+  ...new Set([`docs/portfolio.${lang}.md`, "docs/portfolio.fr.md"]),
+];
+
+// Next does not reliably cache POST fetches, so the render is wrapped in
+// unstable_cache (dynamic import keeps this module loadable by node --test).
+async function renderMarkdown(slug: string, text: string): Promise<string> {
+  const render = async () => {
+    const res = await fetch("https://api.github.com/markdown", {
+      method: "POST",
+      headers: {
+        ...(githubHeaders("text/html") as Record<string, string>),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text,
+        mode: "gfm",
+        context: `${GITHUB_USER}/${slug}`,
+      }),
+    });
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    return res.text();
+  };
+  try {
+    const { unstable_cache } = await import("next/cache");
+    return await unstable_cache(render, ["md", slug, text], {
+      revalidate: REVALIDATE,
+    })();
+  } catch (err) {
+    // Outside Next (no incremental cache) or cache failure: render directly.
+    if (err instanceof Error && /^GitHub API/.test(err.message)) throw err;
+    return render();
+  }
+}
+
+// Raw docs/portfolio.<lang>.md text, or null when absent/unreachable.
+async function fetchRaw(slug: string, path: string): Promise<string | null> {
+  try {
+    const res = await fetch(
+      `https://raw.githubusercontent.com/${GITHUB_USER}/${encodeURIComponent(slug)}/HEAD/${path}`,
+      cached,
+    );
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error(`raw ${res.status}`);
+    return await res.text();
+  } catch (err) {
+    console.error("[projects] portfolio doc fetch failed:", err);
+    return null;
+  }
+}
+
+// docs/portfolio.<lang>.md (fr fallback) rendered, else the README.
+export async function getProjectContent(
+  slug: string,
+  lang: Locale,
+): Promise<{ html: string; source: "portfolio" | "readme" } | null> {
+  for (const path of portfolioDocPaths(lang)) {
+    const text = await fetchRaw(slug, path);
+    if (text === null) continue;
+    try {
+      const html = await renderMarkdown(slug, text);
+      return {
+        html: absolutizeReadme(
+          `<div class="markdown-body">${html}</div>`,
+          slug,
+          "docs/",
+        ),
+        source: "portfolio",
+      };
+    } catch (err) {
+      console.error("[projects] markdown render failed:", err);
+      break;
+    }
+  }
+  const html = await getReadme(slug);
+  return html ? { html, source: "readme" } : null;
+}
+
+type ContentItem = { name: string; type: string; download_url: string | null };
+
+export const toScreenshots = (items: ContentItem[]): string[] =>
+  items
+    .filter((i) => i.type === "file" && /\.(png|jpe?g|webp|gif)$/i.test(i.name))
+    .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))
+    .map((i) => i.download_url as string);
+
+export async function getScreenshots(slug: string): Promise<string[]> {
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${encodeURIComponent(slug)}/contents/docs/screenshots`,
+      { ...cached, headers: githubHeaders("application/vnd.github+json") },
+    );
+    if (res.status === 404) return [];
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    return toScreenshots((await res.json()) as ContentItem[]);
+  } catch (err) {
+    console.error("[projects] screenshots fetch failed:", err);
+    return [];
   }
 }
