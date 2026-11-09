@@ -32,7 +32,7 @@ Git flow. `main` = production, `dev` = integration.
 
 **Stack:** Next.js 16 App Router, React 19, TypeScript (strict), Tailwind CSS 4. Brutalist / tech look, FR/EN, light/dark.
 
-**Routes:** everything lives under `src/app/[lang]/` (`fr` | `en`). `src/proxy.ts` redirects every path without a locale prefix to `/fr` or `/en` (negotiated from Accept-Language), except `/api`, `/_next` and dotted paths. Case studies: `[lang]/projects/[slug]`. Contact form posts to `src/app/api/contact/route.ts` (Resend).
+**Routes:** everything lives under `src/app/[lang]/` (`fr` | `en`). `src/proxy.ts` redirects every path without a locale prefix to `/fr` or `/en` (negotiated from Accept-Language), except `/api`, `/_next` and dotted paths. Project pages `[lang]/projects/[slug]` show the repo README. Contact form posts to `src/app/api/contact/route.ts` (Resend).
 
 **Page structure:** Single page, anchor nav. Order: Hero → Stats → Projects (`#projects`) → About (`#about`) → Stack (`#stack`) → Contact (`#contact`). Navbar and Footer are in `[lang]/layout.tsx`.
 

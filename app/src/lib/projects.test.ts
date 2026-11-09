@@ -87,6 +87,18 @@ test("absolutizeReadme rewrites relative src only", () => {
   );
 });
 
+test("absolutizeReadme rewrites relative href to github blob", () => {
+  const blob = "https://github.com/TheYassAnz/demo/";
+  const out = absolutizeReadme(
+    '<a href="docs/x.png">a</a><a href="../../releases">b</a><a href="#top">c</a><a href="mailto:a@b.c">d</a><a href="https://x.io">e</a><a data-href="k">f</a>',
+    "demo",
+  );
+  assert.equal(
+    out,
+    `<a href="${blob}blob/HEAD/docs/x.png">a</a><a href="${blob}releases">b</a><a href="#top">c</a><a href="mailto:a@b.c">d</a><a href="https://x.io">e</a><a data-href="k">f</a>`,
+  );
+});
+
 test("toEntry: featured topic flags the project and stays out of the stack", () => {
   const e = toEntry({ ...repo, topics: ["portfolio", "featured", "expo"] });
   assert.equal(e.featured, true);

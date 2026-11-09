@@ -92,7 +92,7 @@ export default async function ProjectPage({ params }: Props) {
 
       {readme ? (
         // HTML comes from GitHub's renderer, which sanitizes it.
-        <article
+        <div
           className="readme border-line border-b py-8"
           dangerouslySetInnerHTML={{ __html: readme }}
         />

@@ -177,9 +177,20 @@ export async function getProjectSlugs(): Promise<string[]> {
 // GitHub's README HTML keeps relative paths: point them at raw.githubusercontent.com.
 export function absolutizeReadme(html: string, slug: string): string {
   return html.replace(
-    /(?<![\w-])src="(?!https?:|\/\/|data:|#)(?:\.?\/)?([^"]*)"/g,
-    (_, path) =>
-      `src="https://raw.githubusercontent.com/${GITHUB_USER}/${slug}/HEAD/${path}"`,
+    /(?<![\w-])(src|href)="(?![a-z][a-z0-9+.-]*:|\/\/|#)([^"]*)"/gi,
+    (_, attr: string, value: string) => {
+      const root =
+        attr.toLowerCase() === "src"
+          ? "raw.githubusercontent.com"
+          : "github.com";
+      const path = attr.toLowerCase() === "src" ? "" : "blob/";
+      // A leading "/" means repo root, as on GitHub.
+      const url = new URL(
+        value.replace(/^\//, ""),
+        `https://${root}/${GITHUB_USER}/${slug}/${path}HEAD/`,
+      ).href;
+      return `${attr}="${url}"`;
+    },
   );
 }
 
